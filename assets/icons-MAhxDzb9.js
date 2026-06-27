@@ -1,0 +1,1 @@
+const e={overview:{emoji:"📊"},calendar:{emoji:"📅"},hot:{emoji:"🔥"},insight:{emoji:"💡"},risk:{emoji:"⚠️"},holdings:{emoji:"💼"},strategy:{emoji:"♟️"},knowledge:{emoji:"🗺️"},weakness:{emoji:"🎯"},dailylog:{emoji:"📅"}};export{e as I};

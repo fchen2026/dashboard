@@ -1,0 +1,9 @@
+{
+  "name": "数据看板",
+  "short_name": "看板",
+  "description": "投资分析 · 学情报告 · 法律工作 · 内容运营",
+  "start_url": "./",
+  "display": "standalone",
+  "theme_color": "#0f172a",
+  "background_color": "#0f172a"
+}
