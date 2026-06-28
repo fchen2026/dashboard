@@ -20,14 +20,25 @@ import{_ as A,n as M}from"./core-B_Wlt-Ld.js";import{I as T}from"./icons-De6BiXE
 .inv-kpi-strip {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4);
   padding: var(--space-4) var(--space-6);
+  background: linear-gradient(180deg, var(--color-bg-raised) 0%, var(--color-bg-base) 100%);
 }
 .inv-kpi-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--color-border-default);
-  border-radius: var(--radius-lg); padding: 16px 20px;
-  transition: border-color var(--transition-normal), background var(--transition-normal);
+  background: var(--color-bg-overlay);
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 18px 22px;
+  box-shadow: var(--shadow-md);
+  transition: box-shadow var(--transition-normal), transform var(--transition-normal);
+  position: relative; overflow: hidden;
 }
-.inv-kpi-card:hover { background: rgba(255,255,255,0.05); border-color: rgba(var(--color-accent-rgb),0.30); }
+.inv-kpi-card::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 2px; background: var(--color-accent); opacity: 0.4;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.inv-kpi-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+.inv-kpi-card:hover::after { transform: scaleX(1); }
 .inv-kpi-label { font-size: 12px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 6px; }
 .inv-kpi-value {
   font-size: 32px; font-weight: 700; letter-spacing: -0.02em;
@@ -41,12 +52,12 @@ import{_ as A,n as M}from"./core-B_Wlt-Ld.js";import{I as T}from"./icons-De6BiXE
 .inv-kpi-delta.neg { color: var(--color-danger); }
 
 /* ─── Body Split ─── */
-.inv-body { display: flex; flex: 1; overflow: hidden; }
+.inv-body { display: flex; flex: 1; overflow: hidden; background: var(--color-bg-base); }
 .inv-nav {
   width: ${D}px; flex-shrink: 0;
   border-right: 1px solid var(--color-border-default);
   padding: var(--space-3) 0; overflow-y: auto;
-  background: var(--color-bg-base);
+  background: var(--color-bg-raised);
 }
 .inv-nav-item {
   display: flex; align-items: center; gap: var(--space-2);
@@ -75,7 +86,8 @@ import{_ as A,n as M}from"./core-B_Wlt-Ld.js";import{I as T}from"./icons-De6BiXE
 .inv-date-pill {
   font-size: 12px; font-weight: 500; color: var(--color-text-secondary);
   padding: 5px 12px; border-radius: var(--radius-full);
-  border: 1px solid var(--color-border-default); background: transparent;
+  border: none; background: transparent;
+  box-shadow: var(--shadow-sm);
   cursor: pointer; transition: all var(--transition-fast);
   font-variant-numeric: tabular-nums; font-family: var(--font-sans);
 }
@@ -84,7 +96,7 @@ import{_ as A,n as M}from"./core-B_Wlt-Ld.js";import{I as T}from"./icons-De6BiXE
 
 /* ─── Section Headers ─── */
 .inv-section-title {
-  font-size: 16px; font-weight: 600; letter-spacing: -0.02em;
+  font-size: 18px; font-weight: 600; letter-spacing: -0.01em;
   color: var(--color-text-primary); margin-bottom: var(--space-5);
 }
 .inv-sub-title {
@@ -94,10 +106,11 @@ import{_ as A,n as M}from"./core-B_Wlt-Ld.js";import{I as T}from"./icons-De6BiXE
 
 /* ─── Cards ─── */
 .inv-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--color-border-default);
+  background: var(--color-bg-overlay);
+  border: none;
   border-radius: var(--radius-lg); padding: 20px 24px;
   margin-bottom: var(--space-4);
+  box-shadow: var(--shadow-md);
 }
 .inv-card-header {
   display: flex; align-items: center; justify-content: space-between;
@@ -109,8 +122,9 @@ import{_ as A,n as M}from"./core-B_Wlt-Ld.js";import{I as T}from"./icons-De6BiXE
 .inv-index-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); margin-bottom: var(--space-5); }
 .inv-index-mini {
   background: rgba(255,255,255,0.03);
-  border: 1px solid var(--color-border-default);
+  border: none;
   border-radius: var(--radius-lg); padding: 14px 16px;
+  box-shadow: var(--shadow-sm);
   transition: border-color var(--transition-fast);
 }
 .inv-index-mini:hover { border-color: rgba(var(--color-accent-rgb),0.25); }
@@ -169,9 +183,10 @@ import{_ as A,n as M}from"./core-B_Wlt-Ld.js";import{I as T}from"./icons-De6BiXE
 /* ─── Risk Grid ─── */
 .inv-risk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin-bottom: var(--space-5); }
 .inv-metric-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--color-border-default);
+  background: var(--color-bg-overlay);
+  border: none;
   border-radius: var(--radius-lg); padding: 16px 20px;
+  box-shadow: var(--shadow-md);
 }
 .inv-metric-value { font-size: 28px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--color-text-primary); line-height: 1.2; }
 .inv-metric-label { font-size: 12px; font-weight: 500; color: var(--color-text-secondary); margin-top: 4px; }
@@ -182,7 +197,7 @@ import{_ as A,n as M}from"./core-B_Wlt-Ld.js";import{I as T}from"./icons-De6BiXE
 .inv-metric-status { display: flex; align-items: center; font-size: 12px; color: var(--color-text-secondary); margin-top: 4px; }
 
 /* ─── Risk Summary ─── */
-.inv-risk-summary { font-size: 13px; line-height: 1.7; color: var(--color-text-secondary); padding: var(--space-4); border-radius: var(--radius-lg); background: rgba(255,255,255,0.02); border: 1px solid var(--color-border-default); }
+.inv-risk-summary { font-size: 13px; line-height: 1.7; color: var(--color-text-secondary); padding: var(--space-4); border-radius: var(--radius-lg); background: rgba(255,255,255,0.02); border: none; }
 
 /* ─── Timeline Section ─── */
 .inv-timeline-wrap { margin-bottom: var(--space-5); }
@@ -214,7 +229,7 @@ import{_ as A,n as M}from"./core-B_Wlt-Ld.js";import{I as T}from"./icons-De6BiXE
 .inv-empty-text { font-size: 13px; color: var(--color-text-secondary); }
 
 /* ─── Overview Text ─── */
-.inv-overview-text { font-size: 13px; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-5); padding: var(--space-4); border-radius: var(--radius-lg); background: rgba(255,255,255,0.02); border: 1px solid var(--color-border-default); }
+.inv-overview-text { font-size: 13px; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-5); padding: var(--space-4); border-left: 3px solid var(--color-accent); border-radius: var(--radius-lg); background: rgba(255,255,255,0.02); border: none; }
 
 /* ─── Fade In ─── */
 @keyframes inv-fadein { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }

@@ -1,4 +1,4 @@
-const n={investing:{name:"投资分析",color:"#22C55E",colorLight:"#4ADE80",colorDark:"#16A34A",gradient:"linear-gradient(135deg, #22C55E 0%, #16A34A 100%)",gradientLight:"linear-gradient(135deg, rgba(34,197,94,0.12) 0%, rgba(22,163,74,0.06) 100%)",icon:"📈",dir:"investing"},education:{name:"学情报告",color:"#818CF8",colorLight:"#A5B4FC",colorDark:"#6366F1",gradient:"linear-gradient(135deg, #818CF8 0%, #6366F1 100%)",gradientLight:"linear-gradient(135deg, rgba(129,140,248,0.12) 0%, rgba(99,102,241,0.06) 100%)",icon:"📚",dir:"education"},legal:{name:"法律工作",color:"#F87171",colorLight:"#FCA5A5",colorDark:"#EF4444",gradient:"linear-gradient(135deg, #F87171 0%, #EF4444 100%)",gradientLight:"linear-gradient(135deg, rgba(248,113,113,0.12) 0%, rgba(239,68,68,0.06) 100%)",icon:"⚖️",dir:"legal"},content:{name:"内容运营",color:"#F59E0B",colorLight:"#FBBF24",colorDark:"#D97706",gradient:"linear-gradient(135deg, #F59E0B 0%, #D97706 100%)",gradientLight:"linear-gradient(135deg, rgba(245,158,11,0.12) 0%, rgba(217,119,6,0.06) 100%)",icon:"✍️",dir:"content"},finance:{name:"财金周报",color:"#D4A017",colorLight:"#F0C050",colorDark:"#B8860B",gradient:"linear-gradient(135deg, #D4A017 0%, #B8860B 100%)",gradientLight:"linear-gradient(135deg, rgba(212,160,23,0.12) 0%, rgba(184,134,11,0.06) 100%)",icon:"📈",dir:"finance"}},b=Object.keys(n);function c(r){const o=document.documentElement;return getComputedStyle(o).getPropertyValue(`--${r}`).trim()}const t={education:{accent:"#818CF8",accentRGB:"129, 140, 248",accentLight:"#A5B4FC",accentDark:"#6366F1",name:"学情报告"},investing:{accent:"#22C55E",accentRGB:"34, 197, 94",accentLight:"#4ADE80",accentDark:"#16A34A",name:"投资分析"},content:{accent:"#F59E0B",accentRGB:"245, 158, 11",accentLight:"#FBBF24",accentDark:"#D97706",name:"内容运营"},legal:{accent:"#F87171",accentRGB:"248, 113, 113",accentLight:"#FCA5A5",accentDark:"#EF4444",name:"法律工作"},finance:{accent:"#D4A017",accentRGB:"212, 160, 23",accentLight:"#F0C050",accentDark:"#B8860B",name:"财金周报"}};function s(r){return t[r]||t.education}function d(){return`
+const n={investing:{name:"投资分析",color:"#1ED45E",colorLight:"#4ADE80",colorDark:"#16A34A",gradient:"linear-gradient(135deg, #1ED45E 0%, #16A34A 100%)",gradientLight:"linear-gradient(135deg, rgba(34,197,94,0.12) 0%, rgba(22,163,74,0.06) 100%)",icon:"📈",dir:"investing"},education:{name:"学情报告",color:"#818CF8",colorLight:"#A5B4FC",colorDark:"#6366F1",gradient:"linear-gradient(135deg, #818CF8 0%, #6366F1 100%)",gradientLight:"linear-gradient(135deg, rgba(129,140,248,0.12) 0%, rgba(99,102,241,0.06) 100%)",icon:"📚",dir:"education"},legal:{name:"法律工作",color:"#F86161",colorLight:"#FCA5A5",colorDark:"#EF4444",gradient:"linear-gradient(135deg, #F86161 0%, #EF4444 100%)",gradientLight:"linear-gradient(135deg, rgba(248,113,113,0.12) 0%, rgba(239,68,68,0.06) 100%)",icon:"⚖️",dir:"legal"},content:{name:"内容运营",color:"#F0A800",colorLight:"#FBBF24",colorDark:"#D97706",gradient:"linear-gradient(135deg, #F0A800 0%, #D97706 100%)",gradientLight:"linear-gradient(135deg, rgba(245,158,11,0.12) 0%, rgba(217,119,6,0.06) 100%)",icon:"✍️",dir:"content"},finance:{name:"财金周报",color:"#D4A017",colorLight:"#F0C050",colorDark:"#B8860B",gradient:"linear-gradient(135deg, #D4A017 0%, #B8860B 100%)",gradientLight:"linear-gradient(135deg, rgba(212,160,23,0.12) 0%, rgba(184,134,11,0.06) 100%)",icon:"📈",dir:"finance"}},b=Object.keys(n);function c(r){const o=document.documentElement;return getComputedStyle(o).getPropertyValue(`--${r}`).trim()}const t={education:{accent:"#818CF8",accentRGB:"129, 140, 248",accentLight:"#A5B4FC",accentDark:"#6366F1",name:"学情报告"},investing:{accent:"#1ED45E",accentRGB:"34, 197, 94",accentLight:"#4ADE80",accentDark:"#16A34A",name:"投资分析"},content:{accent:"#F0A800",accentRGB:"245, 158, 11",accentLight:"#FBBF24",accentDark:"#D97706",name:"内容运营"},legal:{accent:"#F86161",accentRGB:"248, 113, 113",accentLight:"#FCA5A5",accentDark:"#EF4444",name:"法律工作"},finance:{accent:"#D4A017",accentRGB:"212, 160, 23",accentLight:"#F0C050",accentDark:"#B8860B",name:"财金周报"}};function s(r){return t[r]||t.education}function d(){return`
 /* ================================================================
    CSS Custom Properties — Design Tokens
    ================================================================ */
@@ -9,9 +9,9 @@ const n={investing:{name:"投资分析",color:"#22C55E",colorLight:"#4ADE80",col
   --color-bg-overlay:    #1A1A24;
 
   /* ── Text Hierarchy ── */
-  --color-text-primary:   #F0F0F5;
-  --color-text-secondary: #8B8B9E;
-  --color-text-tertiary:  #5A5A6E;
+  --color-text-primary:   #E6E9EE;
+  --color-text-secondary: #878A94;
+  --color-text-tertiary:  #535760;
   --color-text-disabled:  #3A3A4A;
 
   /* ── Default Accent (Education) ── */
@@ -19,18 +19,18 @@ const n={investing:{name:"投资分析",color:"#22C55E",colorLight:"#4ADE80",col
   --color-accent-rgb:    129, 140, 248;
 
   /* ── Semantic Colors ── */
-  --color-success:  #22C55E;
-  --color-danger:   #F87171;
-  --color-warning:  #F59E0B;
+  --color-success:  #1ED45E;
+  --color-danger:   #F86161;
+  --color-warning:  #F0A800;
   --color-info:     #60A5FA;
 
   /* ── Borders ── */
-  --color-border-default: rgba(255, 255, 255, 0.06);
-  --color-border-strong:  rgba(255, 255, 255, 0.10);
+  --color-border-default: rgba(255, 255, 255, 0.04);
+  --color-border-strong:  rgba(255, 255, 255, 0.07);
   --color-border-active:  var(--color-accent);
 
   /* ── Typography ── */
-  --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans:  'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono:  'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
 
   /* ── Radii ── */
@@ -51,9 +51,9 @@ const n={investing:{name:"投资分析",color:"#22C55E",colorLight:"#4ADE80",col
   --space-8:  32px;
 
   /* ── Shadows ── */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255,255,255,0.03);
+  --shadow-lg: 0 4px 24px rgba(0, 0, 0, 0.7);
 
   /* ── Layout ── */
   --sidebar-width: 240px;
@@ -123,7 +123,7 @@ a:hover { opacity: 0.8; }
 .sidebar {
   position: fixed; top: 0; left: 0;
   width: var(--sidebar-width); height: 100vh;
-  background: #0D0D14;
+  background: #0A0D10;
   border-right: 1px solid var(--color-border-default);
   display: flex; flex-direction: column; z-index: 100; overflow-y: auto;
 }
@@ -131,7 +131,7 @@ a:hover { opacity: 0.8; }
 .sidebar-logo {
   padding: var(--space-6); font-size: 20px; font-weight: 700;
   letter-spacing: -0.02em; color: var(--color-text-primary);
-  border-bottom: 1px solid var(--color-border-default);
+  border-bottom: 1px solid rgba(255,255,255,0.03);
 }
 
 .sidebar-nav {
@@ -184,16 +184,17 @@ a:hover { opacity: 0.8; }
    Cards — Glassmorphism
    ================================================================ */
 .card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--color-border-default);
-  border-radius: var(--radius-lg); padding: 20px 24px;
-  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-  transition: border-color var(--transition-normal), background var(--transition-normal);
+  background: var(--color-bg-raised);
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-md);
+  transition: box-shadow var(--transition-normal);
 }
-.card:hover { background: rgba(255,255,255,0.05); border-color: rgba(var(--color-accent-rgb),0.30); }
+.card:hover { box-shadow: var(--shadow-lg); background: var(--color-bg-overlay); }
 .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-4); }
 .card-section-title {
-  font-size: 12px; font-weight: 600; text-transform: uppercase;
+  font-size: 12px; font-weight: 600;
   letter-spacing: 0.08em; color: var(--color-text-tertiary); margin-bottom: var(--space-4);
 }
 .card-footer { margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid var(--color-border-default); font-size: 12px; color: var(--color-text-tertiary); }
@@ -202,12 +203,14 @@ a:hover { opacity: 0.8; }
    KPI Number Cards — Stripe Style
    ================================================================ */
 .kpi-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--color-border-default);
-  border-radius: var(--radius-lg); padding: 20px 24px;
-  transition: border-color var(--transition-normal), background var(--transition-normal);
+  background: var(--color-bg-raised);
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-md);
+  transition: box-shadow var(--transition-normal), transform var(--transition-normal);
 }
-.kpi-card:hover { background: rgba(255,255,255,0.05); border-color: rgba(var(--color-accent-rgb),0.30); }
+.kpi-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
 .kpi-label { font-size: 12px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: var(--space-2); }
 .kpi-value { font-size: 32px; font-weight: 700; font-variant-numeric: tabular-nums; font-family: var(--font-sans); letter-spacing: -0.02em; color: var(--color-text-primary); line-height: 1.1; }
 .kpi-delta { display: inline-flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 500; margin-top: var(--space-2); }
@@ -265,8 +268,8 @@ a:hover { opacity: 0.8; }
    Tables
    ================================================================ */
 table { width: 100%; border-collapse: collapse; }
-table th { font-size: 12px; font-weight: 600; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.04em; text-align: left; padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--color-border-default); }
-table td { font-size: 14px; color: var(--color-text-primary); padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--color-border-default); font-variant-numeric: tabular-nums; }
+table th { font-size: 12px; font-weight: 600; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.04em; text-align: left; padding: var(--space-3) var(--space-4); border-bottom: 1px solid rgba(255,255,255,0.03); }
+table td { font-size: 14px; color: var(--color-text-primary); padding: var(--space-3) var(--space-4); border-bottom: 1px solid rgba(255,255,255,0.03); font-variant-numeric: tabular-nums; }
 table tbody tr:hover td { background: rgba(255,255,255,0.02); }
 
 /* ================================================================
