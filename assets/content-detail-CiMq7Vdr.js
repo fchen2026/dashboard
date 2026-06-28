@@ -1,4 +1,7 @@
-import{_ as V,n as j}from"./core-B_Wlt-Ld.js";import{I as L}from"./icons-De6BiXEo.js";import{a as N,d as O,b as K}from"./charts-BVitNI1m.js";import{s as P,g as _,f as H}from"./parsers-C5lwdAJe.js";import"./design-system-Du44DDix.js";const q=[{key:"hotspots",icon:L.hot.emoji,label:"热点趋势"},{key:"calendar",icon:L.calendar.emoji,label:"内容日历"},{key:"insights",icon:L.insight.emoji,label:"趋势洞察"}],M="content",Y="#F59E0B",x="245,158,11",F=160;let A=null;function G(){A||(A=document.createElement("style"),A.id="content-detail-styles",A.textContent=`
+import{_ as V,n as j}from"./core-B_Wlt-Ld.js";import{I as L}from"./icons-De6BiXEo.js";import{a as N,d as O,b as K}from"./charts-BVitNI1m.js";import{s as P,g as _,f as H}from"./parsers-C5lwdAJe.js";import"./design-system-Du44DDix.js";
+const StateLifecycle={IDLE:"idle",LOADING:"loading",LOADED:"loaded",EMPTY:"empty",ERROR:"error",STALE:"stale"};function createStateManager(){let g=StateLifecycle.IDLE;const m=new Map;let f=null;const s=new Set;return{setGlobal(t){g=t;s.forEach(e=>e("global",t))},getGlobal(){return g},setSection(t,e){m.set(t,e);s.forEach(r=>r(t,e))},getSection(t){return m.get(t)||StateLifecycle.IDLE},allLoaded(){return g===StateLifecycle.LOADED&&[...m.values()].every(t=>t===StateLifecycle.LOADED)},markFetchTime(){f=Date.now()},isStale(ttl=6e5){return f?Date.now()-f>ttl:!0},reset(){g=StateLifecycle.IDLE;m.clear();f=null},subscribe(t){s.add(t);return()=>s.delete(t)},getLastFetchTime(){return f}}}
+let gStateManager=createStateManager();
+const q=[{key:"hotspots",icon:L.hot.emoji,label:"热点趋势"},{key:"calendar",icon:L.calendar.emoji,label:"内容日历"},{key:"insights",icon:L.insight.emoji,label:"趋势洞察"}],M="content",Y="#F59E0B",x="245,158,11",F=160;let A=null;function G(){A||(A=document.createElement("style"),A.id="content-detail-styles",A.textContent=`
 /* ─── Layout ─── */
 .cd-detail { display: flex; flex-direction: column; height: 100%; min-height: calc(100vh - 60px); }
 .cd-topbar {
@@ -22,16 +25,22 @@ import{_ as V,n as j}from"./core-B_Wlt-Ld.js";import{I as L}from"./icons-De6BiXE
   padding: var(--space-4) var(--space-6);
 }
 .cd-kpi-card {
-  background: rgba(255,255,255,0.03); backdrop-filter: blur(12px);
-  border: 1px solid var(--color-border-default);
-  border-radius: var(--radius-lg); padding: 16px 20px;
-  transition: border-color var(--transition-normal), transform var(--transition-normal), background var(--transition-normal);
+  background: var(--color-bg-overlay);
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 18px 22px;
+  box-shadow: var(--shadow-md);
+  transition: box-shadow var(--transition-normal), transform var(--transition-normal);
+  position: relative; overflow: hidden;
 }
-.cd-kpi-card:hover {
-  background: rgba(255,255,255,0.05);
-  border-color: rgba(${x},0.30);
-  transform: translateY(-2px);
+.cd-kpi-card::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 2px; background: var(--color-accent); opacity: 0.4;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+.cd-kpi-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+.cd-kpi-card:hover::after { transform: scaleX(1); }
 .cd-kpi-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-accent); margin-bottom: 6px; }
 .cd-kpi-value {
   font-family: var(--font-mono); font-size: 32px; font-weight: 700;
@@ -89,13 +98,14 @@ import{_ as V,n as j}from"./core-B_Wlt-Ld.js";import{I as L}from"./icons-De6BiXE
 
 /* ─── Glass Card ─── */
 .cd-card {
-  background: rgba(255,255,255,0.03); backdrop-filter: blur(12px);
-  border: 1px solid var(--color-border-default);
+  background: var(--color-bg-overlay);
+  border: none;
   border-radius: var(--radius-lg); padding: var(--space-5);
   margin-bottom: var(--space-4);
-  transition: border-color var(--transition-normal), transform var(--transition-normal);
+  box-shadow: var(--shadow-md);
+  transition: box-shadow var(--transition-normal), transform var(--transition-normal);
 }
-.cd-card:hover { border-color: rgba(${x},0.12); transform: translateY(-2px); }
+.cd-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
 .cd-card-title {
   font-size: 12px; font-weight: 600; text-transform: uppercase;
   letter-spacing: 0.08em; color: var(--color-text-tertiary);
@@ -208,6 +218,20 @@ import{_ as V,n as j}from"./core-B_Wlt-Ld.js";import{I as L}from"./icons-De6BiXE
 .cd-table .pos { color: var(--color-success); font-weight: 500; }
 .cd-table .neg { color: var(--color-danger);  font-weight: 500; }
 
+/* ─── Stale Banner ─── */
+.cd-stale-banner {
+  padding: 8px 16px; margin-bottom: var(--space-4);
+  background: rgba(240,168,0,0.08);
+  border: 1px solid rgba(240,168,0,0.2);
+  border-radius: var(--radius-md);
+  font-size: 12px; color: var(--color-warning);
+  display: flex; align-items: center; gap: 8px;
+}
+.cd-stale-banner button {
+  padding: 2px 10px; border: 1px solid var(--color-warning);
+  border-radius: var(--radius-sm); background: transparent;
+  color: var(--color-warning); cursor: pointer; font-size: 11px;
+}
 /* ─── Skeleton / Pulse ─── */
 @keyframes cd-pulse { 0% { opacity: 0.2; } 50% { opacity: 0.5; } 100% { opacity: 0.2; } }
 .cd-skeleton { background: var(--color-bg-overlay); border-radius: var(--radius-md); animation: cd-pulse 1.8s ease-in-out infinite; }
@@ -284,4 +308,5 @@ import{_ as V,n as j}from"./core-B_Wlt-Ld.js";import{I as L}from"./icons-De6BiXE
     `,l.querySelectorAll(".cd-date-pill").forEach(m=>{m.addEventListener("click",()=>{S=m.dataset.date,E(),I()})})}function z(){const l=c.querySelector("#cd-nav");l&&(l.innerHTML=q.map(h=>`<div class="cd-nav-item${h.key===D?" active":""}" data-section="${h.key}"><span>${h.icon}</span><span>${h.label}</span></div>`).join(""),l.querySelectorAll(".cd-nav-item").forEach(h=>{h.addEventListener("click",()=>{l.querySelectorAll(".cd-nav-item").forEach(m=>m.classList.remove("active")),h.classList.add("active"),D=h.dataset.section,j(`#${M}/${D}`),I()})}))}function B(){const l=c.querySelector("#cd-kpi-strip");l&&(l.innerHTML=`
       <div class="cd-kpi-card"><div class="cd-kpi-label">今日热点</div><div class="cd-kpi-value">${T.todayCount}</div><div class="cd-kpi-delta">当日追踪</div></div>
       <div class="cd-kpi-card"><div class="cd-kpi-label">本周发布</div><div class="cd-kpi-value">${T.weekTotal}</div><div class="cd-kpi-delta">近 7 日产出</div></div>
-      <div class="cd-kpi-card"><div class="cd-kpi-label">互动率</div><div class="cd-kpi-value">${T.engagementRate}</div><div class="cd-kpi-delta">阅读+点赞均值</div></div>`)}function R(){I()}function I(){const l=c.querySelector(`#${b}`);if(!l)return;const h={allHotspotsData:i,allArticlesData:n,allDailiesData:v,allDates:k,hotspotTags:$,el:l,mdContents:o,selectedDay:W};switch(D){case"hotspots":ot({...h,selectedDate:S});break;case"calendar":nt({...h,setSelectedDay:m=>{W=m,R()}});break;case"insights":ct(h);break}}y()}export{q as SECTIONS,dt as computeKPIs,gt as renderContentDetail};
+      <div class="cd-kpi-card"><div class="cd-kpi-label">互动率</div><div class="cd-kpi-value">${T.engagementRate}</div><div class="cd-kpi-delta">阅读+点赞均值</div></div>`)}function showStaleBanner(){const D=document.querySelector(".cd-stale-banner");D&&D.remove();const E=document.createElement("div");E.className="cd-stale-banner";const z=gStateManager.getLastFetchTime()?Math.floor((Date.now()-gStateManager.getLastFetchTime())/6e4):0;E.innerHTML='\u26a0\ufe0f 数据可能已过期，上次更新：'+z+'分钟前 <button id="cd-refresh-btn">刷新</button>',c.querySelector(".cd-main").insertBefore(E,c.querySelector(".cd-main").firstChild),document.getElementById("cd-refresh-btn").addEventListener("click",()=>{gStateManager.markFetchTime();const F=c.querySelector(".cd-stale-banner");F&&F.remove();I()})}
+function R(){if(gStateManager.isStale(6e5)){showStaleBanner()}I()}function I(){const l=c.querySelector(`#${b}`);if(!l)return;const h={allHotspotsData:i,allArticlesData:n,allDailiesData:v,allDates:k,hotspotTags:$,el:l,mdContents:o,selectedDay:W};switch(D){case"hotspots":gStateManager.setSection("tab-hotspots",StateLifecycle.LOADING);ot({...h,selectedDate:S});gStateManager.setSection("tab-hotspots",i.length>0?StateLifecycle.LOADED:StateLifecycle.EMPTY);break;case"calendar":gStateManager.setSection("tab-calendar",StateLifecycle.LOADING);nt({...h,setSelectedDay:m=>{W=m,R()}});gStateManager.setSection("tab-calendar",k.length>0?StateLifecycle.LOADED:StateLifecycle.EMPTY);break;case"insights":gStateManager.setSection("tab-insights",StateLifecycle.LOADING);ct(h);gStateManager.setSection("tab-insights",(i.length+n.length+v.length)>0?StateLifecycle.LOADED:StateLifecycle.EMPTY);break}}y()}export{q as SECTIONS,dt as computeKPIs,gt as renderContentDetail};

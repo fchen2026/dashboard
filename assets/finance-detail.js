@@ -11,6 +11,9 @@ import {
   d as line,
   g as getColors,
 } from "./charts-BVitNI1m.js";
+const StateLifecycle={IDLE:"idle",LOADING:"loading",LOADED:"loaded",EMPTY:"empty",ERROR:"error",STALE:"stale"};function createStateManager(){let g=StateLifecycle.IDLE;const m=new Map;let f=null;const s=new Set;return{setGlobal(t){g=t;s.forEach(e=>e("global",t))},getGlobal(){return g},setSection(t,e){m.set(t,e);s.forEach(r=>r(t,e))},getSection(t){return m.get(t)||StateLifecycle.IDLE},allLoaded(){return g===StateLifecycle.LOADED&&[...m.values()].every(t=>t===StateLifecycle.LOADED)},markFetchTime(){f=Date.now()},isStale(ttl=6e5){return f?Date.now()-f>ttl:!0},reset(){g=StateLifecycle.IDLE;m.clear();f=null},subscribe(t){s.add(t);return()=>s.delete(t)},getLastFetchTime(){return f}}}
+let gStateManager=createStateManager();
+
 
 const TABS = [
   { key: "overview", label: "总览" },
@@ -63,14 +66,35 @@ function injectStyles() {
 .fin-content { flex: 1; padding: 20px 24px; overflow-y: auto; }
 
 .fin-kpi { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
-.fin-kpi-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 16px 20px; text-align: center; }
-.fin-kpi-val { font-size: 28px; font-weight: 700; }
-.fin-kpi-label { font-size: 12px; color: #5A5A6E; margin-top: 4px; }
+.fin-kpi-card {
+  background: var(--color-bg-overlay);
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 18px 22px; text-align: center;
+  box-shadow: var(--shadow-md);
+  transition: box-shadow var(--transition-normal), transform var(--transition-normal);
+  position: relative; overflow: hidden;
+}
+.fin-kpi-card::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 2px; background: #D4A017; opacity: 0.4;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.fin-kpi-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+.fin-kpi-card:hover::after { transform: scaleX(1); }
+.fin-kpi-val { font-size: 28px; font-weight: 700; font-family: var(--font-sans); }
+.fin-kpi-label { font-size: 12px; color: var(--color-text-secondary); margin-top: 4px; }
 
 .fin-chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
-.fin-chart-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 16px; }
+.fin-chart-card {
+  background: var(--color-bg-overlay);
+  border: none;
+  border-radius: var(--radius-lg); padding: 16px;
+  box-shadow: var(--shadow-sm);
+}
 .fin-chart-card.full { grid-column: 1 / -1; }
-.fin-chart-title { font-size: 14px; font-weight: 600; color: #A0A0B8; margin-bottom: 12px; }
+.fin-chart-title { font-size: 14px; font-weight: 600; color: var(--color-text-secondary); margin-bottom: 12px; font-family: var(--font-sans); }
 .fin-chart-canvas { width: 100%; height: 240px; }
 
 .fin-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0; }
@@ -101,7 +125,12 @@ function injectStyles() {
 .fin-callout.blue { background: rgba(96,165,250,0.06); border-color: #60A5FA; }
 
 .fin-stock-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin: 12px 0; }
-.fin-stock-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 12px; text-align: center; }
+.fin-stock-card {
+  background: var(--color-bg-overlay);
+  border: none;
+  border-radius: var(--radius-lg); padding: 12px; text-align: center;
+  box-shadow: var(--shadow-sm);
+}
 .fin-stock-name { font-weight: 700; font-size: 14px; }
 .fin-stock-code { font-size: 11px; color: #5A5A6E; margin-top: 2px; }
 .fin-stock-signal { font-size: 12px; font-weight: 600; margin-top: 6px; padding: 2px 10px; border-radius: 4px; display: inline-block; }
@@ -128,18 +157,61 @@ function injectStyles() {
 .fin-rotation-bar.s4 { background: rgba(46,204,113,0.25); }
 .fin-rotation-bar.s5 { background: rgba(46,204,113,0.35); }
 
-.fin-scenario-card { text-align: center; padding: 20px; border-radius: 12px; }
+.fin-scenario-card {
+  text-align: center; padding: 20px;
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-overlay);
+  border: none;
+  box-shadow: var(--shadow-sm);
+}
 .fin-scenario-prob { font-size: 36px; font-weight: 800; }
 .fin-scenario-label { font-size: 13px; margin-top: 4px; }
 
-.fin-section-title { font-size: 15px; font-weight: 600; color: #F0F0F5; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.06); margin: 20px 0 12px; }
+.fin-section-title { font-size: 15px; font-weight: 600; color: var(--color-text-primary); padding-bottom: 8px; border-bottom: 1px solid var(--color-border-default); margin: 20px 0 12px; font-family: var(--font-sans); }
+
+/* ─── Stale Banner ─── */
+.fin-stale-banner {
+  padding: 8px 16px; margin-bottom: 20px;
+  background: rgba(240,168,0,0.08);
+  border: 1px solid rgba(240,168,0,0.2);
+  border-radius: var(--radius-md);
+  font-size: 12px; color: var(--color-warning);
+  display: flex; align-items: center; gap: 8px;
+}
+.fin-stale-banner button {
+  padding: 2px 10px; border: 1px solid var(--color-warning);
+  border-radius: var(--radius-sm); background: transparent;
+  color: var(--color-warning); cursor: pointer; font-size: 11px;
+}
+/* ─── Skeleton ─── */
+@keyframes fin-pulse { 0% { opacity: 0.2; } 50% { opacity: 0.5; } 100% { opacity: 0.2; } }
+.fin-skeleton { background: var(--color-bg-overlay); border-radius: var(--radius-md); animation: fin-pulse 1.8s ease-in-out infinite; }
+.fin-skeleton-kpi { height: 40px; width: 70%; margin-bottom: 8px; }
+.fin-skeleton-line { height: 13px; margin-bottom: 8px; }
+.fin-skeleton-line:last-child { width: 55%; }
+/* ─── Empty State ─── */
+.fin-empty {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: var(--space-8); color: var(--color-text-tertiary);
+  text-align: center; min-height: 200px;
+}
+.fin-empty-icon { font-size: 36px; margin-bottom: var(--space-3); opacity: 0.3; }
+.fin-empty-text { font-size: 13px; color: var(--color-text-secondary); }
+/* ─── Fade In ─── */
+@keyframes fin-fadein { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+.fin-fade { animation: fin-fadein 200ms ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fin-fade { animation: none; }
+  .fin-kpi-card, .fin-nav-btn { transition: none; }
+}
 
 @media (max-width: 768px) {
   .fin-kpi { grid-template-columns: repeat(2, 1fr); }
   .fin-chart-row { grid-template-columns: 1fr; }
 }
 
-h3 { font-size: 14px; font-weight: 600; color: #D4A017; margin: 16px 0 8px; }
+h3 { font-size: 14px; font-weight: 600; color: #D4A017; margin: 16px 0 8px; font-family: var(--font-sans); }
 `;
   document.head.appendChild(styleEl);
 }
@@ -273,6 +345,7 @@ function renderAccuracy(container, data) {
 
   requestAnimationFrame(() => {
     const canvas = container.querySelector("#chart-accuracy-daily");
+    if (!canvas || canvas.offsetWidth===0 || canvas.offsetHeight===0) {gStateManager.setSection("chart-accuracy",StateLifecycle.ERROR); return;}
     if (canvas && bar) {
       bar(canvas, {
         labels,
@@ -509,15 +582,39 @@ function renderOutlook(container, data) {
   `;
 }
 
+// ─── Skeleton Loading ──────────────────────
+function J(element) {
+  element.innerHTML = `
+    <div class="fin-wrap">
+      <div class="fin-topbar">
+        <div class="fin-skeleton" style="width:60px;height:16px"></div>
+        <div class="fin-skeleton" style="width:120px;height:20px"></div>
+      </div>
+      <div class="fin-kpi" style="padding:16px 24px">
+        ${Array(3).fill('<div class="fin-kpi-card"><div class="fin-skeleton fin-skeleton-kpi"></div><div class="fin-skeleton fin-skeleton-line"></div></div>').join("")}
+      </div>
+      <div style="display:flex;flex:1;padding:0 24px">
+        <div style="width:100%">
+          <div class="fin-skeleton fin-skeleton-line" style="width:100%"></div>
+          <div class="fin-skeleton fin-skeleton-line" style="width:100%"></div>
+          <div class="fin-skeleton fin-skeleton-line" style="width:70%"></div>
+        </div>
+      </div>
+    </div>`;
+}
+
 // ─── Main Render ────────────────────────────
 async function renderFinanceDetail({ element, area, files }) {
   injectStyles();
+  J(element);
 
   const data = await loadData();
   if (!data) {
-    element.innerHTML = '<div style="padding:80px;text-align:center;color:#A0A0B8">无法加载财金数据 (finance-data.json)</div>';
+    element.innerHTML = '<div class="fin-empty" style="margin-top:80px"><div class="fin-empty-icon">📈</div><div class="fin-empty-text">无法加载财金数据 (finance-data.json)</div></div>';
     return;
   }
+
+  gStateManager.markFetchTime();
 
   element.innerHTML = `
     <div class="fin-wrap">
@@ -548,16 +645,39 @@ async function renderFinanceDetail({ element, area, files }) {
   renderTab(element.querySelector("#fin-content"), data);
 }
 
+function showStaleBanner(container) {
+  const existing = document.querySelector(".fin-stale-banner");
+  existing && existing.remove();
+  const banner = document.createElement("div");
+  banner.className = "fin-stale-banner";
+  const mins = gStateManager.getLastFetchTime() ? Math.floor((Date.now() - gStateManager.getLastFetchTime()) / 6e4) : 0;
+  banner.innerHTML = '\u26a0\ufe0f 数据可能已过期，上次更新：' + mins + '分钟前 <button id="fin-refresh-btn">刷新</button>';
+  container.parentElement.insertBefore(banner, container);
+  document.getElementById("fin-refresh-btn").addEventListener("click", async () => {
+    const b = document.querySelector(".fin-stale-banner");
+    b && b.remove();
+    gStateManager.markFetchTime();
+    const newData = await loadData();
+    if (newData) {
+      financeData = newData;
+      renderTab(document.querySelector("#fin-content"), newData);
+    }
+  });
+}
+
 function renderTab(container, data) {
   container.innerHTML = "";
+  if (gStateManager.isStale(6e5)) {
+    showStaleBanner(container);
+  }
   switch (currentTab) {
-    case "overview": renderOverview(container, data); break;
-    case "accuracy": renderAccuracy(container, data); break;
-    case "rotation": renderRotation(container, data); break;
-    case "events": renderEvents(container, data); break;
-    case "factors": renderFactors(container, data); break;
-    case "mistakes": renderMistakes(container, data); break;
-    case "outlook": renderOutlook(container, data); break;
+    case "overview": gStateManager.setSection("tab-overview",StateLifecycle.LOADING);renderOverview(container, data);gStateManager.setSection("tab-overview",data?StateLifecycle.LOADED:StateLifecycle.EMPTY); break;
+    case "accuracy": gStateManager.setSection("tab-accuracy",StateLifecycle.LOADING);renderAccuracy(container, data);gStateManager.setSection("tab-accuracy",data?StateLifecycle.LOADED:StateLifecycle.EMPTY); break;
+    case "rotation": gStateManager.setSection("tab-rotation",StateLifecycle.LOADING);renderRotation(container, data);gStateManager.setSection("tab-rotation",data?StateLifecycle.LOADED:StateLifecycle.EMPTY); break;
+    case "events": gStateManager.setSection("tab-events",StateLifecycle.LOADING);renderEvents(container, data);gStateManager.setSection("tab-events",data?StateLifecycle.LOADED:StateLifecycle.EMPTY); break;
+    case "factors": gStateManager.setSection("tab-factors",StateLifecycle.LOADING);renderFactors(container, data);gStateManager.setSection("tab-factors",data?StateLifecycle.LOADED:StateLifecycle.EMPTY); break;
+    case "mistakes": gStateManager.setSection("tab-mistakes",StateLifecycle.LOADING);renderMistakes(container, data);gStateManager.setSection("tab-mistakes",data?StateLifecycle.LOADED:StateLifecycle.EMPTY); break;
+    case "outlook": gStateManager.setSection("tab-outlook",StateLifecycle.LOADING);renderOutlook(container, data);gStateManager.setSection("tab-outlook",data?StateLifecycle.LOADED:StateLifecycle.EMPTY); break;
     default: renderOverview(container, data);
   }
 }

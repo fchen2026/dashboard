@@ -1,4 +1,7 @@
-import{_,n as E}from"./core-B_Wlt-Ld.js";import"./design-system-Du44DDix.js";import{f as H}from"./charts-BVitNI1m.js";import{s as P,h as p,i as x,b as L}from"./parsers-C5lwdAJe.js";const z=[{key:"cases",key_cn:"案件总览",label:"案件总览"},{key:"timeline",key_cn:"时间线",label:"时间线"},{key:"risks",key_cn:"风险分析",label:"风险分析"}],j=160;let v=null;function A(){v||(v=document.createElement("style"),v.id="legal-detail-styles",v.textContent=`
+import{_,n as E}from"./core-B_Wlt-Ld.js";import"./design-system-Du44DDix.js";
+const StateLifecycle={IDLE:"idle",LOADING:"loading",LOADED:"loaded",EMPTY:"empty",ERROR:"error",STALE:"stale"};function createStateManager(){let g=StateLifecycle.IDLE;const m=new Map;let f=null;const s=new Set;return{setGlobal(t){g=t;s.forEach(e=>e("global",t))},getGlobal(){return g},setSection(t,e){m.set(t,e);s.forEach(r=>r(t,e))},getSection(t){return m.get(t)||StateLifecycle.IDLE},allLoaded(){return g===StateLifecycle.LOADED&&[...m.values()].every(t=>t===StateLifecycle.LOADED)},markFetchTime(){f=Date.now()},isStale(ttl=6e5){return f?Date.now()-f>ttl:!0},reset(){g=StateLifecycle.IDLE;m.clear();f=null},subscribe(t){s.add(t);return()=>s.delete(t)},getLastFetchTime(){return f}}}
+let gStateManager=createStateManager();
+import{f as H}from"./charts-BVitNI1m.js";import{s as P,h as p,i as x,b as L}from"./parsers-C5lwdAJe.js";const z=[{key:"cases",key_cn:"案件总览",label:"案件总览"},{key:"timeline",key_cn:"时间线",label:"时间线"},{key:"risks",key_cn:"风险分析",label:"风险分析"}],j=160;let v=null;function A(){v||(v=document.createElement("style"),v.id="legal-detail-styles",v.textContent=`
 .legal-wrap { display: flex; flex-direction: column; height: 100%; min-height: calc(100vh - 60px); }
 .legal-topbar {
   display: flex; align-items: center; gap: var(--space-4);
@@ -21,12 +24,22 @@ import{_,n as E}from"./core-B_Wlt-Ld.js";import"./design-system-Du44DDix.js";imp
   padding: var(--space-4) var(--space-6);
 }
 .legal-kpi-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--color-border-default);
-  border-radius: var(--radius-lg); padding: 16px 20px;
-  transition: border-color var(--transition-normal), background var(--transition-normal), transform var(--transition-normal);
+  background: var(--color-bg-overlay);
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 18px 22px;
+  box-shadow: var(--shadow-md);
+  transition: box-shadow var(--transition-normal), transform var(--transition-normal);
+  position: relative; overflow: hidden;
 }
-.legal-kpi-card:hover { background: rgba(255,255,255,0.05); border-color: rgba(248,113,113,0.30); transform: translateY(-2px); }
+.legal-kpi-card::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 2px; background: var(--color-accent); opacity: 0.4;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.legal-kpi-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+.legal-kpi-card:hover::after { transform: scaleX(1); }
 .legal-kpi-label { font-size: 12px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 6px; }
 .legal-kpi-value {
   font-size: 32px; font-weight: 700; letter-spacing: -0.02em;
@@ -73,23 +86,25 @@ import{_,n as E}from"./core-B_Wlt-Ld.js";import"./design-system-Du44DDix.js";imp
 
 /* Cards */
 .legal-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--color-border-default);
+  background: var(--color-bg-overlay);
+  border: none;
   border-radius: var(--radius-lg); padding: 20px 24px;
   margin-bottom: var(--space-4);
-  transition: border-color var(--transition-normal), transform var(--transition-normal);
+  box-shadow: var(--shadow-md);
+  transition: box-shadow var(--transition-normal), transform var(--transition-normal);
 }
-.legal-card:hover { border-color: rgba(248,113,113,0.20); transform: translateY(-2px); }
+.legal-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
 
 /* Case Card List */
 .legal-case-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--color-border-default);
+  background: var(--color-bg-overlay);
+  border: none;
   border-radius: var(--radius-lg); padding: 16px 20px;
   margin-bottom: var(--space-3);
-  transition: border-color var(--transition-normal), transform var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-normal), transform var(--transition-normal);
 }
-.legal-case-card:hover { border-color: rgba(248,113,113,0.20); transform: translateY(-2px); }
+.legal-case-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
 .legal-case-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: var(--space-2); }
 .legal-case-id { font-family: var(--font-mono); font-size: 12px; color: var(--color-text-tertiary); letter-spacing: 0.02em; }
 .legal-case-name { font-size: 15px; font-weight: 600; color: var(--color-text-primary); }
@@ -150,7 +165,21 @@ import{_,n as E}from"./core-B_Wlt-Ld.js";import"./design-system-Du44DDix.js";imp
   margin-top: var(--space-4);
 }
 
-/* Skeleton */
+/* ─── Stale Banner ─── */
+.legal-stale-banner {
+  padding: 8px 16px; margin-bottom: var(--space-4);
+  background: rgba(240,168,0,0.08);
+  border: 1px solid rgba(240,168,0,0.2);
+  border-radius: var(--radius-md);
+  font-size: 12px; color: var(--color-warning);
+  display: flex; align-items: center; gap: 8px;
+}
+.legal-stale-banner button {
+  padding: 2px 10px; border: 1px solid var(--color-warning);
+  border-radius: var(--radius-sm); background: transparent;
+  color: var(--color-warning); cursor: pointer; font-size: 11px;
+}
+/* ─── Skeleton ─── */
 @keyframes legal-pulse { 0% { opacity: 0.2; } 50% { opacity: 0.5; } 100% { opacity: 0.2; } }
 .legal-skeleton { background: var(--color-bg-overlay); border-radius: var(--radius-md); animation: legal-pulse 1.8s ease-in-out infinite; }
 .legal-skeleton-kpi { height: 40px; width: 70%; margin-bottom: 8px; }
@@ -205,7 +234,7 @@ import{_,n as E}from"./core-B_Wlt-Ld.js";import"./design-system-Du44DDix.js";imp
           <div class="legal-card"><div class="legal-skeleton legal-skeleton-kpi"></div><div class="legal-skeleton legal-skeleton-line"></div><div class="legal-skeleton legal-skeleton-line"></div></div>
         </main>
       </div>
-    </div>`}async function K(o,s,r){var T;A();const[{setTheme:e}]=await Promise.all([_(()=>import("./design-system-Du44DDix.js").then(l=>l.d),[])]);e("legal");const n=document.getElementById("header"),t=document.getElementById("site-title");n&&(n.style.background="",n.style.boxShadow=""),t&&(t.innerHTML="⚖️&nbsp;&nbsp;法务看板",t.style.color="",t.classList.add("detail-badge"));let c=[];try{const l=await fetch("./legal/index.json");l.ok&&(c=await l.json())}catch{}if(c.length===0){o.innerHTML='<div class="legal-empty"><div class="legal-empty-icon">⚖️</div><div class="legal-empty-text">暂无法律案件数据</div></div>';return}o.innerHTML=V();const i=c.filter(l=>l.endsWith(".md")),d=await I(i);let a=[];i.forEach(l=>{const g=d[l];if(!g)return;const u=M(g);a.push(...u.cases)});let k=[],y=[];i.forEach(l=>{const g=d[l];if(!g)return;const u=M(g);k.push(...u.timeline),y.push(...u.risks)});const h=new Set;a=a.filter(l=>{const g=l.caseNo+l.name;return h.has(g)?!1:(h.add(g),!0)});const w=z.find(l=>l.key===r);let m=w?w.key:"cases";const f=N(a);o.innerHTML=`
+    </div>`}async function K(o,s,r){var T;A();const[{setTheme:e}]=await Promise.all([_(()=>import("./design-system-Du44DDix.js").then(l=>l.d),[])]);e("legal");const n=document.getElementById("header"),t=document.getElementById("site-title");n&&(n.style.background="",n.style.boxShadow=""),t&&(t.innerHTML="⚖️&nbsp;&nbsp;法务看板",t.style.color="",t.classList.add("detail-badge"));let c=[];try{const l=await fetch("./legal/index.json");l.ok&&(c=await l.json())}catch{}if(c.length===0){o.innerHTML='<div class="legal-empty"><div class="legal-empty-icon">⚖️</div><div class="legal-empty-text">暂无法律案件数据</div></div>';return}o.innerHTML=V();gStateManager.markFetchTime();const i=c.filter(l=>l.endsWith(".md")),d=await I(i);let a=[];i.forEach(l=>{const g=d[l];if(!g)return;const u=M(g);a.push(...u.cases)});let k=[],y=[];i.forEach(l=>{const g=d[l];if(!g)return;const u=M(g);k.push(...u.timeline),y.push(...u.risks)});const h=new Set;a=a.filter(l=>{const g=l.caseNo+l.name;return h.has(g)?!1:(h.add(g),!0)});const w=z.find(l=>l.key===r);let m=w?w.key:"cases";const f=N(a);o.innerHTML=`
     <div class="legal-wrap">
       <div class="legal-topbar">
         <button class="legal-back-btn" data-nav="">← 首页</button>
@@ -222,4 +251,5 @@ import{_,n as E}from"./core-B_Wlt-Ld.js";import"./design-system-Du44DDix.js";imp
     <div class="legal-kpi-card"><div class="legal-kpi-label">活跃案件</div><div class="legal-kpi-value">${f.active}</div></div>
     <div class="legal-kpi-card"><div class="legal-kpi-label">本月新增</div><div class="legal-kpi-value">${f.monthlyNew}</div></div>
     <div class="legal-kpi-card"><div class="legal-kpi-label">已结案</div><div class="legal-kpi-value">${f.closed}</div></div>
-    <div class="legal-kpi-card"><div class="legal-kpi-label">进行中</div><div class="legal-kpi-value">${f.inProgress}</div></div>`;const b=o.querySelector("#legal-nav");b.innerHTML=z.map(l=>`<div class="legal-nav-item${l.key===m?" active":""}" data-section="${l.key}"><span>${l.label}</span></div>`).join(""),b.querySelectorAll(".legal-nav-item").forEach(l=>{l.addEventListener("click",()=>{b.querySelectorAll(".legal-nav-item").forEach(g=>g.classList.remove("active")),l.classList.add("active"),m=l.dataset.section,E(`#legal/${m}`),S()})});const $=o.querySelector("#legal-content");function S(){const l={el:$,cases:a,timeline:k,risks:y};switch($.classList.add("legal-fade"),m){case"cases":R(l);break;case"timeline":Y(l);break;case"risks":q(l);break}}S()}export{z as SECTIONS,N as computeKPIs,K as renderLegalDetail};
+    <div class="legal-kpi-card"><div class="legal-kpi-label">进行中</div><div class="legal-kpi-value">${f.inProgress}</div></div>`;const b=o.querySelector("#legal-nav");b.innerHTML=z.map(l=>`<div class="legal-nav-item${l.key===m?" active":""}" data-section="${l.key}"><span>${l.label}</span></div>`).join(""),b.querySelectorAll(".legal-nav-item").forEach(l=>{l.addEventListener("click",()=>{b.querySelectorAll(".legal-nav-item").forEach(g=>g.classList.remove("active")),l.classList.add("active"),m=l.dataset.section,E(`#legal/${m}`),S()})});const $=o.querySelector("#legal-content");function showStaleBanner(){const I=document.querySelector(".legal-stale-banner");I&&I.remove();const b=document.createElement("div");b.className="legal-stale-banner";const v=gStateManager.getLastFetchTime()?Math.floor((Date.now()-gStateManager.getLastFetchTime())/6e4):0;b.innerHTML='\u26a0\ufe0f 数据可能已过期，上次更新：'+v+'分钟前 <button id="legal-refresh-btn">刷新</button>',o.querySelector(".legal-main").insertBefore(b,o.querySelector(".legal-main").firstChild),document.getElementById("legal-refresh-btn").addEventListener("click",()=>{gStateManager.markFetchTime();const E=o.querySelector(".legal-stale-banner");E&&E.remove();S()})}
+function S(){const l=o.querySelector("#legal-content");if(!l)return;if(gStateManager.isStale(6e5)){showStaleBanner()}const E={el:l,cases:a,timeline:k,risks:y};switch(l.classList.add("legal-fade"),m){case"cases":gStateManager.setSection("tab-cases",StateLifecycle.LOADING);R(E);gStateManager.setSection("tab-cases",a.length>0?StateLifecycle.LOADED:StateLifecycle.EMPTY);break;case"timeline":gStateManager.setSection("tab-timeline",StateLifecycle.LOADING);Y(E);gStateManager.setSection("tab-timeline",k.length>0?StateLifecycle.LOADED:StateLifecycle.EMPTY);break;case"risks":gStateManager.setSection("tab-risks",StateLifecycle.LOADING);q(E);gStateManager.setSection("tab-risks",y.length>0?StateLifecycle.LOADED:StateLifecycle.EMPTY);break}}S()}export{z as SECTIONS,N as computeKPIs,K as renderLegalDetail};
