@@ -1,0 +1,688 @@
+{
+  "meta": {
+    "title": "周度总结 · 2026年第26周",
+    "week": "2026年第26周",
+    "date_range": "2026-06-22 ~ 2026-06-26",
+    "generated": "2026-06-28 16:00",
+    "trading_days": 3,
+    "total_days": 5,
+    "framework": "6层闭环v2.1",
+    "model": "deepseek-v4-flash",
+    "version": "v2.0"
+  },
+  "kpi": {
+    "weekly_accuracy": {
+      "value": 0.669,
+      "label": "综合准确率",
+      "level": "warn"
+    },
+    "best_day": {
+      "day": "周四",
+      "value": 0.773,
+      "label": "最佳日"
+    },
+    "worst_day": {
+      "day": "周三",
+      "value": 0.59,
+      "label": "最差日"
+    },
+    "friday_shanghai": {
+      "value": -0.0226,
+      "label": "上证周五跌幅",
+      "level": "bad"
+    },
+    "star50_weekly": {
+      "value": 0.586,
+      "label": "科创50周涨幅",
+      "level": "good"
+    },
+    "shanghai_weekly": {
+      "value": -0.0192,
+      "label": "上证周跌幅",
+      "level": "bad"
+    }
+  },
+  "summary_pie": {
+    "phases": [
+      "外部冲击暴跌（周二）",
+      "内部反转暴涨（周三-周四）",
+      "获利了结分化（周五）"
+    ],
+    "description": "2026年第26周是全年最具戏剧性的一周——从'黑色星期二'到'半导体狂潮'再到'黑色星期五'，走出完整的外部冲击暴跌→内部反转暴涨→获利了结分化三阶段。"
+  },
+  "timeline": [
+    {
+      "date": "6/22 周一",
+      "label": "系统运维日",
+      "events": [
+        "无交易报告归档",
+        "数据搬运+知识库治理"
+      ],
+      "shanghai": null,
+      "star50": null,
+      "gem": null
+    },
+    {
+      "date": "6/23 周二",
+      "label": "黑色星期二",
+      "tag": "red",
+      "shanghai": -0.0137,
+      "shenzhen": -0.0317,
+      "gem": -0.0384,
+      "star50": 0.0077,
+      "triggers": [
+        "费城半导体-7.87%",
+        "韩国KOSPI熔断-9.99%",
+        "纳指-2.21%"
+      ],
+      "accuracy": 0.143,
+      "note": "仅科创50逆势收红，当日预测准确率仅14.3%"
+    },
+    {
+      "date": "6/24 周三",
+      "label": "V形反转",
+      "tag": "green",
+      "shanghai": 0.0011,
+      "star50": 0.0382,
+      "triggers": [
+        "台积电全面调价",
+        "HBM涨价50%",
+        "三星90万亿回购"
+      ],
+      "note": "全市场仅28%个股上涨，结构性分化极度明显"
+    },
+    {
+      "date": "6/25 周四",
+      "label": "半导体狂潮",
+      "tag": "green",
+      "shanghai": 0.0023,
+      "star50": 0.0387,
+      "star50_2day": 0.078,
+      "triggers": [
+        "美光财报超预期+16%",
+        "MLF 5,000亿",
+        "5G专网政策"
+      ],
+      "note": "34只半导体创历史新高，资金虹吸达极致"
+    },
+    {
+      "date": "6/26 周五",
+      "label": "黑色星期五",
+      "tag": "red",
+      "shanghai": -0.0226,
+      "gem": -0.0407,
+      "star50": -0.0165,
+      "triggers": [
+        "科创50 RSI 72超买",
+        "获利了结",
+        "昀冢科技停牌"
+      ],
+      "note": "银行护盘（工行建行新高），南大光电逆势+4.55%验证紫苏叶逻辑"
+    }
+  ],
+  "daily_accuracy": [
+    {
+      "day": "周三 6/24",
+      "market": 1.0,
+      "sector": 0.58,
+      "stock": 0.43,
+      "overall": 0.59
+    },
+    {
+      "day": "周四 6/25",
+      "market": 1.0,
+      "sector": 0.75,
+      "stock": 0.73,
+      "overall": 0.773
+    },
+    {
+      "day": "周五 6/26",
+      "market": 0.0,
+      "sector": 0.5,
+      "stock": 0.643,
+      "overall": 0.64
+    },
+    {
+      "day": "周度加权",
+      "market": 0.67,
+      "sector": 0.61,
+      "stock": 0.6,
+      "overall": 0.669
+    }
+  ],
+  "sector_accuracy": [
+    {
+      "rank": 1,
+      "sector": "银行/高股息",
+      "accuracy": 1.0,
+      "trend": "稳定",
+      "trend_icon": "green"
+    },
+    {
+      "rank": 1,
+      "sector": "半导体设备/代工",
+      "accuracy": 0.875,
+      "trend": "↑提升",
+      "trend_icon": "green"
+    },
+    {
+      "rank": 2,
+      "sector": "核电（中国核电）",
+      "accuracy": 0.8,
+      "trend": "↑提升",
+      "trend_icon": "green"
+    },
+    {
+      "rank": 3,
+      "sector": "AI光模块",
+      "accuracy": 0.67,
+      "trend": "↓下降",
+      "trend_icon": "gold"
+    },
+    {
+      "rank": 4,
+      "sector": "存储芯片",
+      "accuracy": 0.6,
+      "trend": "↓↓大幅下降",
+      "trend_icon": "red"
+    },
+    {
+      "rank": 5,
+      "sector": "新能源",
+      "accuracy": 0.5,
+      "trend": "↓下降",
+      "trend_icon": "red"
+    },
+    {
+      "rank": 6,
+      "sector": "低空经济",
+      "accuracy": 0.33,
+      "trend": "↓↓大幅下降",
+      "trend_icon": "red"
+    }
+  ],
+  "stock_accuracy": [
+    {
+      "name": "北方华创",
+      "predictions": 3,
+      "correct": 3,
+      "accuracy": 1.0
+    },
+    {
+      "name": "中国核电",
+      "predictions": 3,
+      "correct": 3,
+      "accuracy": 1.0
+    },
+    {
+      "name": "鼎龙股份",
+      "predictions": 2,
+      "correct": 2,
+      "accuracy": 1.0
+    },
+    {
+      "name": "中际旭创",
+      "predictions": 2,
+      "correct": 2,
+      "accuracy": 1.0
+    },
+    {
+      "name": "紫光国微",
+      "predictions": 3,
+      "correct": 2,
+      "accuracy": 0.67
+    },
+    {
+      "name": "南大光电",
+      "predictions": 3,
+      "correct": 2,
+      "accuracy": 0.67
+    },
+    {
+      "name": "中芯国际",
+      "predictions": 3,
+      "correct": 2,
+      "accuracy": 0.67
+    },
+    {
+      "name": "兆易创新",
+      "predictions": 3,
+      "correct": 2,
+      "accuracy": 0.67
+    },
+    {
+      "name": "新易盛",
+      "predictions": 3,
+      "correct": 2,
+      "accuracy": 0.67
+    },
+    {
+      "name": "寒武纪",
+      "predictions": 3,
+      "correct": 2,
+      "accuracy": 0.67
+    },
+    {
+      "name": "江淮汽车",
+      "predictions": 2,
+      "correct": 0,
+      "accuracy": 0.0
+    }
+  ],
+  "events": {
+    "primary": [
+      {
+        "id": 1,
+        "event": "费城半导体-7.87% — 全球半导体崩盘",
+        "weight": 25,
+        "impact": "系统性冲击",
+        "color": "red"
+      },
+      {
+        "id": 2,
+        "event": "台积电全面调价 — AI算力需求激增",
+        "weight": 22,
+        "impact": "结构性利好",
+        "color": "red"
+      },
+      {
+        "id": 3,
+        "event": "美光财报超预期+16% — 存储景气确认",
+        "weight": 20,
+        "impact": "结构性催化",
+        "color": "red"
+      },
+      {
+        "id": 4,
+        "event": "科创50 RSI 72超买 — 获利了结",
+        "weight": 18,
+        "impact": "技术性回调",
+        "color": "red"
+      }
+    ],
+    "secondary": [
+      {
+        "id": 5,
+        "event": "HBM下半年采购成本或再涨超50%",
+        "weight": 14,
+        "sector": "存储芯片"
+      },
+      {
+        "id": 6,
+        "event": "韩国KOSPI熔断-9.99%→反弹+5.42%",
+        "weight": 13,
+        "sector": "亚太市场"
+      },
+      {
+        "id": 7,
+        "event": "三星90万亿韩元大规模回购",
+        "weight": 12,
+        "sector": "全球半导体"
+      },
+      {
+        "id": 8,
+        "event": "夏季达沃斯论坛（大连）",
+        "weight": 10,
+        "sector": "科技主线"
+      },
+      {
+        "id": 9,
+        "event": "MWC上海通信大会",
+        "weight": 10,
+        "sector": "通信基建"
+      },
+      {
+        "id": 10,
+        "event": "MLF操作5,000亿",
+        "weight": 10,
+        "sector": "流动性"
+      },
+      {
+        "id": 11,
+        "event": "三部委稳外资15条新政",
+        "weight": 10,
+        "sector": "金融/制造"
+      }
+    ],
+    "noise_removed": [
+      "昀冢科技停牌",
+      "布伦特油+2.06%",
+      "郑商所调整保证金",
+      "浦东国资委股权注入",
+      "美伊和谈"
+    ]
+  },
+  "bottleneck_theory": [
+    {
+      "level": "L1显性",
+      "link": "光模块/通信",
+      "representative": "中际旭创/新易盛",
+      "weekly_performance": "周中+20%→周五-5~7%"
+    },
+    {
+      "level": "L1显性",
+      "link": "AI芯片",
+      "representative": "寒武纪/海光",
+      "weekly_performance": "周中+3.5%→周五-3~4%"
+    },
+    {
+      "level": "L2半显性",
+      "link": "半导体设备",
+      "representative": "北方华创/中微",
+      "weekly_performance": "周五逆势+1.9~3.5%",
+      "highlight": true
+    },
+    {
+      "level": "L3·紫苏叶",
+      "link": "半导体材料",
+      "representative": "南大光电/鼎龙",
+      "weekly_performance": "周五+4.55%/-0.40%抗跌",
+      "highlight": true
+    },
+    {
+      "level": "L2半显性",
+      "link": "核电运营",
+      "representative": "中国核电",
+      "weekly_performance": "全周最抗跌"
+    }
+  ],
+  "bottleneck_finding": "紫苏叶标的（南大光电/鼎龙股份）在黑色星期五逆势抗跌，验证了隐性瓶颈的保护作用——真正有物理壁垒+供给刚性的标的，跌幅显著小于板块均值。",
+  "rotation": {
+    "matrix": [
+      {
+        "sector": "AI芯片/半导体",
+        "tue": 2,
+        "wed": 5,
+        "thu": 5,
+        "fri": 2,
+        "weekly_intensity": "★★★★ 强但波动大"
+      },
+      {
+        "sector": "AI光模块",
+        "tue": 1,
+        "wed": 3,
+        "thu": 4,
+        "fri": 1,
+        "weekly_intensity": "★★★ 高弹性高风险"
+      },
+      {
+        "sector": "新能源/光伏",
+        "tue": 2,
+        "wed": 2,
+        "thu": 2,
+        "fri": 2,
+        "weekly_intensity": "★★ 弱·核电独立"
+      },
+      {
+        "sector": "低空经济/机器人",
+        "tue": 1,
+        "wed": 2,
+        "thu": 1,
+        "fri": 1,
+        "weekly_intensity": "★ 最弱·催化失效"
+      }
+    ],
+    "patterns": [
+      {
+        "id": 1,
+        "title": "「双杀→双爆→分化」三阶段",
+        "detail": "力度为2026年之最。外部传导暴跌→内部反转暴涨→获利了结分化。"
+      },
+      {
+        "id": 2,
+        "title": "轮动节奏极快（T+0至T+2），资金单方向集中",
+        "detail": "未出现良性轮动，资金持续向半导体集中。"
+      },
+      {
+        "id": 3,
+        "title": "L3隐性(紫苏叶) > L1显性(光模块/存储)",
+        "detail": "南大光电+4.55% vs 中际旭创-5.25%。"
+      },
+      {
+        "id": 4,
+        "title": "达沃斯催化严重失效",
+        "detail": "江淮汽车周五-6.70%创近月最大跌幅。"
+      }
+    ]
+  },
+  "mistakes": [
+    {
+      "id": 1,
+      "description": "周五大盘方向完全错误：预测4,080~4,140震荡，实际-2.26%",
+      "level": "P0",
+      "level_color": "red"
+    },
+    {
+      "id": 2,
+      "description": "半导体周二反击力度严重低估：预测补跌-2~-5%，实际暴涨+3~+10%",
+      "level": "P0",
+      "level_color": "red"
+    },
+    {
+      "id": 3,
+      "description": "存储芯片方向完全相反：预测承压，实际兆易涨停",
+      "level": "P0(已修正)",
+      "level_color": "red"
+    },
+    {
+      "id": 4,
+      "description": "江淮汽车方向错误：预测达沃斯催化反弹，实际-6.70%",
+      "level": "P1",
+      "level_color": "gold"
+    },
+    {
+      "id": 5,
+      "description": "中芯国际周五偏多判断：实际-5.16%跌破支撑",
+      "level": "P1",
+      "level_color": "gold"
+    }
+  ],
+  "mistake_roots": [
+    {
+      "type": "A",
+      "category": "系统性风险低估（最高频）",
+      "detail": "季末结算+超涨获利了结+北向流出三叠加。修正：季末权重5%→15%，新增累计涨幅>10%预警。",
+      "color": "red"
+    },
+    {
+      "type": "B",
+      "category": "利好兑现即利空低估",
+      "detail": "美光财报+16%未能续涨。修正：利好次日自动降级为中性偏空。",
+      "color": "red"
+    },
+    {
+      "type": "C",
+      "category": "轮动时序偏差",
+      "detail": "预判资金→低空/新能源，实际→银行防御。修正：虹吸反转时资金优先流向防御板块。",
+      "color": "gold"
+    },
+    {
+      "type": "D",
+      "category": "支撑位突破失误",
+      "detail": "系统性暴跌中支撑位全部失效。修正：全市场跌>2%时个股支撑自动下调5-8%。",
+      "color": "gold"
+    }
+  ],
+  "factor_updates": [
+    {
+      "factor": "季末资金结算效应",
+      "old_weight": 0.05,
+      "new_weight": 0.15,
+      "change": "+10%",
+      "tag": "red"
+    },
+    {
+      "factor": "板块累计涨幅预警",
+      "old_weight": null,
+      "new_weight": 0.12,
+      "change": "新增",
+      "tag": "green"
+    },
+    {
+      "factor": "美股隔夜传导",
+      "old_weight": 0.2,
+      "new_weight": 0.22,
+      "change": "+2%",
+      "tag": "gold"
+    },
+    {
+      "factor": "北向资金连续流出",
+      "old_weight": 0.06,
+      "new_weight": 0.1,
+      "change": "+4%",
+      "tag": "red"
+    },
+    {
+      "factor": "利好兑现衰减函数",
+      "old_weight": null,
+      "new_weight": 0.1,
+      "change": "新增",
+      "tag": "green"
+    },
+    {
+      "factor": "周五/季末获利了结",
+      "old_weight": 0.05,
+      "new_weight": 0.12,
+      "change": "+7%",
+      "tag": "red"
+    },
+    {
+      "factor": "政策面预期",
+      "old_weight": 0.18,
+      "new_weight": 0.15,
+      "change": "-3%",
+      "tag": "gold"
+    },
+    {
+      "factor": "估值泡沫量化",
+      "old_weight": 0.12,
+      "new_weight": 0.14,
+      "change": "+2%",
+      "tag": "gold"
+    },
+    {
+      "factor": "波动率/RSI超买预警",
+      "old_weight": 0.1,
+      "new_weight": 0.15,
+      "change": "+5%",
+      "tag": "red"
+    }
+  ],
+  "new_rules": [
+    {
+      "id": 5,
+      "title": "规则5 · 季末压力预警",
+      "content": "每月20日至月末，大盘悲观概率+10%，个股支撑下调5-8%。",
+      "color": "blue"
+    },
+    {
+      "id": 6,
+      "title": "规则6 · 累计涨幅预警",
+      "content": "3日累计涨幅>10%→强制标注「🔴超涨预警」，次日预判降级一档。",
+      "color": "blue"
+    },
+    {
+      "id": 7,
+      "title": "规则7 · 利好兑现衰减(T+1法则)",
+      "content": "T日100%→T+1日60%→T+2日<30%。周五/月末叠加直接减仓。",
+      "color": "blue"
+    },
+    {
+      "id": 8,
+      "title": "规则8 · 虹吸反转防御预判",
+      "content": "60%+资金集中在3个以内赛道定义为'虹吸期'，反转时资金优先流向防御板块而非次热点。",
+      "color": "blue"
+    }
+  ],
+  "next_week": {
+    "scenarios": [
+      {
+        "label": "技术反弹",
+        "probability": 0.35,
+        "color": "#27ae60"
+      },
+      {
+        "label": "缩量震荡",
+        "probability": 0.45,
+        "color": "warn"
+      },
+      {
+        "label": "继续下探",
+        "probability": 0.2,
+        "color": "#e74c3c"
+      }
+    ],
+    "stocks": [
+      {
+        "name": "北方华创",
+        "code": "002371",
+        "signal": "关注",
+        "signal_type": "green"
+      },
+      {
+        "name": "南大光电",
+        "code": "300346",
+        "signal": "关注",
+        "signal_type": "green"
+      },
+      {
+        "name": "中微公司",
+        "code": "688012",
+        "signal": "关注",
+        "signal_type": "green"
+      },
+      {
+        "name": "中国核电",
+        "code": "601985",
+        "signal": "关注",
+        "signal_type": "green"
+      },
+      {
+        "name": "兆易创新",
+        "code": "603986",
+        "signal": "观望",
+        "signal_type": "flat"
+      },
+      {
+        "name": "新易盛",
+        "code": "300502",
+        "signal": "观望",
+        "signal_type": "flat"
+      },
+      {
+        "name": "江淮汽车",
+        "code": "600418",
+        "signal": "观望",
+        "signal_type": "flat"
+      }
+    ],
+    "strategies": [
+      {
+        "type": "仓位",
+        "content": "4~5成，不急于抄底"
+      },
+      {
+        "type": "关注",
+        "content": "半导体设备/材料（北方华创/南大光电/中微）— 逆势抗跌逻辑未破"
+      },
+      {
+        "type": "关注",
+        "content": "核电（中国核电）— 最抗跌板块，独立逻辑"
+      },
+      {
+        "type": "观望",
+        "content": "光模块/存储（新易盛/中际旭创/兆易）— 短期超涨仍有回调压力"
+      },
+      {
+        "type": "观望",
+        "content": "低空经济（江淮汽车）— 催化兑现失败，等待企稳"
+      }
+    ],
+    "risk_check": "热门赛道三项检查中两项🔴（资金集中度+全线估值）。所有行业悲观概率统一上调+10%。"
+  },
+  "footer": {
+    "source": "通达信TDX · 东方财富 · 新浪财经",
+    "frameworks": "6层闭环 v2.1 + 瓶颈理论 + 多因子验证",
+    "disclaimer": "不构成投资建议。股市有风险，投资需谨慎。"
+  }
+}
