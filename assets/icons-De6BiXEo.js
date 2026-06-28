@@ -1,0 +1,1 @@
+import"./design-system-Du44DDix.js";const o={overview:{emoji:"📊"},calendar:{emoji:"📅"},hot:{emoji:"🔥"},insight:{emoji:"💡"},risk:{emoji:"⚠️"},holdings:{emoji:"💼"},strategy:{emoji:"♟️"}};export{o as I};
