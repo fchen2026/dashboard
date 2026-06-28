@@ -445,6 +445,8 @@ table tbody tr:hover td { background: rgba(255,255,255,0.02); }
 }
 .style-switcher button:hover:not(.active) { color: var(--color-text-primary); }
 
-.theme-controls { display: flex; gap: var(--space-3); align-items: center; }
+.theme-controls { display: flex; gap: var(--space-3); align-items: center; margin-left: auto; }
+.theme-controls #theme-switcher { position: static; }
+.area-cover { overflow: visible; }
 
 `}let e=null,a=null;function i(){e&&e.remove(),e=document.createElement("style"),e.id="design-system-core",e.textContent=d(),document.head.appendChild(e)}function l(r){a&&document.body.classList.remove(`theme-${a}`),a=r,document.body.classList.add(`theme-${r}`)}i();function gF(){return{colorMode:document.documentElement.getAttribute("data-color-mode")||"dark",style:document.documentElement.getAttribute("data-style")||"tech"}}function sC(e){document.documentElement.setAttribute("data-color-mode",e)}function sS(e){document.documentElement.setAttribute("data-style",e)}const p={applyDesignSystem:i,setTheme:l,getPalette:s,token:c,AREAS:n,getTheme:gF,setColorMode:sC,setStyle:sS},m=Object.freeze(Object.defineProperty({__proto__:null,AREAS:n,applyDesignSystem:i,default:p,getPalette:s,setTheme:l,token:c,getTheme:gF,setColorMode:sC,setStyle:sS},Symbol.toStringTag,{value:"Module"}));export{n as A,b as a,m as d};
