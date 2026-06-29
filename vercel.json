@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "decision-panel-1v65frx5d-fmarvis.vercel.app"
+        }
+      ],
+      "destination": "https://decision-panel-seven.vercel.app/:path*",
+      "permanent": true
+    }
+  ]
+}
