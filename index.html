@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>投资决策面板 v5.0 · Decision Panel</title>
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Space+Mono:wght@400;700&family=ZCOOL+KuaiLe&display=swap');
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -166,6 +166,123 @@
     --body-padding: 48px 64px;
   }
 
+  /* ═══════════ Corporate Memphis ═══════════ */
+  [data-theme="memphis"] {
+    --bg: linear-gradient(135deg,#f8faff 0%,#eef1f8 100%);
+    --surface: #ffffff;
+    --surface2: #f5f5f5;
+    --border: #e2e6f0;
+    --divider: #eef0f6;
+
+    --text: #1a1a2e;
+    --text2: #555568;
+    --text3: #8888a0;
+
+    --green: #2a9d8f;
+    --green-bg: rgba(42,157,143,0.08);
+    --green-border: rgba(42,157,143,0.18);
+    --red: #e63946;
+    --red-bg: rgba(230,57,70,0.08);
+    --red-border: rgba(230,57,70,0.18);
+    --amber: #e76f51;
+    --amber-bg: rgba(231,111,81,0.08);
+    --amber-border: rgba(231,111,81,0.18);
+    --blue: #6c5ce7;
+    --blue-bg: rgba(108,92,231,0.06);
+    --purple: #a29bfe;
+    --purple-bg: rgba(162,155,254,0.06);
+
+    --font-body: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+    --font-heading: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --h1-size: 26px;
+
+    --cseg-low: #e07070;
+    --cseg-mid: #e8a040;
+    --cseg-high: #3a9a8a;
+    --cseg-max: #5a5a7a;
+    --panel-radius: 16px;
+    --body-padding: 32px 40px;
+  }
+
+  /* ═══════════ Pop Laboratory ═══════════ */
+  [data-theme="laboratory"] {
+    --bg: #F2F2F2;
+    --surface: #ffffff;
+    --surface2: #e8e8e8;
+    --border: rgba(45,41,38,0.12);
+    --divider: rgba(45,41,38,0.06);
+
+    --text: #2D2926;
+    --text2: #666666;
+    --text3: #999999;
+
+    --green: #B8D8BE;
+    --green-bg: rgba(184,216,190,0.12);
+    --green-border: rgba(184,216,190,0.25);
+    --red: #E91E63;
+    --red-bg: rgba(233,30,99,0.08);
+    --red-border: rgba(233,30,99,0.18);
+    --amber: #FFF200;
+    --amber-bg: rgba(255,242,0,0.12);
+    --amber-border: rgba(255,242,0,0.25);
+    --blue: #4A90D9;
+    --blue-bg: rgba(74,144,217,0.08);
+    --purple: #9C27B0;
+    --purple-bg: rgba(156,39,176,0.06);
+
+    --font-body: 'Space Mono', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', monospace;
+    --font-mono: 'Space Mono', monospace;
+    --font-heading: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --h1-size: 28px;
+
+    --cseg-low: #E91E63;
+    --cseg-mid: #FF9800;
+    --cseg-high: #4CAF50;
+    --cseg-max: #2D2926;
+    --panel-radius: 6px;
+    --body-padding: 28px 32px;
+  }
+
+  /* ═══════════ Bento Craft ═══════════ */
+  [data-theme="bento"] {
+    --bg: #FFF8F0;
+    --surface: #FFFAF3;
+    --surface2: #FFF5EB;
+    --border: #D4C5B9;
+    --divider: #E0D5C5;
+
+    --text: #5C4033;
+    --text2: #A0856B;
+    --text3: #C4A882;
+
+    --green: #6B8E6B;
+    --green-bg: rgba(107,142,107,0.08);
+    --green-border: rgba(107,142,107,0.18);
+    --red: #C06050;
+    --red-bg: rgba(192,96,80,0.08);
+    --red-border: rgba(192,96,80,0.18);
+    --amber: #E8A87C;
+    --amber-bg: rgba(232,168,124,0.08);
+    --amber-border: rgba(232,168,124,0.2);
+    --blue: #7B9CC2;
+    --blue-bg: rgba(123,156,194,0.06);
+    --purple: #9B7BA6;
+    --purple-bg: rgba(155,123,166,0.06);
+
+    --font-body: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+    --font-heading: 'ZCOOL KuaiLe', 'Noto Sans SC', 'PingFang SC', sans-serif;
+    --h1-size: 30px;
+
+    --cseg-low: #C06050;
+    --cseg-mid: #E8A87C;
+    --cseg-high: #6B8E6B;
+    --cseg-max: #8B7355;
+    --panel-radius: 16px;
+    --body-padding: 36px 44px;
+  }
+
   body {
     font-family: var(--font-body);
     background: var(--bg);
@@ -215,15 +332,13 @@
     text-align: right;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     align-items: flex-end;
-    min-width: 200px;
   }
   .hdr-date {
     font-size: 13px;
-    color: var(--text);
-    font-weight: 600;
-    letter-spacing: 0.3px;
+    color: var(--text2);
+    font-weight: 500;
   }
   .tag {
     display: inline-block;
@@ -653,34 +768,36 @@
 
   /* ===== THEME SWITCHER ===== */
   .theme-bar {
+    position: fixed;
+    top: 16px;
+    right: 24px;
+    z-index: 1000;
     display: flex;
-    gap: 4px;
-    background: var(--surface2);
-    border: 1px solid var(--divider);
-    border-radius: 6px;
-    padding: 3px;
-    margin-bottom: 20px;
-    box-shadow: none;
-    align-self: flex-start;
+    gap: 6px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 4px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
   }
   .theme-btn {
-    padding: 4px 12px;
-    border-radius: 4px;
+    padding: 6px 14px;
+    border-radius: 6px;
     border: none;
     cursor: pointer;
-    font-size: 10px;
-    font-weight: 500;
+    font-size: 11px;
+    font-weight: 600;
     font-family: var(--font-body);
     background: transparent;
-    color: var(--text3);
-    transition: all 0.15s ease;
+    color: var(--text2);
+    transition: all 0.2s ease;
     white-space: nowrap;
     letter-spacing: 0.2px;
   }
-  .theme-btn:hover { color: var(--text2); background: var(--surface); }
-  .theme-btn.active { background: var(--amber-bg); color: var(--amber); font-weight: 600; }
+  .theme-btn:hover { color: var(--text); background: var(--surface2); }
+  .theme-btn.active { background: var(--amber-bg); color: var(--amber); font-weight: 700; }
 
-  [data-theme="light"] .theme-btn.active { color: #b45309; background: rgba(180,83,9,0.08); }
+  [data-theme="light"] .theme-btn.active { color: var(--amber); }
   [data-theme="amber"] .theme-btn.active { color: var(--amber); background: rgba(251,191,36,0.18); }
   [data-theme="magazine"] .theme-btn.active { color: #8b6914; background: rgba(139,105,20,0.1); }
 
@@ -734,10 +851,117 @@
     color: var(--amber);
   }
 
+  /* Memphis theme overrides */
+  [data-theme="memphis"] .panel {
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+  [data-theme="memphis"] .panel-head {
+    border-bottom: 3px solid var(--divider);
+    padding: 16px 20px;
+  }
+  [data-theme="memphis"] .hdr h1 {
+    font-weight: 900;
+    letter-spacing: 1px;
+  }
+  [data-theme="memphis"] .theme-btn.active {
+    color: #fff;
+    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+  }
+
+  /* Laboratory theme overrides */
+  [data-theme="laboratory"] body {
+    background-image:
+      linear-gradient(rgba(45,41,38,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(45,41,38,0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  [data-theme="laboratory"] .panel {
+    border: 2px solid rgba(45,41,38,0.12);
+    border-radius: 6px;
+  }
+  [data-theme="laboratory"] .panel-head {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--divider);
+  }
+  [data-theme="laboratory"] .hdr h1 {
+    font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
+    font-weight: 900;
+    letter-spacing: 2px;
+  }
+  [data-theme="laboratory"] .section-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: var(--surface2);
+    padding: 4px 12px;
+    border-radius: 3px;
+  }
+  [data-theme="laboratory"] .highlight,
+  [data-theme="laboratory"] mark {
+    background: rgba(255,242,0,0.25);
+    padding: 0 4px;
+  }
+  [data-theme="laboratory"] .theme-btn.active {
+    background: #2D2926;
+    color: #FFF200;
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* Bento theme overrides */
+  [data-theme="bento"] .panel {
+    border: 3px solid var(--border);
+    border-radius: 20px;
+    box-shadow:
+      4px 4px 0 rgba(180,160,140,0.15),
+      0 0 0 2px #FFF8F0,
+      0 0 0 5px var(--border);
+    background: var(--surface);
+  }
+  [data-theme="bento"] .panel-head {
+    font-size: 16px;
+    font-weight: 900;
+    padding: 20px 24px 14px;
+    border-bottom: 2px dashed var(--divider);
+  }
+  [data-theme="bento"] .panel-head::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: var(--amber);
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  [data-theme="bento"] .hdr h1 {
+    font-weight: 900;
+    text-shadow: 1px 1px 0 rgba(92,64,51,0.06);
+  }
+  [data-theme="bento"] .hdr {
+    border-bottom: 3px double var(--divider);
+  }
+  [data-theme="bento"] table.tbl th {
+    border-bottom: 2px solid var(--border);
+  }
+  [data-theme="bento"] .theme-btn.active {
+    background: var(--amber);
+    color: #FFF8F0;
+    font-weight: 900;
+    border-radius: 12px;
+  }
 
   @media (max-width: 900px) {
     .theme-bar {
-      justify-content: center;
+      top: auto;
+      bottom: 16px;
+      right: 50%;
+      transform: translateX(50%);
     }
   }
 
@@ -745,24 +969,29 @@
 </head>
 <body>
 
+<div class="theme-bar" id="themeBar">
+  <button class="theme-btn active" data-theme="dark">深色工业</button>
+  <button class="theme-btn" data-theme="light">亮色专业</button>
+  <button class="theme-btn" data-theme="amber">暖色琥珀</button>
+  <button class="theme-btn" data-theme="magazine">财经杂志</button>
+  <span style="color:var(--divider);margin:0 2px;align-self:center;">|</span>
+  <button class="theme-btn" data-theme="memphis">活力孟菲斯</button>
+  <button class="theme-btn" data-theme="laboratory">实验工坊</button>
+  <button class="theme-btn" data-theme="bento">手工匠盒</button>
+</div>
+
 <div class="container">
 
 <!-- ===== HEADER ===== -->
 <div class="hdr">
   <div>
     <h1>Decision Panel <span class="ver">v5.0</span></h1>
-    <div class="theme-bar" id="themeBar">
-      <button class="theme-btn active" data-theme="dark">深色工业</button>
-      <button class="theme-btn" data-theme="light">亮色专业</button>
-      <button class="theme-btn" data-theme="amber">暖色琥珀</button>
-      <button class="theme-btn" data-theme="magazine">财经杂志</button>
-    </div>
     <div class="hdr-sub">6层闭环 v2.4 + L0偏误自检 + L0.5脆弱性检查 + Lollapalooza</div>
   </div>
   <div class="hdr-meta">
     <span class="hdr-date"><span>6/29 周一 盘前</span></span>
     <div>
-      <span class="tag tag-r">脆弱性三项全亮</span>
+      <span class="tag tag-r">脆弱性三项全🔴</span>
       <span class="tag tag-a" style="margin-left:6px;">防御模式</span>
     </div>
   </div>
