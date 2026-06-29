@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>投资决策面板 v5.0 · Decision Panel</title>
+<title>投资决策面板 v5.1 · Decision Panel</title>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Space+Mono:wght@400;700&family=ZCOOL+KuaiLe&display=swap');
 
@@ -768,17 +768,15 @@
 
   /* ===== THEME SWITCHER ===== */
   .theme-bar {
-    position: fixed;
-    top: 16px;
-    right: 24px;
-    z-index: 1000;
     display: flex;
     gap: 6px;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 4px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    margin-bottom: 24px;
+    align-self: flex-end;
+    width: fit-content;
   }
   .theme-btn {
     padding: 6px 14px;
@@ -957,17 +955,29 @@
   }
 
   @media (max-width: 900px) {
-    .theme-bar {
-      top: auto;
-      bottom: 16px;
-      right: 50%;
-      transform: translateX(50%);
-    }
+    .row { grid-template-columns: 1fr; }
   }
 
 </style>
 </head>
 <body>
+
+<div class="container">
+
+<!-- ===== HEADER ===== -->
+<div class="hdr">
+  <div>
+    <h1>Decision Panel <span class="ver">v5.1</span></h1>
+    <div class="hdr-sub">6层闭环 v2.4 + L0偏误自检 + L0.5脆弱性检查 + Lollapalooza</div>
+  </div>
+  <div class="hdr-meta">
+    <span class="hdr-date"><span>6/29 周一 盘前</span></span>
+    <div>
+      <span class="tag tag-r">脆弱性三项全🔴</span>
+      <span class="tag tag-a" style="margin-left:6px;">防御模式</span>
+    </div>
+  </div>
+</div>
 
 <div class="theme-bar" id="themeBar">
   <button class="theme-btn active" data-theme="dark">深色工业</button>
@@ -978,23 +988,6 @@
   <button class="theme-btn" data-theme="memphis">活力孟菲斯</button>
   <button class="theme-btn" data-theme="laboratory">实验工坊</button>
   <button class="theme-btn" data-theme="bento">手工匠盒</button>
-</div>
-
-<div class="container">
-
-<!-- ===== HEADER ===== -->
-<div class="hdr">
-  <div>
-    <h1>Decision Panel <span class="ver">v5.0</span></h1>
-    <div class="hdr-sub">6层闭环 v2.4 + L0偏误自检 + L0.5脆弱性检查 + Lollapalooza</div>
-  </div>
-  <div class="hdr-meta">
-    <span class="hdr-date"><span>6/29 周一 盘前</span></span>
-    <div>
-      <span class="tag tag-r">脆弱性三项全🔴</span>
-      <span class="tag tag-a" style="margin-left:6px;">防御模式</span>
-    </div>
-  </div>
 </div>
 
 <!-- ===== ROW 1: 大盘概览 ===== -->
@@ -1367,7 +1360,7 @@
 
 <!-- ===== FOOTER ===== -->
 <div class="footer-row">
-  Decision Panel v5.0 · 6层闭环 v2.4 + L0/L0.5 + Lollapalooza · 数据源：TDX MCP + WebSearch · 2026-06-29 08:35 CST
+  Decision Panel v5.1 · 6层闭环 v2.4 + L0/L0.5 + Lollapalooza · 数据源：TDX MCP + WebSearch · 2026-06-29 08:35 CST
 </div>
 
 </div>
