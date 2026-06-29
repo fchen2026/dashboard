@@ -1,10 +1,16 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>投资决策面板 v5.1 · Decision Panel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, shrink-to-fit=no">
+<meta name="x5-orientation" content="portrait">
+<meta name="x5-fullscreen" content="true">
+<meta name="x5-page-mode" content="app">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>投资决策面板 · Decision Panel</title>
 <style>
+
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -676,169 +682,160 @@
   .ts-closed { background: rgba(100,116,139,0.08); color: var(--text2); border: 1px solid rgba(100,116,139,0.2); }
   .ts-weekend { background: rgba(192,132,252,0.08); color: var(--purple); border: 1px solid rgba(192,132,252,0.2); }
 
-  /* ===== RESPONSIVE ===== */
-  @media (max-width: 1200px) {
-    .row-5 { grid-template-columns: repeat(3, 1fr); }
-    .row-2 { grid-template-columns: 1fr; }
-    .bias-grid { grid-template-columns: repeat(2, 1fr); }
-  }
+  
 
-  @media (prefers-reduced-motion: reduce) {
-    * { animation: none !important; transition: none !important; }
-  }
+/* ===== TAB NAVIGATION ===== */
+.tab-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.tab-nav {
+  display: flex;
+  gap: 2px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 4px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.tab-btn {
+  padding: 8px 18px;
+  border-radius: 7px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  background: transparent;
+  color: var(--text2);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+  flex-shrink: 0;
+}
+.tab-btn:hover { color: var(--text); background: var(--surface2); }
+.tab-btn.active {
+  background: var(--green-bg);
+  color: var(--green);
+  font-weight: 700;
+}
 
-  /* ===== THEME SWITCHER ===== */
-  .theme-bar {
-    display: flex;
-    gap: 6px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 4px;
-    margin-bottom: 24px;
-    align-self: flex-end;
-    width: fit-content;
-  }
-  .theme-btn {
-    padding: 6px 14px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    font-size: 11px;
-    font-weight: 600;
-    font-family: var(--font-body);
-    background: transparent;
-    color: var(--text2);
-    transition: all 0.2s ease;
-    white-space: nowrap;
-    letter-spacing: 0.2px;
-  }
-  .theme-btn:hover { color: var(--text); background: var(--surface2); }
-  .theme-btn.active { background: var(--amber-bg); color: var(--amber); font-weight: 700; }
+/* Theme bar in nav */
+.theme-bar {
+  display: flex;
+  gap: 4px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 3px;
+  flex-shrink: 0;
+}
+.theme-btn {
+  padding: 5px 11px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  background: transparent;
+  color: var(--text2);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  letter-spacing: 0.2px;
+}
+.theme-btn:hover { color: var(--text); background: var(--surface2); }
+.theme-btn.active { background: var(--amber-bg); color: var(--amber); font-weight: 700; }
+[data-theme="light"] .theme-btn.active { color: var(--amber); }
+[data-theme="magazine"] .theme-btn.active { color: #8b6914; background: rgba(139,105,20,0.1); }
+[data-theme="memphis"] .theme-btn.active { color: #fff; background: linear-gradient(135deg, #6c5ce7, #a29bfe); }
+[data-theme="bento"] .theme-btn.active { background: var(--amber); color: #FFF8F0; font-weight: 900; border-radius: 12px; }
 
-  [data-theme="light"] .theme-btn.active { color: var(--amber); }
-  [data-theme="magazine"] .theme-btn.active { color: #8b6914; background: rgba(139,105,20,0.1); }
+/* Tab content */
+.tab-content { display: none; }
+.tab-content.active { display: block; }
 
-  /* Magazine theme overrides */
-  [data-theme="magazine"] .hdr h1 {
-    font-weight: 700;
-    font-style: italic;
-    letter-spacing: -0.3px;
-  }
-  [data-theme="magazine"] .panel-head {
-    font-size: 14px;
-    font-weight: 700;
-    padding: 18px 24px;
-    border-bottom: 2px solid var(--divider);
-  }
-  [data-theme="magazine"] .panel-body {
-    padding: 20px 24px;
-  }
-  [data-theme="magazine"] .panel-body-sm {
-    padding: 18px 22px;
-  }
-  [data-theme="magazine"] .section-label {
-    font-size: 13px;
-    letter-spacing: 2px;
-    font-weight: 700;
-  }
-  [data-theme="magazine"] .ix .ixv {
-    font-size: 26px;
-  }
-  [data-theme="magazine"] .hdr-sub {
-    font-style: italic;
-    font-size: 14px;
-  }
-  [data-theme="magazine"] table.tbl th {
-    font-size: 11px;
-    letter-spacing: 1px;
-  }
-  [data-theme="magazine"] .fn {
-    font-size: 13px;
-    line-height: 1.8;
-  }
-
-  /* Magazine drop cap on first panel of each row */
-  [data-theme="magazine"] .panel:first-child .panel-body .fn:first-of-type::first-letter,
-  [data-theme="magazine"] .panel:first-child .panel-body-sm .fn:first-of-type::first-letter {
-    font-size: 2em;
-    font-weight: 700;
-    float: left;
-    line-height: 0.8;
-    margin-right: 6px;
-    color: var(--amber);
-  }
-
-  /* Memphis theme overrides */
-  [data-theme="memphis"] .panel {
-    border-radius: 16px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    overflow: hidden;
-  }
-  [data-theme="memphis"] .panel-head {
-    border-bottom: 3px solid var(--divider);
-    padding: 16px 20px;
-  }
-  [data-theme="memphis"] .hdr h1 {
-    font-weight: 900;
-    letter-spacing: 1px;
-  }
-  [data-theme="memphis"] .theme-btn.active {
-    color: #fff;
-    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-  }
-
-  /* Bento theme overrides */
-  [data-theme="bento"] .panel {
-    border: 3px solid var(--border);
-    border-radius: 20px;
-    box-shadow:
-      4px 4px 0 rgba(180,160,140,0.15),
-      0 0 0 2px #FFF8F0,
-      0 0 0 5px var(--border);
-    background: var(--surface);
-  }
-  [data-theme="bento"] .panel-head {
-    font-size: 16px;
-    font-weight: 900;
-    padding: 20px 24px 14px;
-    border-bottom: 2px dashed var(--divider);
-  }
-  [data-theme="bento"] .panel-head::before {
-    content: '';
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    background: var(--amber);
-    border-radius: 50%;
-    margin-right: 10px;
-    vertical-align: middle;
-  }
-  [data-theme="bento"] .hdr h1 {
-    font-weight: 900;
-    text-shadow: 1px 1px 0 rgba(92,64,51,0.06);
-  }
-  [data-theme="bento"] .hdr {
-    border-bottom: 3px double var(--divider);
-  }
-  [data-theme="bento"] table.tbl th {
-    border-bottom: 2px solid var(--border);
-  }
-  [data-theme="bento"] .theme-btn.active {
-    background: var(--amber);
-    color: #FFF8F0;
-    font-weight: 900;
-    border-radius: 12px;
-  }
-
-  @media (max-width: 900px) {
-    .row { grid-template-columns: 1fr; }
-  }
+/* ===== GLOBAL RESPONSIVE ===== */
+@media (max-width: 1200px) {
+  .tab-btn { padding: 7px 13px; font-size: 12px; }
+}
+@media (max-width: 768px) {
+  body { padding: 12px; }
+  [data-theme="magazine"] body { padding: 16px 12px; }
+  .tab-nav-bar { flex-direction: column; align-items: stretch; gap: 8px; }
+  .tab-btn { padding: 7px 10px; font-size: 11px; }
+  .theme-btn { padding: 4px 7px; font-size: 9px; }
+  .row { grid-template-columns: 1fr; }
+  .row-3, .row-5 { grid-template-columns: 1fr 1fr; }
+  .row-2 { grid-template-columns: 1fr; }
+  .cv3 { grid-template-columns: 1fr; }
+  .bias-grid { grid-template-columns: 1fr; }
+  .index-strip { grid-template-columns: 1fr 1fr; }
+  .market-stats { grid-template-columns: 1fr; }
+  .ops-grid { grid-template-columns: 1fr; }
+  .lolla { grid-template-columns: repeat(2, 1fr); }
+  .sc4 { flex-wrap: wrap; }
+  .sc4b { min-width: 45%; }
+  .hdr { flex-direction: column; gap: 10px; }
+  .hdr-meta { align-items: flex-start; }
+  .score-hero { flex-direction: column; text-align: center; }
+  .score-circle { margin: 0 auto; }
+  .indicators { grid-template-columns: 1fr; }
+  .rules-grid { grid-template-columns: 1fr 1fr; }
+  .fw-grid { grid-template-columns: 1fr; }
+  .overview-bar { grid-template-columns: 1fr 1fr; }
+  .sector-grid { grid-template-columns: 1fr; }
+  .timeline { flex-direction: column; }
+  .accuracy-grid { grid-template-columns: 1fr 1fr; }
+  .main-grid { grid-template-columns: 1fr; }
+  .op-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  body { padding: 6px; }
+  .tab-btn { padding: 6px 8px; font-size: 10px; }
+  .theme-btn { padding: 3px 5px; font-size: 8px; }
+  .index-strip { grid-template-columns: 1fr 1fr; }
+  .row-3, .row-5 { grid-template-columns: 1fr; }
+  .rules-grid { grid-template-columns: 1fr; }
+  .overview-bar { grid-template-columns: 1fr; }
+  .lolla { grid-template-columns: 1fr 1fr; }
+  .sc4b { min-width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
 
 </style>
 </head>
 <body>
 
+<div class="container">
+
+<!-- ===== TAB NAVIGATION + THEME BAR ===== -->
+<div class="tab-nav-bar">
+  <div class="tab-nav" id="tabNav">
+    <button class="tab-btn active" data-tab="predict">盘前预测</button>
+    <button class="tab-btn" data-tab="review">盘后复盘</button>
+    <button class="tab-btn" data-tab="industry">行业分析</button>
+    <button class="tab-btn" data-tab="market">市场状态</button>
+  </div>
+  <div class="theme-bar" id="themeBar">
+    <button class="theme-btn active" data-theme="dark">深色工业</button>
+    <button class="theme-btn" data-theme="light">亮色专业</button>
+    <button class="theme-btn" data-theme="magazine">财经杂志</button>
+    <span style="color:var(--divider);margin:0 1px;align-self:center;font-size:10px;">|</span>
+    <button class="theme-btn" data-theme="memphis">活力孟菲斯</button>
+    <button class="theme-btn" data-theme="bento">手工匠盒</button>
+  </div>
+</div>
+
+<!-- ===== TAB 1: 盘前预测 ===== -->
+<div class="tab-content active" data-tab="predict">
 <div class="container">
 
 <!-- ===== HEADER ===== -->
@@ -1262,6 +1259,1739 @@
     if (!btn) return;
     setTheme(btn.dataset.theme);
   });
+})();
+</script></div><div class="tab-content" data-tab="review"><style>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+
+  .container { max-width: 1400px; margin: 0 auto; }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  .header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
+  .header .subtitle { font-size: 12px; color: var(--text3); margin-top: 3px; }
+  .header .date-badge {
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 6px;
+    padding: 4px 12px; font-size: 12px; color: var(--text2);
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  }
+  .header .market-badge {
+    display: inline-block; padding: 3px 10px; border-radius: 12px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.5px; margin-left: 8px;
+  }
+  .badge-red { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+  .badge-amber { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+
+  /* 大盘概览 */
+  .index-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .index-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    text-align: center;
+  }
+  .index-card .ix-name { font-size: 11px; color: var(--text3); margin-bottom: 3px; }
+  .index-card .ix-val { font-size: 18px; font-weight: 700; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace; }
+  .index-card .ix-chg { font-size: 13px; font-weight: 600; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace; margin-top: 2px; }
+  .ix-up { color: var(--green); }
+  .ix-down { color: var(--red); }
+
+  .market-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .stat-mini {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 14px; display: flex; justify-content: space-between; align-items: center;
+  }
+  .stat-mini .sm-label { font-size: 11px; color: var(--text3); }
+  .stat-mini .sm-val { font-size: 14px; font-weight: 600; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace; }
+
+  /* 双栏布局 */
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .panel-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px; font-weight: 600; color: var(--text2);
+    text-transform: uppercase; letter-spacing: 0.6px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .panel-body { padding: 12px 16px; }
+
+  /* 情景条 */
+  .scenario-strip {
+    display: flex;
+    gap: 6px;
+  }
+  .scenario-bar {
+    flex: 1; border-radius: 6px; padding: 10px 12px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .scenario-bar .sc-prob { font-size: 22px; font-weight: 800; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace; }
+  .scenario-bar .sc-label { font-size: 10px; margin-top: 2px; }
+  .scenario-bar .sc-range { font-size: 10px; color: rgba(255,255,255,0.6); margin-top: 4px; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace; }
+  .sc-bull { background: var(--green-bg); border: 1px solid var(--green-border); color: var(--green); }
+  .sc-base { background: rgba(96,165,250,0.08); border: 1px solid rgba(66,153,225,0.2); color: var(--blue); }
+  .sc-bear { background: var(--red-bg); border: 1px solid rgba(229,62,62,0.18); color: var(--red); }
+
+  /* 持仓表格 */
+  .pos-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+  .pos-table th {
+    background: var(--surface2); padding: 6px 8px; text-align: left;
+    border-bottom: 1px solid var(--border); color: var(--text3); font-size: 10px; font-weight: 500;
+  }
+  .pos-table td {
+    padding: 6px 8px; border-bottom: 1px solid var(--divider);
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace; font-size: 11px;
+  }
+  .pos-table .stock-name { font-family: 'Inter', 'PingFang SC', sans-serif; font-weight: 500; color: var(--text); }
+  .pos-table .up { color: var(--green); font-weight: 600; }
+  .pos-table .down { color: var(--red); font-weight: 600; }
+  .pos-table .tag-zsy { 
+    display: inline-block; padding: 1px 5px; border-radius: 3px;
+    font-size: 9px; font-weight: 600; 
+    background: var(--purple-bg); color: var(--purple);
+  }
+  .pos-table .verdict {
+    display: inline-block; padding: 1px 6px; border-radius: 3px;
+    font-size: 9px; font-weight: 600; font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  }
+  .v-hold { background: var(--blue-bg); color: var(--blue); }
+  .v-watch { background: var(--amber-bg); color: var(--amber); }
+  .v-cut { background: var(--red-bg); color: var(--red); }
+  .v-buy { background: var(--green-bg); color: var(--green); }
+
+  /* 涨跌条 */
+  .chg-bar-wrap {
+    height: 4px; background: var(--surface2); border-radius: 2px;
+    margin-top: 1px; overflow: hidden;
+  }
+  .chg-bar { height: 100%; border-radius: 2px; transition: width 0.3s; }
+
+  /* 行业 */
+  .sector-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 0; border-bottom: 1px solid var(--divider);
+    font-size: 11px;
+  }
+  .sector-row .sr-name { font-weight: 500; }
+  .sector-row .sr-dir { font-weight: 600; font-size: 10px; }
+  .sr-up { color: var(--green); }
+  .sr-down { color: var(--red); }
+
+  /* 准确率 */
+  .accuracy-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px; margin-bottom: 10px;
+  }
+  .acc-card {
+    background: var(--surface2); border-radius: 6px; padding: 10px; text-align: center;
+  }
+  .acc-card .acc-pct { font-size: 22px; font-weight: 800; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace; }
+  .acc-card .acc-label { font-size: 10px; color: var(--text3); margin-top: 2px; }
+  .acc-good { color: var(--green); }
+  .acc-ok { color: var(--amber); }
+  .acc-bad { color: var(--red); }
+
+  .risk-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 6px 0; font-size: 11px; border-bottom: 1px solid var(--divider);
+  }
+  .risk-row .risk-lvl {
+    font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 3px;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  }
+  .lvl-p0 { background: var(--red-bg); color: var(--red); }
+  .lvl-p1 { background: var(--amber-bg); color: var(--amber); }
+  .lvl-p2 { background: rgba(100,116,139,0.1); color: var(--text3); }
+  .lvl-triggered { margin-left: 4px; font-size: 9px; color: var(--red); font-weight: 600; }
+
+  .full-panel {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    margin-bottom: 16px; overflow: hidden;
+  }
+
+  .ops-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+  }
+  .op-card {
+    background: var(--surface2); border-radius: 8px; padding: 10px 12px;
+  }
+  .op-card .op-action {
+    font-size: 14px; font-weight: 700; margin-bottom: 4px;
+  }
+  .op-card .op-stocks { font-size: 10px; color: var(--text3); line-height: 1.5; }
+  .op-card .op-reason { font-size: 9px; color: var(--text3); margin-top: 4px; }
+
+  .footer { text-align: center; font-size: 10px; color: var(--text3); margin-top: 8px; }
+
+  /* ═══════════ 移动端适配 ═══════════ */
+  @media (max-width: 768px) {
+    .header h1 { font-size: 18px; }
+    .index-strip { grid-template-columns: repeat(3, 1fr); }
+    .market-stats { grid-template-columns: repeat(2, 1fr); }
+    .main-grid { grid-template-columns: 1fr; }
+    .ops-grid { grid-template-columns: repeat(2, 1fr); }
+    .accuracy-grid { grid-template-columns: repeat(2, 1fr); }
+    .scenario-strip { flex-direction: column; }
+    .pos-table { font-size: 10px; }
+    .pos-table td { padding: 4px 4px; font-size: 10px; }
+    .pos-table th { padding: 4px 4px; font-size: 9px; }
+  }
+  @media (max-width: 480px) {
+    .index-strip { grid-template-columns: repeat(2, 1fr); gap: 4px; }
+    .index-card { padding: 8px 10px; }
+    .index-card .ix-val { font-size: 15px; }
+    .market-stats { grid-template-columns: 1fr; }
+    .ops-grid { grid-template-columns: 1fr; }
+    .accuracy-grid { grid-template-columns: repeat(2, 1fr); gap: 4px; }
+    .acc-card .acc-pct { font-size: 18px; }
+    .header h1 { font-size: 16px; }
+    .scenario-strip { flex-direction: column; }
+  }
+  @media (max-width: 380px) {
+    .pos-table td, .pos-table th { padding: 3px 2px; font-size: 9px; }
+  }
+  /* 触控优化 */
+  button, .verdict, .tag-zsy, .risk-lvl { 
+    -webkit-tap-highlight-color: transparent; 
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+</style><div class="container">
+
+  <div class="header">
+    <div>
+      <h1>盘后复盘仪表盘 · Post-Session Recap</h1>
+      <div class="subtitle">
+        6层闭环 v2.1 · 11只持仓 + 12只观察 · 
+        <span class="market-badge badge-red">黑色星期五 -2.26%</span>
+      </div>
+    </div>
+    <div class="date-badge">2026-06-26 周五</div>
+  </div>
+
+  <!-- 大盘概览 -->
+  <div class="index-strip">
+    <div class="index-card">
+      <div class="ix-name">上证指数</div>
+      <div class="ix-val" style="color:var(--red)">4027</div>
+      <div class="ix-chg ix-down">-2.26%</div>
+    </div>
+    <div class="index-card">
+      <div class="ix-name">深证成指</div>
+      <div class="ix-val" style="color:var(--red)">15782</div>
+      <div class="ix-chg ix-down">-3.44%</div>
+    </div>
+    <div class="index-card">
+      <div class="ix-name">创业板指</div>
+      <div class="ix-val" style="color:var(--red)">4194</div>
+      <div class="ix-chg ix-down">-4.07%</div>
+    </div>
+    <div class="index-card">
+      <div class="ix-name">科创50</div>
+      <div class="ix-val" style="color:var(--red)">2032</div>
+      <div class="ix-chg ix-down">-1.65%</div>
+    </div>
+    <div class="index-card">
+      <div class="ix-name">沪深300</div>
+      <div class="ix-val" style="color:var(--red)">4868</div>
+      <div class="ix-chg ix-down">-3.03%</div>
+    </div>
+  </div>
+
+  <div class="market-stats">
+    <div class="stat-mini">
+      <span class="sm-label">成交额</span>
+      <span class="sm-val">3.55万亿</span>
+    </div>
+    <div class="stat-mini">
+      <span class="sm-label">涨跌比</span>
+      <span class="sm-val" style="color:var(--red)">976 : 5122 <span style="font-size:10px;color:var(--text3)">1:5.2</span></span>
+    </div>
+    <div class="stat-mini">
+      <span class="sm-label">北向资金</span>
+      <span class="sm-val" style="color:var(--red)">-26.4亿</span>
+    </div>
+  </div>
+
+  <!-- 双栏 -->
+  <div class="main-grid">
+
+    <!-- 持仓矩阵 -->
+    <div class="panel">
+      <div class="panel-header">
+        持仓矩阵 · 11只
+        <span style="font-size:10px;color:var(--text3)">↑2 · ↓9</span>
+      </div>
+      <div class="panel-body" style="padding:8px 12px; overflow-x: auto; -webkit-overflow-scrolling: touch;">
+        <table class="pos-table">
+          <thead><tr>
+            <th>标的</th><th>收盘</th><th>涨跌幅</th><th>成交额</th><th>预判</th><th>操作</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="stock-name">南大光电</span> <span class="tag-zsy">紫苏叶</span></td>
+              <td>78.12</td><td class="up">+4.55%</td><td>87.6亿</td>
+              <td><span class="verdict v-hold">偏多✅</span></td>
+              <td><span class="verdict v-buy">关注低吸</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">北方华创</span></td>
+              <td>813.37</td><td class="up">+1.93%</td><td>100.1亿</td>
+              <td><span class="verdict v-hold">偏多✅</span></td>
+              <td><span class="verdict v-hold">持有</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">鼎龙股份</span> <span class="tag-zsy">紫苏叶</span></td>
+              <td>95.07</td><td class="down">-0.40%</td><td>55.8亿</td>
+              <td><span class="verdict v-hold">偏多✅</span></td>
+              <td><span class="verdict v-buy">关注低吸</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">中国核电</span></td>
+              <td>8.93</td><td class="down">-0.56%</td><td>9.2亿</td>
+              <td><span class="verdict v-hold">偏多✅</span></td>
+              <td><span class="verdict v-hold">底仓持有</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">中国一重</span></td>
+              <td>3.29</td><td class="down">-1.79%</td><td>1.9亿</td>
+              <td><span class="verdict v-watch">—</span></td>
+              <td><span class="verdict v-watch">观望</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">江苏神通</span> <span class="tag-zsy">紫苏叶</span></td>
+              <td>14.17</td><td class="down">-3.14%</td><td>1.4亿</td>
+              <td><span class="verdict v-watch">—</span></td>
+              <td><span class="verdict v-watch">观望</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">韦尔股份</span></td>
+              <td>86.72</td><td class="down">-3.33%</td><td>19.4亿</td>
+              <td><span class="verdict v-watch">—</span></td>
+              <td><span class="verdict v-watch">观望</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">紫光国微</span></td>
+              <td>83.98</td><td class="down">-4.02%</td><td>40.8亿</td>
+              <td><span class="verdict v-cut">偏多❌</span></td>
+              <td><span class="verdict v-hold">持有</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">中芯国际</span></td>
+              <td>148.76</td><td class="down">-5.16%</td><td>161.7亿</td>
+              <td><span class="verdict v-cut">偏多❌</span></td>
+              <td><span class="verdict v-hold">持有</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">东方电气</span></td>
+              <td>28.47</td><td class="down">-5.51%</td><td>19.3亿</td>
+              <td><span class="verdict v-watch">—</span></td>
+              <td><span class="verdict v-watch">观望</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">沃尔核材</span></td>
+              <td>17.77</td><td class="down">-7.25%</td><td>8.8亿</td>
+              <td><span class="verdict v-watch">—</span></td>
+              <td><span class="verdict v-watch">观望</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 观察池 -->
+    <div class="panel">
+      <div class="panel-header">
+        观察池 · 12只
+        <span style="font-size:10px;color:var(--text3)">↑1 · ↓11</span>
+      </div>
+      <div class="panel-body" style="padding:8px 12px; overflow-x: auto; -webkit-overflow-scrolling: touch;">
+        <table class="pos-table">
+          <thead><tr>
+            <th>标的</th><th>收盘</th><th>涨跌幅</th><th>预判</th><th>操作</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="stock-name">中微公司</span></td>
+              <td>413.00</td><td class="up">+3.47%</td>
+              <td><span class="verdict v-hold">偏多✅</span></td>
+              <td><span class="verdict v-buy">关注</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">兆易创新</span></td>
+              <td>770.00</td><td class="down">-0.67%</td>
+              <td><span class="verdict v-cut">偏空✅</span></td>
+              <td><span class="verdict v-cut">减仓</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">正丹股份</span></td>
+              <td>16.00</td><td class="down">-2.50%</td>
+              <td><span class="verdict v-watch">—</span></td>
+              <td><span class="verdict v-watch">观望</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">寒武纪</span></td>
+              <td>1458.00</td><td class="down">-3.12%</td>
+              <td><span class="verdict v-hold">中性✅</span></td>
+              <td><span class="verdict v-watch">观望</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">海光信息</span></td>
+              <td>344.90</td><td class="down">-4.27%</td>
+              <td><span class="verdict v-cut">偏多❌</span></td>
+              <td><span class="verdict v-hold">持有</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">景嘉微</span></td>
+              <td>52.97</td><td class="down">-4.99%</td>
+              <td><span class="verdict v-watch">中性</span></td>
+              <td><span class="verdict v-watch">观望</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">宁德时代</span></td>
+              <td>381.00</td><td class="down">-5.20%</td>
+              <td><span class="verdict v-cut">偏多❌</span></td>
+              <td><span class="verdict v-watch">观望</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">中际旭创</span></td>
+              <td>1253.89</td><td class="down">-5.25%</td>
+              <td><span class="verdict v-cut">偏空✅</span></td>
+              <td><span class="verdict v-watch">观望</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">东山精密</span></td>
+              <td>260.32</td><td class="down">-5.61%</td>
+              <td><span class="verdict v-cut">偏空✅</span></td>
+              <td><span class="verdict v-cut">减仓</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">江淮汽车</span></td>
+              <td>26.87</td><td class="down">-6.70%</td>
+              <td><span class="verdict v-cut">偏多❌</span></td>
+              <td><span class="verdict v-watch">观望</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">天孚通信</span></td>
+              <td>318.00</td><td class="down">-7.01%</td>
+              <td><span class="verdict v-cut">偏空✅</span></td>
+              <td><span class="verdict v-watch">观望</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">新易盛</span></td>
+              <td>566.00</td><td class="down">-7.29%</td>
+              <td><span class="verdict v-cut">偏空✅</span></td>
+              <td><span class="verdict v-cut">减仓</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 明日三情景 + 预测准确率 -->
+  <div class="main-grid">
+
+    <div class="panel">
+      <div class="panel-header">明日展望 · 6/30 周一</div>
+      <div class="panel-body">
+        <div class="scenario-strip">
+          <div class="scenario-bar sc-bull" style="flex:35">
+            <div class="sc-prob">35%</div>
+            <div class="sc-label">技术反弹</div>
+            <div class="sc-range">4060 ~ 4120</div>
+          </div>
+          <div class="scenario-bar sc-base" style="flex:45">
+            <div class="sc-prob">45%</div>
+            <div class="sc-label">缩量震荡</div>
+            <div class="sc-range">4000 ~ 4060</div>
+          </div>
+          <div class="scenario-bar sc-bear" style="flex:20">
+            <div class="sc-prob">20%</div>
+            <div class="sc-label">继续下探</div>
+            <div class="sc-range">3950 ~ 4000</div>
+          </div>
+        </div>
+        <div style="margin-top:12px;font-size:11px;color:var(--text2);line-height:1.7;">
+          <strong style="color:var(--text)">核心观察：</strong>4000心理关口支撑 + 季末过后资金回补 → 技术反弹概率不低。
+          但光模块/存储短期仍有回调压力，设备/材料方向逻辑未破。<br>
+          <strong style="color:var(--purple)">核电</strong>（中国核电-0.56%）最抗跌，独立逻辑验证。
+          <strong style="color:var(--green)">南大光电+4.55%</strong>逆势领涨，紫苏叶逻辑确认。
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">今日预测准确率</div>
+      <div class="panel-body">
+        <div class="accuracy-grid">
+          <div class="acc-card">
+            <div class="acc-pct acc-bad">0%</div>
+            <div class="acc-label">大盘方向</div>
+          </div>
+          <div class="acc-card">
+            <div class="acc-pct acc-ok">50%</div>
+            <div class="acc-label">行业方向</div>
+          </div>
+          <div class="acc-card">
+            <div class="acc-pct acc-ok">64%</div>
+            <div class="acc-label">个股方向</div>
+          </div>
+          <div class="acc-card">
+            <div class="acc-pct acc-bad">45%</div>
+            <div class="acc-label">信号置信度</div>
+          </div>
+        </div>
+        <div style="font-size:10px;color:var(--text3);line-height:1.6;">
+          <strong style="color:var(--red)">大盘偏差：</strong>预判4080-4140震荡 → 实际4027（跌破80点）<br>
+          <strong style="color:var(--green)">方向正确9项：</strong>北方华创✅南大光电✅中微✅新易盛✅中际✅天孚✅兆易✅东山✅核电✅<br>
+          <strong style="color:var(--red)">方向错误5项：</strong>中芯❌紫光❌江淮❌宁德❌海光❌<br>
+          偏差根因：低估季末结算 + 超涨获利了结的集中爆发
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 行业 + 操作 -->
+  <div class="main-grid">
+    <div class="panel">
+      <div class="panel-header">行业表现</div>
+      <div class="panel-body">
+        <div class="sector-row">
+          <span class="sr-name">AI芯片/半导体 · 存储/光模块</span>
+          <span class="sr-dir sr-down">全线杀跌 · 获利了结</span>
+        </div>
+        <div class="sector-row">
+          <span class="sr-name">AI芯片/半导体 · 设备/材料</span>
+          <span class="sr-dir" style="color:var(--amber)">内部分化 · 北方+1.9%/中微+3.5%抗跌</span>
+        </div>
+        <div class="sector-row">
+          <span class="sr-name">低空经济</span>
+          <span class="sr-dir sr-down">大幅杀跌 · 江淮-6.70% 催化未兑现</span>
+        </div>
+        <div class="sector-row">
+          <span class="sr-name">新能源</span>
+          <span class="sr-dir sr-down">杀跌 · 宁德-5.20%</span>
+        </div>
+        <div class="sector-row">
+          <span class="sr-name" style="color:var(--purple)">核电</span>
+          <span class="sr-dir" style="color:var(--green)">相对抗跌 · 中国核电-0.56% 独立逻辑</span>
+        </div>
+        <div class="sector-row">
+          <span class="sr-name">机器人</span>
+          <span class="sr-dir sr-down">跟随杀跌 · 无独立催化</span>
+        </div>
+        <div class="sector-row" style="border:none;">
+          <span class="sr-name">银行</span>
+          <span class="sr-dir" style="color:var(--green)">逆势护盘 · 工行/建行创阶段新高</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">明日操作策略</div>
+      <div class="panel-body">
+        <div class="ops-grid">
+          <div class="op-card">
+            <div class="op-action" style="color:var(--green)">关注机会</div>
+            <div class="op-stocks">北方华创 · 南大光电 · 中微公司</div>
+            <div class="op-reason">半导体设备/材料逆势抗跌，逻辑未破</div>
+          </div>
+          <div class="op-card">
+            <div class="op-action" style="color:var(--purple)">底仓持有</div>
+            <div class="op-stocks">中国核电 · 鼎龙股份</div>
+            <div class="op-reason">核电最抗跌+紫苏叶逻辑</div>
+          </div>
+          <div class="op-card">
+            <div class="op-action" style="color:var(--red)">减仓/观望</div>
+            <div class="op-stocks">新易盛 · 中际旭创 · 兆易创新</div>
+            <div class="op-reason">光模块/存储短期仍有回调压力</div>
+          </div>
+          <div class="op-card">
+            <div class="op-action" style="color:var(--amber)">等待企稳</div>
+            <div class="op-stocks">江淮汽车 · 宁德时代</div>
+            <div class="op-reason">催化兑现失败，等方向确认</div>
+          </div>
+        </div>
+        <div style="margin-top:10px;font-size:10px;color:var(--text3);line-height:1.6;">
+          <strong>仓位建议：</strong>维持4-5成，不急于抄底。关键观察：周一北向是否回流、4000点支撑是否有效。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 风险矩阵 -->
+  <div class="full-panel">
+    <div class="panel-header">风险矩阵 · P0-P2</div>
+    <div class="panel-body">
+      <div class="risk-row">
+        <span>科创50 RSI 72 → 超买回调</span>
+        <span><span class="risk-lvl lvl-p0">P0</span><span class="lvl-triggered">已触发</span> 科创-1.65%</span>
+      </div>
+      <div class="risk-row">
+        <span>周五获利了结惯例</span>
+        <span><span class="risk-lvl lvl-p0">P0</span><span class="lvl-triggered">已触发</span> 全线杀跌</span>
+      </div>
+      <div class="risk-row">
+        <span>半导体虹吸效应反转</span>
+        <span><span class="risk-lvl lvl-p1">P1</span><span class="lvl-triggered">已触发</span> 资金→银行/材料</span>
+      </div>
+      <div class="risk-row">
+        <span>北向资金持续流出</span>
+        <span><span class="risk-lvl lvl-p1">P1</span> -26.4亿，连续第二日</span>
+      </div>
+      <div class="risk-row">
+        <span>季末解禁/资金结算</span>
+        <span><span class="risk-lvl lvl-p2">P2</span> 6月底压力释放中</span>
+      </div>
+      <div class="risk-row" style="border:none;">
+        <span>4000点心理关口</span>
+        <span><span class="risk-lvl lvl-p2">P2</span> 周一关键支撑观察</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    v2.1 · 6层闭环框架 · 数据来源：TDX · 东方财富 · 新浪财经 · 生成于 2026-06-26 15:05 CST
+  </div>
+
+</div></div><div class="tab-content" data-tab="industry"><style>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+
+
+  .container { max-width: 1300px; margin: 0 auto; }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+  .header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .header .subtitle {
+    font-size: 12px;
+    color: var(--text3);
+    margin-top: 4px;
+  }
+  .header .badge {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 11px;
+    color: var(--text2);
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  }
+
+  /* 总览条 */
+  .overview-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .ov-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .ov-card .ov-num {
+    font-size: 32px;
+    font-weight: 800;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  }
+  .ov-card .ov-label {
+    font-size: 11px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-top: 2px;
+  }
+  .ov-red { color: var(--red); }
+  .ov-amber { color: var(--amber); }
+  .ov-green { color: var(--green); }
+  .ov-purple { color: var(--purple); }
+
+  /* 行业卡片网格 */
+  .sector-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .sector-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .sector-card:hover { border-color: var(--text3); }
+  .sector-card.dont-buy { border-left: 3px solid var(--red); }
+  .sector-card.watch { border-left: 3px solid var(--amber); }
+  .sector-card.can-buy { border-left: 3px solid var(--green); }
+  .sector-card.base { border-left: 3px solid var(--purple); }
+  .sector-card.too-hard { border-left: 3px solid var(--gray); }
+
+  .sc-header {
+    padding: 14px 16px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .sc-name {
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .sc-verdict {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 3px 10px;
+    border-radius: 12px;
+  }
+  .verdict-sell { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+  .verdict-watch { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+  .verdict-base { background: var(--purple-bg); color: var(--purple); border: 1px solid rgba(192,132,252,0.2); }
+  .verdict-pass { background: rgba(100,116,139,0.1); color: var(--gray); border: 1px solid rgba(113,128,150,0.25); }
+
+  .sc-body { padding: 0 16px 12px; }
+
+  .sc-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .sc-metric {
+    background: var(--surface2);
+    border-radius: 6px;
+    padding: 8px 10px;
+    text-align: center;
+  }
+  .sc-metric .m-label {
+    font-size: 9px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+  .sc-metric .m-val {
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  }
+  .m-red { color: var(--red); }
+  .m-amber { color: var(--amber); }
+  .m-green { color: var(--green); }
+  .m-purple { color: var(--purple); }
+
+  .sc-trigger {
+    background: var(--surface2);
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    font-size: 11px;
+    color: var(--text2);
+  }
+  .sc-trigger strong { color: var(--text); font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace; }
+
+  .sc-flags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .sc-flag {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  .flag-green { background: var(--green-bg); color: var(--green); }
+  .flag-red { background: var(--red-bg); color: var(--red); }
+  .flag-amber { background: var(--amber-bg); color: var(--amber); }
+  .flag-purple { background: var(--purple-bg); color: var(--purple); }
+
+  .sc-note {
+    margin-top: 8px;
+    font-size: 10px;
+    color: var(--text3);
+    line-height: 1.6;
+    padding: 8px 10px;
+    background: var(--surface2);
+    border-radius: 6px;
+    border-left: 2px solid var(--border);
+  }
+  .sc-note strong { color: var(--text2); }
+
+  /* 子赛道展开 */
+  .sub-sector {
+    margin-top: 6px;
+    padding: 6px 10px;
+    background: rgba(0,0,0,0.12);
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+  }
+  .sub-sector .ss-name { color: var(--text2); font-weight: 500; }
+  .sub-sector .ss-status { font-size: 10px; font-weight: 600; }
+  .ss-red { color: var(--red); }
+  .ss-amber { color: var(--amber); }
+
+  .footer {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 8px;
+  }
+
+  /* 框架说明 */
+  .framework-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+  }
+  .framework-box h2 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 10px;
+  }
+  .framework-box .fw-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .fw-item {
+    background: var(--surface2);
+    border-radius: 8px;
+    padding: 12px;
+  }
+  .fw-item .fw-label {
+    font-size: 10px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 3px;
+  }
+  .fw-item .fw-desc {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+  .fw-item .fw-desc strong { color: var(--text); }
+
+  /* ═══════════ 移动端适配 ═══════════ */
+  @media (max-width: 768px) {
+    .header h1 { font-size: 18px; }
+    .container { max-width: 100%; }
+    .indicators { grid-template-columns: 1fr; }
+    .rules-grid { grid-template-columns: repeat(2, 1fr); }
+    .sector-grid { grid-template-columns: 1fr; }
+    .overview-bar { grid-template-columns: repeat(2, 1fr); }
+    .framework-box .fw-grid { grid-template-columns: repeat(2, 1fr); }
+    .timeline { flex-wrap: wrap; }
+    .timeline-step { flex: 1 1 45%; }
+  }
+  @media (max-width: 480px) {
+    .score-hero { flex-direction: column; text-align: center; padding: 20px; }
+    .rules-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+    .overview-bar { grid-template-columns: 1fr; }
+    .framework-box .fw-grid { grid-template-columns: 1fr; }
+    .sc-metrics { grid-template-columns: repeat(2, 1fr); }
+    .timeline-step { flex: 1 1 100%; }
+    .sc-header { flex-direction: column; gap: 6px; align-items: flex-start; }
+  }
+  @media (max-width: 380px) {
+    .sc-metrics { grid-template-columns: 1fr; }
+  }
+  /* 触控优化 */
+  button, .sc-verdict, .sc-flag, .badge, .card-score, .timeline-step, .verdict, .fw-item {
+    -webkit-tap-highlight-color: transparent;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+</style><div class="container">
+
+  <div class="header">
+    <div>
+      <h1>Industry State Analyzer · 行业分析仪表盘</h1>
+      <div class="subtitle">v2.4 框架 · 瓶颈评分 + 三来源矛盾 + 品牌壁垒 · 触发买入条件量化</div>
+    </div>
+    <span class="badge">2026-06-28</span>
+  </div>
+
+  <!-- 框架说明 -->
+  <div class="framework-box">
+    <h2>v2.4 分析框架</h2>
+    <div class="fw-grid">
+      <div class="fw-item">
+        <div class="fw-label">L3 瓶颈评分</div>
+        <div class="fw-desc"><strong>物理壁垒 9 + 供给壁垒 9 + 寡头格局 9 + 品牌壁垒</strong>（独立标签不参与总分）。≥20分=紫苏叶级。</div>
+      </div>
+      <div class="fw-item">
+        <div class="fw-label">三来源矛盾</div>
+        <div class="fw-desc">价格趋势 / 基本面 / 市场情绪 三者交叉验证。出现矛盾→<strong>不动</strong>。超过两个热门赛道同时矛盾→整体悲观+10-15%。</div>
+      </div>
+      <div class="fw-item">
+        <div class="fw-label">品牌壁垒</div>
+        <div class="fw-desc">独立列，不参与瓶颈总分。白酒/化妆品等消费品壁垒≠物理壁垒，<strong>一代人品味变化即可溶解</strong>。</div>
+      </div>
+      <div class="fw-item">
+        <div class="fw-label">触发买入</div>
+        <div class="fw-desc">基于悲观概率×利润压缩×合理PE回推。不是预测底部，是<strong>设定愿意接飞刀的价格</strong>。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 总览 -->
+  <div class="overview-bar">
+    <div class="ov-card">
+      <div class="ov-num ov-red">5</div>
+      <div class="ov-label">不买 / 观望</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-num ov-amber">2</div>
+      <div class="ov-label">观察 / 接近触发</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-num ov-purple">1</div>
+      <div class="ov-label">底仓配置</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-num ov-green">0</div>
+      <div class="ov-label">当前可买</div>
+    </div>
+  </div>
+
+  <!-- 行业卡片 -->
+  <div class="sector-grid">
+
+    <!-- 核电 -->
+    <div class="sector-card base">
+      <div class="sc-header">
+        <div class="sc-name">核电</div>
+        <div class="sc-verdict verdict-base">底仓配置</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-metrics">
+          <div class="sc-metric"><div class="m-label">瓶颈评分</div><div class="m-val m-purple">27/30</div></div>
+          <div class="sc-metric"><div class="m-label">PE (广核)</div><div class="m-val">~11x</div></div>
+          <div class="sc-metric"><div class="m-label">悲观概率</div><div class="m-val m-green">15%</div></div>
+        </div>
+        <div class="sc-trigger">
+          触发买入：<strong>广核 PE&lt;9x</strong> 或股息率&gt;4.5%（约 <strong>3.2 元</strong>）| 核电 PE&lt;13x（约 <strong>6.8 元</strong>）
+        </div>
+        <div class="sc-flags">
+          <span class="sc-flag flag-purple">唯一紫苏叶 27分</span>
+          <span class="sc-flag flag-green">三来源无矛盾</span>
+          <span class="sc-flag flag-green">不需要拐点</span>
+          <span class="sc-flag flag-purple">AI 变量待兑现</span>
+        </div>
+        <div class="sc-note">
+          <strong>年化 5-8% + 股息 3-4%，永续配置型。</strong>日波动 0.5%，不可短线。唯一适合"底仓"的行业。东方电气 L2→L3 上调（唯一核岛总包商+2064亿订单）。
+        </div>
+      </div>
+    </div>
+
+    <!-- 医美 -->
+    <div class="sector-card watch">
+      <div class="sc-header">
+        <div class="sc-name">医美</div>
+        <div class="sc-verdict verdict-watch">观察中</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-metrics">
+          <div class="sc-metric"><div class="m-label">瓶颈评分</div><div class="m-val m-amber">18/30</div></div>
+          <div class="sc-metric"><div class="m-label">PE (爱美客)</div><div class="m-val">~22x</div></div>
+          <div class="sc-metric"><div class="m-label">悲观概率</div><div class="m-val m-red">45%</div></div>
+        </div>
+        <div class="sc-trigger">
+          触发买入：<strong>PE&lt;15x</strong>（约 <strong>65 元</strong>）或连续两季利润环比不再下滑
+        </div>
+        <div class="sc-flags">
+          <span class="sc-flag flag-amber">品牌壁垒独立标签</span>
+          <span class="sc-flag flag-red">利润加速下滑</span>
+          <span class="sc-flag flag-amber">爱美客 -35% 仍在下行</span>
+        </div>
+        <div class="sc-note">
+          <strong>不是在买便宜，是在接飞刀。</strong>PE 22x 看起来不贵但利润在加速下滑——分母缩水会让 PE 变大。与宁德区别：宁德 722 亿知道天花板，爱美客 12.91 亿不知道地板。
+        </div>
+      </div>
+    </div>
+
+    <!-- 消费（白酒） -->
+    <div class="sector-card watch">
+      <div class="sc-header">
+        <div class="sc-name">消费 · 白酒</div>
+        <div class="sc-verdict verdict-watch">观察中</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-metrics">
+          <div class="sc-metric"><div class="m-label">瓶颈评分</div><div class="m-val m-amber">品牌壁垒独立</div></div>
+          <div class="sc-metric"><div class="m-label">PE (茅台)</div><div class="m-val">~25x→15.7x</div></div>
+          <div class="sc-metric"><div class="m-label">提价折抵</div><div class="m-val m-red">完全抵消</div></div>
+        </div>
+        <div class="sc-trigger">
+          提价 8.6% → 理论利润 934 亿 → PE 从 25x 压缩到 15.7x → <strong>全部利润增长被估值压缩抵消</strong>
+        </div>
+        <div class="sc-flags">
+          <span class="sc-flag flag-amber">品牌壁垒≠物理壁垒</span>
+          <span class="sc-flag flag-red">消费降级趋势</span>
+          <span class="sc-flag flag-red">一代人品味可溶解</span>
+        </div>
+        <div class="sc-note">
+          <strong>白酒品牌壁垒和减速器物理壁垒本质不同。</strong>品牌壁垒可在一代人品味变化中溶解。消费降级判断有道理但缺少社零增速/白酒库存等具体数据。
+        </div>
+      </div>
+    </div>
+
+    <!-- 新能源 -->
+    <div class="sector-card dont-buy">
+      <div class="sc-header">
+        <div class="sc-name">新能源</div>
+        <div class="sc-verdict verdict-sell">不买</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-metrics">
+          <div class="sc-metric"><div class="m-label">瓶颈评分</div><div class="m-val">宁德 20/30</div></div>
+          <div class="sc-metric"><div class="m-label">PE (宁德)</div><div class="m-val">~18x</div></div>
+          <div class="sc-metric"><div class="m-label">故事状态</div><div class="m-val m-red">结束了</div></div>
+        </div>
+        <div class="sc-trigger">
+          宁德 722 亿利润 → 市场用低 PE 说"预期你的利润会跌" → 回 441 亿时股价看 233 元
+        </div>
+        <div class="sc-flags">
+          <span class="sc-flag flag-red">四个子赛道全不买</span>
+          <span class="sc-flag flag-red">产能过剩</span>
+          <span class="sc-flag flag-red">利润见顶</span>
+        </div>
+        <div class="sc-note">
+          新能源已从"成长赛道"变"成熟行业"——锂电/光伏/储能/新能源车四个子赛道互不相干，拒绝统一结论。宁德 PE 18x 不是便宜，是市场在定价利润下行。
+        </div>
+        <div class="sub-sector"><span class="ss-name">锂电</span><span class="ss-status ss-red">不买</span></div>
+        <div class="sub-sector"><span class="ss-name">光伏</span><span class="ss-status ss-red">不买 · 隆基 12.67 可能是底</span></div>
+        <div class="sub-sector"><span class="ss-name">储能</span><span class="ss-status ss-red">不买</span></div>
+        <div class="sub-sector"><span class="ss-name">新能源车</span><span class="ss-status ss-red">不买</span></div>
+      </div>
+    </div>
+
+    <!-- 机器人 -->
+    <div class="sector-card dont-buy">
+      <div class="sc-header">
+        <div class="sc-name">机器人</div>
+        <div class="sc-verdict verdict-sell">等估值对</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-metrics">
+          <div class="sc-metric"><div class="m-label">瓶颈评分</div><div class="m-val">25/30</div></div>
+          <div class="sc-metric"><div class="m-label">PE (绿的谐波)</div><div class="m-val m-red">~500x</div></div>
+          <div class="sc-metric"><div class="m-label">悲观概率</div><div class="m-val m-red">高</div></div>
+        </div>
+        <div class="sc-trigger">
+          即使最乐观剧本利润翻到 10 亿（2028），PE 仍 90x。等板块回调 <strong>20-30%</strong>。
+        </div>
+        <div class="sc-flags">
+          <span class="sc-flag flag-green">瓶颈 25 分真紫苏叶</span>
+          <span class="sc-flag flag-red">PE 高到消灭任何安全边际</span>
+          <span class="sc-flag flag-red">宇树 IPO 二元炸弹</span>
+          <span class="sc-flag flag-amber">449 只概念股 &lt;10 只受益</span>
+        </div>
+        <div class="sc-note">
+          <strong>"3 万台 vs 8000 万台汽车"一句话杀死叙事。</strong>谐波减速器 25/30 是瓶颈理论最有说服力的应用。但瓶颈 25 分配 PE 500x——避开了"紫苏叶被充分定价"的尴尬。宇树 IPO 是二元炸弹不是确定性催化剂。
+        </div>
+      </div>
+    </div>
+
+    <!-- 医药 -->
+    <div class="sector-card dont-buy">
+      <div class="sc-header">
+        <div class="sc-name">医药</div>
+        <div class="sc-verdict verdict-sell">数据不全</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-metrics">
+          <div class="sc-metric"><div class="m-label">瓶颈评分</div><div class="m-val">—</div></div>
+          <div class="sc-metric"><div class="m-label">药明康德利润</div><div class="m-val m-red">—</div></div>
+          <div class="sc-metric"><div class="m-label">迈瑞利润</div><div class="m-val m-red">—</div></div>
+        </div>
+        <div class="sc-flags">
+          <span class="sc-flag flag-red">数据缺口严重</span>
+          <span class="sc-flag flag-amber">三行业合并报告深度不足</span>
+        </div>
+        <div class="sc-note">
+          与消费、化工三行业合并报告仅 272 行（vs 机器人 319 行/新能源 358 行）。药明康德和迈瑞利润数据缺失，瓶颈评分退化为"感觉排列组合"。需要独立深度分析。
+        </div>
+      </div>
+    </div>
+
+    <!-- 化工 -->
+    <div class="sector-card dont-buy">
+      <div class="sc-header">
+        <div class="sc-name">化工</div>
+        <div class="sc-verdict verdict-sell">数据不全</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-metrics">
+          <div class="sc-metric"><div class="m-label">瓶颈评分</div><div class="m-val">—</div></div>
+          <div class="sc-metric"><div class="m-label">数据状态</div><div class="m-val m-red">—</div></div>
+          <div class="sc-metric"><div class="m-label">分析深度</div><div class="m-val m-amber">不足</div></div>
+        </div>
+        <div class="sc-flags">
+          <span class="sc-flag flag-amber">与医药消费合并，未独立分析</span>
+          <span class="sc-flag flag-red">缺少利润与估值数据</span>
+        </div>
+        <div class="sc-note">
+          三行业合并报告中化工部分深度最浅。芒格建议去翻煤炭/化工/航运等非热点行业，但目前化工尚无完整 v2.4 框架评估。需要独立报告。
+        </div>
+      </div>
+    </div>
+
+    <!-- 低空经济 -->
+    <div class="sector-card too-hard">
+      <div class="sc-header">
+        <div class="sc-name">低空经济</div>
+        <div class="sc-verdict verdict-pass">Too Hard</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-metrics">
+          <div class="sc-metric"><div class="m-label">瓶颈评分</div><div class="m-val" style="color:var(--gray)">—</div></div>
+          <div class="sc-metric"><div class="m-label">分析状态</div><div class="m-val" style="color:var(--gray)">放弃</div></div>
+          <div class="sc-metric"><div class="m-label">三来源</div><div class="m-val m-red">全矛盾</div></div>
+        </div>
+        <div class="sc-flags">
+          <span class="sc-flag" style="background:rgba(100,116,139,0.1);color:var(--gray)">能力圈外</span>
+          <span class="sc-flag" style="background:rgba(100,116,139,0.1);color:var(--gray)">宗申动力仅是巧合</span>
+        </div>
+        <div class="sc-note">
+          宗申动力是在低空经济里翻出来的——这种公司不会主动跳到热榜第一页。但行业整体三来源全矛盾，框架无法给出有效评估。已划入禁区。
+        </div>
+      </div>
+    </div>
+
+    <!-- 待覆盖 -->
+    <div class="sector-card" style="border:1px dashed var(--border);">
+      <div class="sc-header">
+        <div class="sc-name" style="color:var(--text3);">待覆盖行业</div>
+        <div class="sc-verdict" style="background:rgba(100,116,139,0.05);color:var(--text3);border:1px solid rgba(100,116,139,0.15);">未分析</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-note">
+          <strong>芒格建议翻的非热点行业：</strong>煤炭、航运、以及更多消费/医药细分赛道。目前这些方向尚无 v2.4 框架的独立分析。去翻的理由——"你一直在热的这边翻"。
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;">
+          <span class="sc-flag" style="background:rgba(100,116,139,0.06);color:var(--text3);">煤炭</span>
+          <span class="sc-flag" style="background:rgba(100,116,139,0.06);color:var(--text3);">航运</span>
+          <span class="sc-flag" style="background:rgba(100,116,139,0.06);color:var(--text3);">消费细分</span>
+          <span class="sc-flag" style="background:rgba(100,116,139,0.06);color:var(--text3);">医药细分</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    v2.4 框架 · 瓶颈评分 + 品牌壁垒独立标签 + 三来源矛盾交叉验证 · 更新于 2026-06-28
+  </div>
+
+</div></div><div class="tab-content" data-tab="market"><style>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+  }
+  .header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--text);
+  }
+  .header .subtitle {
+    font-size: 12px;
+    color: var(--text3);
+    margin-top: 4px;
+    font-weight: 400;
+  }
+  .header .badge {
+    display: inline-block;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 11px;
+    color: var(--text2);
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  }
+
+  .score-hero {
+    background: var(--surface);
+    border: 1px solid var(--score-border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .score-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(ellipse at 20% 50%, rgba(229, 62, 62, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .score-circle {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: var(--score-bg);
+    border: 3px solid var(--score-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .score-circle .score-val {
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--red);
+    line-height: 1;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  }
+  .score-circle .score-max {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 2px;
+  }
+  .score-info { position: relative; z-index: 1; }
+  .score-info .score-label {
+    font-size: 13px;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .score-info .score-verdict {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .score-info .score-detail {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+  .score-info .score-detail span { color: var(--text); font-weight: 500; }
+
+  .indicators {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .indicator-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: border-color 0.2s;
+  }
+  .indicator-card:hover { border-color: var(--text3); }
+  .indicator-card .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+  .indicator-card .card-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .indicator-card .card-score {
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  }
+  .score-red { color: var(--red); }
+  .score-amber { color: var(--amber); }
+  .score-green { color: var(--green); }
+
+  .indicator-card .current-val {
+    font-size: 28px;
+    font-weight: 700;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+    margin-bottom: 2px;
+  }
+  .indicator-card .vs-mean {
+    font-size: 11px;
+    color: var(--text3);
+    margin-bottom: 10px;
+  }
+  .indicator-card .vs-mean .below { color: var(--red); }
+  .indicator-card .vs-mean .above { color: var(--amber); }
+  .indicator-card .vs-mean .near { color: var(--cyan); }
+
+  .indicator-card .prediction {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text2);
+    padding: 8px 0;
+    border-top: 1px solid var(--border);
+  }
+  .prediction .arrow-up { color: var(--red); font-weight: 700; }
+  .prediction .arrow-down { color: var(--green); font-weight: 700; }
+  .prediction .arrow-flat { color: var(--cyan); font-weight: 700; }
+  .prediction .pred-val { font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace; font-weight: 500; }
+
+  .gauge-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .gauge-bar {
+    flex: 1;
+    height: 4px;
+    background: var(--surface2);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+  .gauge-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.5s ease;
+  }
+  .gauge-fill.red { background: var(--red); }
+  .gauge-fill.amber { background: var(--amber); }
+  .gauge-fill.green { background: var(--green); }
+  .gauge-label {
+    font-size: 10px;
+    color: var(--text3);
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+    white-space: nowrap;
+  }
+
+  .rules-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  .rules-section h2 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 14px;
+  }
+  .rules-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .rule-box {
+    background: var(--surface2);
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+  }
+  .rule-box .rule-range {
+    font-size: 11px;
+    color: var(--text3);
+    margin-bottom: 4px;
+  }
+  .rule-box .rule-score {
+    font-size: 22px;
+    font-weight: 700;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  }
+  .rule-box .rule-action {
+    font-size: 10px;
+    color: var(--text3);
+    margin-top: 4px;
+  }
+
+  .insight-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  .insight-box h2 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 12px;
+  }
+  .insight-box p {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.8;
+  }
+  .insight-box p strong { color: var(--text); }
+
+  .timeline {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .timeline-step {
+    flex: 1;
+    background: var(--surface2);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+  }
+  .timeline-step .ts-score {
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+    color: var(--text3);
+  }
+  .timeline-step .ts-label {
+    font-size: 10px;
+    color: var(--text3);
+    margin-top: 2px;
+  }
+  .timeline-step .ts-action {
+    font-size: 10px;
+    color: var(--text2);
+    margin-top: 6px;
+    font-weight: 500;
+  }
+  .timeline-step.active .ts-score { color: var(--red); }
+  .timeline-step.active .ts-label { color: var(--red); }
+  .timeline-step.active { border: 1px solid rgba(229, 62, 62, 0.25); }
+
+  .footer {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 8px;
+  }
+  .footer span { color: var(--text2); }
+
+  /* ═══════════ 移动端适配 ═══════════ */
+  @media (max-width: 768px) {
+    .header h1 { font-size: 18px; }
+    .container { max-width: 100%; }
+    .indicators { grid-template-columns: 1fr; }
+    .rules-grid { grid-template-columns: repeat(2, 1fr); }
+    .sector-grid { grid-template-columns: 1fr; }
+    .overview-bar { grid-template-columns: repeat(2, 1fr); }
+    .framework-box .fw-grid { grid-template-columns: repeat(2, 1fr); }
+    .timeline { flex-wrap: wrap; }
+    .timeline-step { flex: 1 1 45%; }
+  }
+  @media (max-width: 480px) {
+    .score-hero { flex-direction: column; text-align: center; padding: 20px; }
+    .rules-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+    .overview-bar { grid-template-columns: 1fr; }
+    .framework-box .fw-grid { grid-template-columns: 1fr; }
+    .sc-metrics { grid-template-columns: repeat(2, 1fr); }
+    .timeline-step { flex: 1 1 100%; }
+    .sc-header { flex-direction: column; gap: 6px; align-items: flex-start; }
+  }
+  @media (max-width: 380px) {
+    .sc-metrics { grid-template-columns: 1fr; }
+  }
+  /* 触控优化 */
+  button, .sc-verdict, .sc-flag, .badge, .card-score, .timeline-step, .verdict, .fw-item {
+    -webkit-tap-highlight-color: transparent;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+</style><div class="container">
+
+  <div class="header">
+    <div>
+      <h1>Market State Score · 市场状态仪表盘</h1>
+      <div class="subtitle">波动率 / 换手率 / ERP 三维量化 · TimesFM-2.5 预测驱动 · 2026-06-29</div>
+    </div>
+    <span class="badge">v1.0</span>
+  </div>
+
+  <!-- 总分 -->
+  <div class="score-hero">
+    <div class="score-circle">
+      <div class="score-val">13</div>
+      <div class="score-max">/ 30</div>
+    </div>
+    <div class="score-info">
+      <div class="score-label">当前状态</div>
+      <div class="score-verdict">开始关注 · 翻行业报告</div>
+      <div class="score-detail">波动率在历史底部（0分），换手率地量（10分），ERP接近均值（3分），折扣窗口尚未打开。当总分≥15分时，行业报告里将出现第一个可以看价格的标的。<span>13.14%</span>进入计分区（3分），换手率从7.11%降至<span>6.24%</span>仍处高位（0分），ERP升至<span>3.05%</span>略高于10年均值（4分）。<br>
+        折扣窗口初现曙光。当总分≥15分时，你的行业报告里将出现第一个可以看价格的标的。
+      </div>
+    </div>
+  </div>
+
+  <!-- 三指标 -->
+  <div class="indicators">
+
+    <!-- 波动率 -->
+    <div class="indicator-card">
+      <div class="card-header">
+        <div class="card-title">年化波动率</div>
+        <div class="card-score score-red">3 / 10</div>
+      </div>
+      <div class="current-val">2.60%</div>
+      <div class="vs-mean">vs 25年均值 20.6% <span class="near">-8% 接近均值</span></div>
+      <div class="prediction">
+        <span class="arrow-up">↑</span>
+        <span>3年后预测</span>
+        <span class="pred-val">2.54%</span>
+        <span style="font-size:10px;color:var(--text3)">向均值回归</span>
+      </div>
+      <div class="gauge-row">
+        <span class="gauge-label">12%</span>
+        <div class="gauge-bar">
+          <div class="gauge-fill amber" style="width: 37%;"></div>
+        </div>
+        <span class="gauge-label">20%</span>
+      </div>
+    </div>
+
+    <!-- 换手率 -->
+    <div class="indicator-card">
+      <div class="card-header">
+        <div class="card-title">周换手率</div>
+        <div class="card-score score-red">3 / 10</div>
+      </div>
+      <div class="current-val">2.60%</div>
+      <div class="vs-mean">vs 5年均值 4.37% <span class="near">-8% 接近均值</span></div>
+      <div class="prediction">
+        <span class="arrow-down">↓</span>
+        <span>3年后预测</span>
+        <span class="pred-val">2.54%</span>
+        <span style="font-size:10px;color:var(--text3)">回归均值</span>
+      </div>
+      <div class="gauge-row">
+        <span class="gauge-label">6%</span>
+        <div class="gauge-bar">
+          <div class="gauge-fill amber" style="width: 37%;"></div>
+        </div>
+        <span class="gauge-label">4%</span>
+      </div>
+    </div>
+
+    <!-- ERP -->
+    <div class="indicator-card">
+      <div class="card-header">
+        <div class="card-title">股债收益差 (ERP)</div>
+        <div class="card-score score-red">3 / 10</div>
+      </div>
+      <div class="current-val">2.60%</div>
+      <div class="vs-mean">vs 10年均值 2.82% <span class="near">-8% 接近均值</span></div>
+      <div class="prediction">
+        <span class="arrow-flat">→</span>
+        <span>3年后预测</span>
+        <span class="pred-val">2.54%</span>
+        <span style="font-size:10px;color:var(--text3)">稳定</span>
+      </div>
+      <div class="gauge-row">
+        <span class="gauge-label">2%</span>
+        <div class="gauge-bar">
+          <div class="gauge-fill amber" style="width: 37%;"></div>
+        </div>
+        <span class="gauge-label">4%</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 评分规则 -->
+  <div class="rules-section">
+    <h2>评分规则</h2>
+    <div class="rules-grid">
+      <div class="rule-box">
+        <div class="rule-range">波动率 &lt; 12%</div>
+        <div class="rule-score score-red">0</div>
+        <div class="rule-action">折扣窗口关闭，等</div>
+      </div>
+      <div class="rule-box">
+        <div class="rule-range">波动率 12~20%</div>
+        <div class="rule-score score-amber">3~6</div>
+        <div class="rule-action">开始有卖盘</div>
+      </div>
+      <div class="rule-box">
+        <div class="rule-range">波动率 &gt; 20%</div>
+        <div class="rule-score score-green">10</div>
+        <div class="rule-action">大量折扣出现</div>
+      </div>
+      <div class="rule-box">
+        <div class="rule-range">综合区间</div>
+        <div class="rule-score" style="color:var(--text2)">0~30</div>
+        <div class="rule-action">换手↓+ERP→同向验证</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 得分与行动映射 -->
+  <div class="insight-box">
+    <h2>得分 → 行动映射</h2>
+    <div class="timeline">
+      <div class="timeline-step">
+        <div class="ts-score">7</div>
+        <div class="ts-label">&lt; 10 分</div>
+        <div class="ts-action">现金为王<br>不操作</div>
+      </div>
+      <div class="timeline-step">
+        <div class="ts-score">10</div>
+        <div class="ts-label">10~14 分</div>
+        <div class="ts-action">开始关注<br>翻行业报告</div>
+      </div>
+      <div class="timeline-step">
+        <div class="ts-score">15</div>
+        <div class="ts-label">15~20 分</div>
+        <div class="ts-action">可以建仓<br>第一个标的</div>
+      </div>
+      <div class="timeline-step">
+        <div class="ts-score">20</div>
+        <div class="ts-label">&gt; 20 分</div>
+        <div class="ts-action">重仓机会<br>赔率最优</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 核心叙事 -->
+  <div class="insight-box">
+    <h2>当前叙事 · 2026年6月</h2>
+    <p>
+      <strong>波动率破冰，折扣窗口初现曙光。</strong>本周三个信号出现分化：波动率从10.9%回升至<span>13.14%</span>，脱离历史冰点进入计分区（3分），市场恐慌指数开始从沉睡中苏醒；换手率从7.11%降至<span>6.24%</span>，场内交投从狂热峰值回落但仍处高位（0分）；ERP从2.69%升至<span>3.05%</span>，略高于10年均值2.82%，估值安全边际改善（4分）。<br><br>
+      总分从3分跳升至<span style="color:var(--amber)">7分</span>，距离建仓线（15分）仍远，但信号方向已从"三个一致看空"转为"波动率率先转多"。当换手率进一步从6.24%降至5%以下，叠加波动率突破15%时，冷门行业的被迫卖盘将密集出现。ERP在均值上方意味着<span style="color:var(--cyan)">这不是全面杀估值，而是一场缓慢的结构性切换</span>——高换手的热门题材先退潮，低换手的冷门行业后见底。<br><br>
+      <strong>当前总分 13/30 → 动作：不动。等波动率到15%、换手率到5%以下。</strong>
+    </p>
+  </div>
+
+  <div class="footer">
+    数据源：WeStock · 模型：Google TimesFM-2.5 · <span>波动率25年 / 换手率5年 / ERP 10年</span> · 更新于 2026-06-29
+  </div>
+
+</div></div>
+</div><!-- /container -->
+
+<script>
+(function() {
+  var STORAGE_KEY = 'dp-theme-v5';
+  var TAB_STORAGE_KEY = 'dp-tab-v5';
+  var themeBar = document.getElementById('themeBar');
+  var tabNav = document.getElementById('tabNav');
+
+  // ===== THEME =====
+  var themeButtons = themeBar ? themeBar.querySelectorAll('.theme-btn') : [];
+  function setTheme(name) {
+    document.documentElement.setAttribute('data-theme', name);
+    themeButtons.forEach(function(b) {
+      b.classList.toggle('active', b.getAttribute('data-theme') === name);
+    });
+    localStorage.setItem(STORAGE_KEY, name);
+  }
+  var savedTheme = localStorage.getItem(STORAGE_KEY);
+  if (savedTheme && savedTheme !== 'dark') setTheme(savedTheme);
+  if (themeBar) {
+    themeBar.addEventListener('click', function(e) {
+      var btn = e.target.closest('.theme-btn');
+      if (!btn) return;
+      setTheme(btn.getAttribute('data-theme'));
+    });
+  }
+
+  // ===== TABS =====
+  var tabButtons = tabNav ? tabNav.querySelectorAll('.tab-btn') : [];
+  function switchTab(tabName) {
+    tabButtons.forEach(function(b) {
+      b.classList.toggle('active', b.getAttribute('data-tab') === tabName);
+    });
+    var contents = document.querySelectorAll('.tab-content');
+    contents.forEach(function(c) {
+      c.classList.toggle('active', c.getAttribute('data-tab') === tabName);
+    });
+    localStorage.setItem(TAB_STORAGE_KEY, tabName);
+  }
+  var savedTab = localStorage.getItem(TAB_STORAGE_KEY);
+  if (savedTab && savedTab !== 'predict') switchTab(savedTab);
+  if (tabNav) {
+    tabNav.addEventListener('click', function(e) {
+      var btn = e.target.closest('.tab-btn');
+      if (!btn) return;
+      switchTab(btn.getAttribute('data-tab'));
+    });
+  }
 })();
 </script>
 
