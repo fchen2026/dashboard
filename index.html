@@ -215,13 +215,15 @@
     text-align: right;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
     align-items: flex-end;
+    min-width: 200px;
   }
   .hdr-date {
     font-size: 13px;
-    color: var(--text2);
-    font-weight: 500;
+    color: var(--text);
+    font-weight: 600;
+    letter-spacing: 0.3px;
   }
   .tag {
     display: inline-block;
@@ -651,36 +653,34 @@
 
   /* ===== THEME SWITCHER ===== */
   .theme-bar {
-    position: fixed;
-    top: 16px;
-    right: 24px;
-    z-index: 1000;
     display: flex;
-    gap: 6px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 4px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    gap: 4px;
+    background: var(--surface2);
+    border: 1px solid var(--divider);
+    border-radius: 6px;
+    padding: 3px;
+    margin-bottom: 20px;
+    box-shadow: none;
+    align-self: flex-start;
   }
   .theme-btn {
-    padding: 6px 14px;
-    border-radius: 6px;
+    padding: 4px 12px;
+    border-radius: 4px;
     border: none;
     cursor: pointer;
-    font-size: 11px;
-    font-weight: 600;
+    font-size: 10px;
+    font-weight: 500;
     font-family: var(--font-body);
     background: transparent;
-    color: var(--text2);
-    transition: all 0.2s ease;
+    color: var(--text3);
+    transition: all 0.15s ease;
     white-space: nowrap;
     letter-spacing: 0.2px;
   }
-  .theme-btn:hover { color: var(--text); background: var(--surface2); }
-  .theme-btn.active { background: var(--amber-bg); color: var(--amber); font-weight: 700; }
+  .theme-btn:hover { color: var(--text2); background: var(--surface); }
+  .theme-btn.active { background: var(--amber-bg); color: var(--amber); font-weight: 600; }
 
-  [data-theme="light"] .theme-btn.active { color: var(--amber); }
+  [data-theme="light"] .theme-btn.active { color: #b45309; background: rgba(180,83,9,0.08); }
   [data-theme="amber"] .theme-btn.active { color: var(--amber); background: rgba(251,191,36,0.18); }
   [data-theme="magazine"] .theme-btn.active { color: #8b6914; background: rgba(139,105,20,0.1); }
 
@@ -737,10 +737,7 @@
 
   @media (max-width: 900px) {
     .theme-bar {
-      top: auto;
-      bottom: 16px;
-      right: 50%;
-      transform: translateX(50%);
+      justify-content: center;
     }
   }
 
@@ -748,25 +745,24 @@
 </head>
 <body>
 
-<div class="theme-bar" id="themeBar">
-  <button class="theme-btn active" data-theme="dark">深色工业</button>
-  <button class="theme-btn" data-theme="light">亮色专业</button>
-  <button class="theme-btn" data-theme="amber">暖色琥珀</button>
-  <button class="theme-btn" data-theme="magazine">财经杂志</button>
-</div>
-
 <div class="container">
 
 <!-- ===== HEADER ===== -->
 <div class="hdr">
   <div>
     <h1>Decision Panel <span class="ver">v5.0</span></h1>
+    <div class="theme-bar" id="themeBar">
+      <button class="theme-btn active" data-theme="dark">深色工业</button>
+      <button class="theme-btn" data-theme="light">亮色专业</button>
+      <button class="theme-btn" data-theme="amber">暖色琥珀</button>
+      <button class="theme-btn" data-theme="magazine">财经杂志</button>
+    </div>
     <div class="hdr-sub">6层闭环 v2.4 + L0偏误自检 + L0.5脆弱性检查 + Lollapalooza</div>
   </div>
   <div class="hdr-meta">
     <span class="hdr-date"><span>6/29 周一 盘前</span></span>
     <div>
-      <span class="tag tag-r">脆弱性三项全🔴</span>
+      <span class="tag tag-r">脆弱性三项全亮</span>
       <span class="tag tag-a" style="margin-left:6px;">防御模式</span>
     </div>
   </div>
