@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投资决策面板 v5.0 · Decision Panel</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* ═══════════ 深色工业（默认） ═══════════ */
+  :root, [data-theme="dark"] {
+    --bg: #0b0f14;
+    --surface: #111820;
+    --surface2: #1a2230;
+    --border: #1e293b;
+    --divider: #243044;
+
+    --text: #eef1f5;
+    --text2: #b0bcc9;
+    --text3: #8896a8;
+
+    --green: #4ade80;
+    --green-bg: rgba(74,222,128,0.08);
+    --green-border: rgba(74,222,128,0.18);
+    --red: #f87171;
+    --red-bg: rgba(248,113,113,0.08);
+    --red-border: rgba(248,113,113,0.18);
+    --amber: #fbbf24;
+    --amber-bg: rgba(251,191,36,0.08);
+    --amber-border: rgba(251,191,36,0.18);
+    --blue: #60a5fa;
+    --blue-bg: rgba(96,165,250,0.08);
+    --purple: #c084fc;
+    --purple-bg: rgba(192,132,252,0.08);
+
+    --font-body: 'DM Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+    --font-heading: 'DM Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --h1-size: 26px;
+    --panel-radius: 6px;
+    --body-padding: 28px 32px;
+  }
+
+  /* ═══════════ 亮色专业 ═══════════ */
+  [data-theme="light"] {
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --surface2: #f1f5f9;
+    --border: #e2e8f0;
+    --divider: #e2e8f0;
+
+    --text: #0f172a;
+    --text2: #475569;
+    --text3: #64748b;
+
+    --green: #16a34a;
+    --green-bg: rgba(22,163,74,0.08);
+    --green-border: rgba(22,163,74,0.18);
+    --red: #dc2626;
+    --red-bg: rgba(220,38,38,0.08);
+    --red-border: rgba(220,38,38,0.18);
+    --amber: #d97706;
+    --amber-bg: rgba(217,119,6,0.08);
+    --amber-border: rgba(217,119,6,0.18);
+    --blue: #2563eb;
+    --blue-bg: rgba(37,99,235,0.06);
+    --purple: #7c3aed;
+    --purple-bg: rgba(124,58,237,0.06);
+
+    --font-body: 'DM Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+    --font-heading: 'DM Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --h1-size: 26px;
+    --panel-radius: 6px;
+    --body-padding: 28px 32px;
+  }
+
+  /* ═══════════ 暖色琥珀 ═══════════ */
+  [data-theme="amber"] {
+    --bg: #0d0b07;
+    --surface: #1a1410;
+    --surface2: #241c14;
+    --border: #2d2418;
+    --divider: #2d2418;
+
+    --text: #f5efe6;
+    --text2: #c4b58a;
+    --text3: #8c7a5c;
+
+    --green: #a16207;
+    --green-bg: rgba(161,98,7,0.12);
+    --green-border: rgba(161,98,7,0.2);
+    --red: #e5a50a;
+    --red-bg: rgba(229,165,10,0.1);
+    --red-border: rgba(229,165,10,0.2);
+    --amber: #fbbf24;
+    --amber-bg: rgba(251,191,36,0.1);
+    --amber-border: rgba(251,191,36,0.22);
+    --blue: #d4a373;
+    --blue-bg: rgba(212,163,115,0.08);
+    --purple: #c9a87c;
+    --purple-bg: rgba(201,168,124,0.08);
+
+    --font-body: 'DM Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+    --font-heading: 'DM Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --h1-size: 26px;
+    --panel-radius: 6px;
+    --body-padding: 28px 32px;
+  }
+
+  /* ═══════════ 财经杂志 ═══════════ */
+  [data-theme="magazine"] {
+    --bg: #faf9f5;
+    --surface: #ffffff;
+    --surface2: #f5f2eb;
+    --border: #ddd6c8;
+    --divider: #e8e3d5;
+
+    --text: #1a1614;
+    --text2: #5c5548;
+    --text3: #8c8475;
+
+    --green: #1b7a3d;
+    --green-bg: rgba(27,122,61,0.06);
+    --green-border: rgba(27,122,61,0.15);
+    --red: #c41e3a;
+    --red-bg: rgba(196,30,58,0.06);
+    --red-border: rgba(196,30,58,0.15);
+    --amber: #b8860b;
+    --amber-bg: rgba(184,134,11,0.06);
+    --amber-border: rgba(184,134,11,0.15);
+    --blue: #1e40af;
+    --blue-bg: rgba(30,64,175,0.05);
+    --purple: #5b21b6;
+    --purple-bg: rgba(91,33,182,0.05);
+
+    --font-body: 'Crimson Text', 'Noto Serif SC', 'STSong', Georgia, 'Times New Roman', serif;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+    --font-heading: 'Crimson Text', 'Noto Serif SC', 'STSong', Georgia, serif;
+    --h1-size: 36px;
+    --panel-radius: 2px;
+    --body-padding: 48px 64px;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: var(--body-padding);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+
+  .container { max-width: 1500px; margin: 0 auto; }
+
+  /* ===== HEADER ===== */
+  .hdr {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--divider);
+  }
+  .hdr h1 {
+    font-size: var(--h1-size);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--text);
+  }
+  .hdr .ver {
+    font-size: 11px;
+    color: var(--purple);
+    background: var(--purple-bg);
+    border: 1px solid rgba(192,132,252,0.2);
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-weight: 700;
+    margin-left: 10px;
+    vertical-align: middle;
+    letter-spacing: 0.5px;
+  }
+  .hdr-sub {
+    font-size: 12px;
+    color: var(--text2);
+    margin-top: 4px;
+    font-weight: 400;
+  }
+  .hdr-meta {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-end;
+  }
+  .hdr-date {
+    font-size: 13px;
+    color: var(--text2);
+    font-weight: 500;
+  }
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: 'DM Sans', 'PingFang SC', sans-serif;
+    letter-spacing: 0.3px;
+  }
+  .tag-r { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+  .tag-a { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+
+  /* ===== SECTION HEADER ===== */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 14px;
+    margin-top: 28px;
+  }
+  .section-label:first-of-type { margin-top: 0; }
+
+  /* ===== ROW GRID ===== */
+  .row { display: grid; gap: 16px; margin-bottom: 16px; }
+  .row-2 { grid-template-columns: 1fr 1fr; }
+  .row-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .row-5 { grid-template-columns: repeat(5, 1fr); gap: 12px; }
+
+  /* ===== PANEL ===== */
+  .panel {
+    background: var(--surface);
+    border-radius: var(--panel-radius);
+    overflow: hidden;
+  }
+  .panel-head {
+    padding: 14px 18px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--divider);
+    letter-spacing: 0.2px;
+  }
+  .panel-head .ph-sub {
+    font-size: 11px;
+    color: var(--text3);
+    font-weight: 400;
+  }
+  .panel-body { padding: 16px 18px; }
+  .panel-body-sm { padding: 14px 16px; }
+
+  /* ===== INDEX STRIP ===== */
+  .ix {
+    background: var(--surface);
+    padding: 14px 12px 12px;
+    text-align: center;
+    border-radius: 6px;
+  }
+  .ix .ixn { font-size: 11px; color: var(--text3); margin-bottom: 6px; font-weight: 500; }
+  .ix .ixv {
+    font-size: 22px;
+    font-weight: 800;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+  .ix .ixc {
+    font-size: 13px;
+    font-weight: 700;
+    font-family: 'IBM Plex Mono', monospace;
+    margin-top: 4px;
+  }
+  .up { color: var(--red); }
+  .down { color: var(--green); }
+
+  /* ===== STAT MINI (北向/涨跌比/成交额) ===== */
+  .sm {
+    background: var(--surface);
+    padding: 14px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px;
+  }
+  .sm .sml { font-size: 12px; color: var(--text3); font-weight: 500; }
+  .sm .smv {
+    font-size: 15px;
+    font-weight: 700;
+    font-family: 'IBM Plex Mono', monospace;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .sm .smv .sm-sub {
+    font-size: 11px;
+    color: var(--text3);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+  }
+
+  /* ===== FRAGILITY (脆弱性) ===== */
+  .frag-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .frag-row + .frag-row { border-top: 1px solid var(--divider); }
+  .frag-chip {
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .frag-r { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+  .frag-desc { font-size: 12px; color: var(--text2); line-height: 1.5; }
+  .frag-action-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--divider);
+  }
+
+  /* ===== SCENARIO 4 ===== */
+  .sc4 { display: flex; gap: 6px; }
+  .sc4b {
+    flex: 1;
+    border-radius: 6px;
+    padding: 14px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-height: 90px;
+  }
+  .sc4b .s4p {
+    font-size: 28px;
+    font-weight: 800;
+    font-family: 'IBM Plex Mono', monospace;
+    line-height: 1;
+  }
+  .sc4b .s4l {
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 6px;
+    opacity: 0.9;
+  }
+  .sc4b .s4r {
+    font-size: 10px;
+    margin-top: 4px;
+    opacity: 0.65;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .s4-bull { background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.15); color: var(--green); }
+  .s4-base { background: rgba(96,165,250,0.06); border: 1px solid rgba(96,165,250,0.15); color: var(--blue); }
+  .s4-bear { background: rgba(251,191,36,0.07); border: 1px solid rgba(251,191,36,0.15); color: var(--amber); }
+  .s4-tail {
+    background: rgba(248,113,113,0.08);
+    border: 1px solid rgba(248,113,113,0.2);
+    color: var(--red);
+  }
+  .s4-tail::after {
+    content: 'NEW';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 8px;
+    font-weight: 800;
+    background: var(--red);
+    color: #0b0f14;
+    padding: 2px 6px;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+  }
+  .tail-cap { font-size: 10px; color: var(--red); font-weight: 700; margin-top: 4px; }
+
+  /* ===== LOLLAPALOOZA ===== */
+  .lolla { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+  .lolc {
+    background: var(--surface2);
+    border-radius: 6px;
+    padding: 14px 10px;
+    text-align: center;
+  }
+  .lolc .lols { font-size: 20px; margin-bottom: 6px; }
+  .lolc .loll { font-size: 11px; color: var(--text2); line-height: 1.4; }
+
+  /* ===== CONFIDENCE BAR ===== */
+  .cbar-wrap {
+    margin-bottom: 16px;
+    position: relative;
+    padding-top: 36px;
+  }
+  .cbar {
+    display: flex;
+    height: 44px;
+    border-radius: 8px;
+    overflow: visible;
+    gap: 3px;
+  }
+  .cseg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: 'IBM Plex Mono', monospace;
+    color: rgba(255,255,255,0.55);
+    border-radius: 6px;
+    transition: all 0.25s ease;
+  }
+  .cseg-active {
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 0 0 2px rgba(251,191,36,0.4), inset 0 0 20px rgba(251,191,36,0.12);
+    z-index: 1;
+  }
+  .cmk {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    font-size: 13px;
+    font-weight: 800;
+    font-family: 'IBM Plex Mono', monospace;
+    background: var(--amber);
+    color: #0b0f14;
+    padding: 5px 14px;
+    border-radius: 6px;
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .cmk::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 6px solid var(--amber);
+  }
+  .posrec {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    padding: 14px 16px;
+    background: var(--surface2);
+    border-radius: 6px;
+  }
+  .posrec .prn {
+    font-size: 40px;
+    font-weight: 800;
+    font-family: 'IBM Plex Mono', monospace;
+    line-height: 1;
+    color: var(--red);
+  }
+  .posrec .prl { font-size: 12px; color: var(--text2); line-height: 1.5; }
+  .posrec .prl strong { color: var(--text); font-size: 13px; }
+
+  /* ===== CROSS VALIDATION ===== */
+  .cv3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .cv3c {
+    background: var(--surface2);
+    border-radius: 6px;
+    padding: 14px 12px;
+    text-align: center;
+  }
+  .cv3c .cvn { font-size: 11px; color: var(--text3); margin-bottom: 6px; font-weight: 500; }
+  .cv3c .cvv { font-size: 14px; font-weight: 700; }
+  .cv-bull { color: var(--green); }
+  .cv-bear { color: var(--red); }
+  .cv-mix { color: var(--amber); }
+  .cv-sub { font-size: 10px; color: var(--text3); margin-top: 6px; line-height: 1.4; }
+
+  /* ===== TRIGGERS ===== */
+  .tg { display: grid; gap: 5px; }
+  .tgr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: var(--surface2);
+    border-radius: 5px;
+    border-left: 3px solid transparent;
+    font-size: 12px;
+  }
+  .tgr .trn { font-weight: 500; color: var(--text); }
+  .tgr .trs { font-weight: 700; font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
+  .tgr .tra { font-size: 11px; color: var(--text2); margin-left: 8px; }
+  .tr-act { border-left-color: var(--red) !important; }
+  .tr-warn { border-left-color: var(--amber) !important; }
+  .tr-ok { border-left-color: var(--green) !important; }
+  .trs-act { color: var(--red); }
+  .trs-warn { color: var(--amber); }
+  .trs-ok { color: var(--green); }
+
+  /* ===== TABLE ===== */
+  .tbl { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .tbl th {
+    background: var(--surface2);
+    padding: 8px 10px;
+    text-align: left;
+    color: var(--text3);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .tbl td {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--divider);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+  }
+  .tbl .sn { font-family: 'DM Sans', 'PingFang SC', sans-serif; font-weight: 600; color: var(--text); font-size: 12px; }
+
+  /* ===== BADGES ===== */
+  .b {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: 'DM Sans', 'PingFang SC', sans-serif;
+    letter-spacing: 0.2px;
+  }
+  .b-h { background: var(--blue-bg); color: var(--blue); }
+  .b-w { background: var(--amber-bg); color: var(--amber); }
+  .b-c { background: var(--red-bg); color: var(--red); }
+  .b-g { background: var(--green-bg); color: var(--green); }
+  .b-z { background: var(--purple-bg); color: var(--purple); }
+  .b-stop { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+
+  /* ===== OPERATION MATRIX ===== */
+  .op-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .op-card {
+    background: var(--surface2);
+    border-radius: 6px;
+    padding: 14px 16px;
+    border-left: 3px solid;
+  }
+  .op-card .op-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .op-card .op-stocks { font-size: 11px; color: var(--text3); font-family: 'IBM Plex Mono', monospace; }
+  .op-card .op-note { font-size: 10px; color: var(--text2); margin-top: 4px; }
+
+  /* ===== TIMELINE ===== */
+  .tl-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 12px;
+  }
+  .tl-row + .tl-row { border-top: 1px solid var(--divider); }
+  .tl-time {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--text2);
+    font-weight: 500;
+    min-width: 110px;
+    font-size: 12px;
+  }
+  .tl-desc { flex: 1; }
+  .tl-action {
+    font-weight: 700;
+    font-size: 11px;
+    min-width: 120px;
+    text-align: right;
+  }
+
+  /* ===== COGNITIVE BIAS ===== */
+  .bias-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .bias-card {
+    background: var(--surface2);
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .bias-card .bs-tag { font-size: 12px; font-weight: 700; margin-bottom: 4px; }
+  .bias-card .bs-desc { font-size: 11px; color: var(--text2); line-height: 1.4; }
+
+  /* ===== Q6 ===== */
+  .q6-list { font-size: 12px; color: var(--text2); line-height: 2; }
+  .q6-list li { padding: 3px 0; }
+  .q6-list li::marker { color: var(--text3); }
+
+  /* ===== DIVIDER & FOOTER ===== */
+  .divider { height: 1px; background: var(--divider); margin: 14px 0; }
+  .fn { font-size: 12px; color: var(--text3); line-height: 1.7; }
+  .hl { color: var(--amber); font-weight: 600; }
+  .footer-row { text-align: center; font-size: 11px; color: var(--text3); margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--divider); }
+
+  /* ===== TRADING STATUS BADGE ===== */
+  .trading-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 4px;
+  }
+  .ts-trading { background: rgba(74,222,128,0.08); color: var(--green); border: 1px solid rgba(74,222,128,0.2); }
+  .ts-closed { background: rgba(100,116,139,0.08); color: var(--text2); border: 1px solid rgba(100,116,139,0.2); }
+  .ts-weekend { background: rgba(192,132,252,0.08); color: var(--purple); border: 1px solid rgba(192,132,252,0.2); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1200px) {
+    .row-5 { grid-template-columns: repeat(3, 1fr); }
+    .row-2 { grid-template-columns: 1fr; }
+    .bias-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  /* ===== THEME SWITCHER ===== */
+  .theme-bar {
+    position: fixed;
+    top: 16px;
+    right: 24px;
+    z-index: 1000;
+    display: flex;
+    gap: 6px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 4px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  }
+  .theme-btn {
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: var(--font-body);
+    background: transparent;
+    color: var(--text2);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    letter-spacing: 0.2px;
+  }
+  .theme-btn:hover { color: var(--text); background: var(--surface2); }
+  .theme-btn.active { background: var(--amber-bg); color: var(--amber); font-weight: 700; }
+
+  [data-theme="light"] .theme-btn.active { color: var(--amber); }
+  [data-theme="amber"] .theme-btn.active { color: var(--amber); background: rgba(251,191,36,0.18); }
+  [data-theme="magazine"] .theme-btn.active { color: #8b6914; background: rgba(139,105,20,0.1); }
+
+  /* Magazine theme overrides */
+  [data-theme="magazine"] .hdr h1 {
+    font-weight: 700;
+    font-style: italic;
+    letter-spacing: -0.3px;
+  }
+  [data-theme="magazine"] .panel-head {
+    font-size: 14px;
+    font-weight: 700;
+    padding: 18px 24px;
+    border-bottom: 2px solid var(--divider);
+  }
+  [data-theme="magazine"] .panel-body {
+    padding: 20px 24px;
+  }
+  [data-theme="magazine"] .panel-body-sm {
+    padding: 18px 22px;
+  }
+  [data-theme="magazine"] .section-label {
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: 700;
+  }
+  [data-theme="magazine"] .ix .ixv {
+    font-size: 26px;
+  }
+  [data-theme="magazine"] .hdr-sub {
+    font-style: italic;
+    font-size: 14px;
+  }
+  [data-theme="magazine"] table.tbl th {
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+  [data-theme="magazine"] .fn {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  /* Magazine drop cap on first panel of each row */
+  [data-theme="magazine"] .panel:first-child .panel-body .fn:first-of-type::first-letter,
+  [data-theme="magazine"] .panel:first-child .panel-body-sm .fn:first-of-type::first-letter {
+    font-size: 2em;
+    font-weight: 700;
+    float: left;
+    line-height: 0.8;
+    margin-right: 6px;
+    color: var(--amber);
+  }
+
+  /* Light theme adjust --text3 for contrast on white */
+  [data-theme="light"] .tgr .tra { color: #5c6370; }
+  [data-theme="light"] .cseg { color: rgba(0,0,0,0.6); }
+  [data-theme="light"] .cseg-active { color: #fff; }
+  
+  /* Amber theme confidence bar text */
+  [data-theme="amber"] .cseg { color: rgba(255,255,255,0.55); }
+  [data-theme="amber"] .cseg-active { color: #0d0b07; }
+
+  /* Magazine confidence bar text */
+  [data-theme="magazine"] .cseg { color: rgba(0,0,0,0.55); }
+  [data-theme="magazine"] .cseg-active { color: #fff; }
+
+  @media (max-width: 900px) {
+    .theme-bar {
+      top: auto;
+      bottom: 16px;
+      right: 50%;
+      transform: translateX(50%);
+    }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="theme-bar" id="themeBar">
+  <button class="theme-btn active" data-theme="dark">深色工业</button>
+  <button class="theme-btn" data-theme="light">亮色专业</button>
+  <button class="theme-btn" data-theme="amber">暖色琥珀</button>
+  <button class="theme-btn" data-theme="magazine">财经杂志</button>
+</div>
+
+<div class="container">
+
+<!-- ===== HEADER ===== -->
+<div class="hdr">
+  <div>
+    <h1>Decision Panel <span class="ver">v5.0</span></h1>
+    <div class="hdr-sub">6层闭环 v2.4 + L0偏误自检 + L0.5脆弱性检查 + Lollapalooza</div>
+  </div>
+  <div class="hdr-meta">
+    <span class="hdr-date"><span>6/29 周一 盘前</span></span>
+    <div>
+      <span class="tag tag-r">脆弱性三项全🔴</span>
+      <span class="tag tag-a" style="margin-left:6px;">防御模式</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ROW 1: 大盘概览 ===== -->
+<div class="row row-5">
+  <div class="ix"><div class="ixn">上证指数</div><div class="ixv down">4027</div><div class="ixc down">-2.26%</div></div>
+  <div class="ix"><div class="ixn">深证成指</div><div class="ixv down">15782</div><div class="ixc down">-3.44%</div></div>
+  <div class="ix"><div class="ixn">创业板指</div><div class="ixv down">4194</div><div class="ixc down">-4.07%</div></div>
+  <div class="ix"><div class="ixn">科创50</div><div class="ixv down">2032</div><div class="ixc down">-1.65%</div></div>
+  <div class="ix"><div class="ixn">沪深300</div><div class="ixv down">4868</div><div class="ixc down">-3.02%</div></div>
+</div>
+<div class="row row-3">
+  <div class="sm">
+    <span class="sml">成交额</span>
+    <span class="smv">3.55万亿 <span class="sm-sub">缩量419亿</span></span>
+  </div>
+  <div class="sm">
+    <span class="sml">涨跌比</span>
+    <span class="smv down">790 : 4600 <span class="sm-sub">1:5.8</span></span>
+  </div>
+  <div class="sm">
+    <span class="sml">北向资金</span>
+    <span class="smv down">-80亿+ <span class="sm-sub" style="color:var(--red)">创3月新高</span></span>
+  </div>
+</div>
+
+<!-- ===== ROW 2: 脆弱性 + 四情景 ===== -->
+<div class="row row-2">
+  <div class="panel">
+    <div class="panel-head">
+      L0.5 市场脆弱性检查
+      <span class="ph-sub" style="color:var(--red);">⛔ 三项全🔴 → 暂停新分析</span>
+    </div>
+    <div class="panel-body-sm">
+      <div class="frag-row">
+        <span class="frag-chip frag-r">🔴 波动率异常</span>
+        <span class="frag-desc">沪指-2.26%创3月最大单日跌幅，ATR显著扩张</span>
+      </div>
+      <div class="frag-row">
+        <span class="frag-chip frag-r">🔴 板块轮动枯竭</span>
+        <span class="frag-desc">仅光刻机/设备/猪肉三个方向局部走强，AI硬件集体崩跌</span>
+      </div>
+      <div class="frag-row">
+        <span class="frag-chip frag-r">🔴 北向+融资双杀</span>
+        <span class="frag-desc">北向-80亿+交易型创3月新高，4600只下跌融资盘承压</span>
+      </div>
+      <div class="frag-action-row">
+        <span class="b b-stop">⛔ 不推荐新建仓位</span>
+        <span class="b b-stop">⛔ 不推荐追涨/追板块</span>
+        <span style="font-size:11px;color:var(--green);font-weight:600;">✅ 仅允许持有已有仓位+观察</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      四情景 · 6/29 周一
+      <span class="ph-sub" style="color:var(--red);">肥尾 20%</span>
+    </div>
+    <div class="panel-body-sm">
+      <div class="sc4">
+        <div class="sc4b s4-bull" style="flex:30">
+          <div class="s4p">30%</div><div class="s4l">低开修复</div><div class="s4r">4030 ~ 4100</div>
+        </div>
+        <div class="sc4b s4-base" style="flex:25">
+          <div class="s4p">25%</div><div class="s4l">探底震荡</div><div class="s4r">3990 ~ 4060</div>
+        </div>
+        <div class="sc4b s4-bear" style="flex:25">
+          <div class="s4p">25%</div><div class="s4l">继续下探</div><div class="s4r">3950 ~ 4020</div>
+        </div>
+        <div class="sc4b s4-tail" style="flex:20">
+          <div class="s4p">20%</div><div class="s4l">黑天鹅</div><div class="s4r">&lt; 3880</div>
+          <div class="tail-cap">多杀多</div>
+        </div>
+      </div>
+      <div class="fn" style="margin-top:12px;">
+        <strong>悲观 + 黑天鹅 = 45%（≥30%触发风险预警）</strong><br>
+        肥尾触发条件：上证有效跌破4000 + 北向开盘30min流出&gt;20亿 + 融资连环强平
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ROW 3: Lollapalooza + 置信度 ===== -->
+<div class="row row-2">
+  <div class="panel">
+    <div class="panel-head">
+      Lollapalooza 保护层 · 多重负向力叠加检查
+      <span class="ph-sub" style="color:var(--red);">评分 3/5 🔴🔴🔴🟡🟡</span>
+    </div>
+    <div class="panel-body-sm">
+      <div class="lolla">
+        <div class="lolc"><div class="lols" style="color:var(--red)">🔴</div><div class="loll">全市场共跌<br>非局部风险</div></div>
+        <div class="lolc"><div class="lols" style="color:var(--red)">🔴</div><div class="loll">费半-5.29%<br>传导未出清</div></div>
+        <div class="lolc"><div class="lols" style="color:var(--red)">🔴</div><div class="loll">北向-80亿<br>难以逆转</div></div>
+        <div class="lolc"><div class="lols" style="color:var(--amber)">🟡</div><div class="loll">逆回购落地<br>再无新催化</div></div>
+        <div class="lolc"><div class="lols" style="color:var(--green)">✅</div><div class="loll">北方华创/中微<br>紫苏叶安全</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">置信度 → 仓位映射</div>
+    <div class="panel-body-sm">
+      <div class="cbar-wrap">
+        <div class="cmk" style="left:42.5%;">▾ 当前 45%</div>
+        <div class="cbar">
+          <div class="cseg" style="flex:30;background:#2d1f1f;">&lt;45% · 0~1成</div>
+          <div class="cseg cseg-active" style="flex:25;background:#3d2a1a;">45-59% · 2~3成</div>
+          <div class="cseg" style="flex:25;background:#1a2d1f;opacity:0.7;">60-74% · 4~5成</div>
+          <div class="cseg" style="flex:20;background:#1a1f2d;opacity:0.5;">≥75% · 6~7成</div>
+        </div>
+      </div>
+      <div class="posrec">
+        <div class="prn">2~3</div>
+        <div class="prl">
+          <strong>建议仓位（成）</strong><br>
+          置信度45% → 防御仓位 · 与 v2.4 结论一致
+        </div>
+      </div>
+      <div class="fn" style="margin-top:10px;">
+        若上证有效跌破4000 → 触发减仓至 <span class="hl">2成以下</span><br>
+        核心持仓：北方华创 / 中微公司（紫苏叶✅逆势抗跌可持有）
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ROW 4: 交叉验证 + 触发器 ===== -->
+<div class="row row-2">
+  <div class="panel">
+    <div class="panel-head">
+      L5 三来源交叉验证（v2.4替代旧6维信号）
+      <span class="ph-sub" style="color:var(--amber);">2偏空+1中性 → 谨慎偏空，不行动</span>
+    </div>
+    <div class="panel-body-sm">
+      <div class="cv3">
+        <div class="cv3c">
+          <div class="cvn">① 价格趋势</div>
+          <div class="cvv cv-bear">▶ 偏空</div>
+          <div class="cv-sub">上证破位·RSI≈28-32超卖<br>权重 3</div>
+        </div>
+        <div class="cv3c">
+          <div class="cvn">② 基本面</div>
+          <div class="cvv cv-mix">➡️ 多空交织</div>
+          <div class="cv-sub">央行逆回购+硅片涨价 vs<br>季末2.8万亿缺口·权重 2</div>
+        </div>
+        <div class="cv3c">
+          <div class="cvn">③ 市场情绪</div>
+          <div class="cvv cv-bear">▶ 偏空</div>
+          <div class="cv-sub">北向-80亿·主力-272亿<br>权重 3</div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div style="display:flex;justify-content:space-between;font-size:12px;">
+        <span>判定：<strong style="color:var(--amber);">2偏空+1中性 → 不行动</strong></span>
+        <span>置信度：<strong>45%</strong></span>
+      </div>
+      <div class="fn" style="margin-top:6px;">
+        <span class="hl">今日不是加仓日，也不是抄底日。</span>
+        3同向→行动（不适用） | 2同向+1中性→谨慎（当前） | 有矛盾→不动
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      动态风险触发器
+      <span class="ph-sub" style="color:var(--red);">7/9 触发</span>
+    </div>
+    <div class="panel-body-sm">
+      <div class="tg">
+        <div class="tgr tr-act"><span class="trn">费半-5.29%传导</span><span><span class="trs trs-act">已触发</span><span class="tra">→ 亚太半导体跟跌</span></span></div>
+        <div class="tgr tr-act"><span class="trn">北向-80亿（创3月新高）</span><span><span class="trs trs-act">已触发</span><span class="tra">→ 外资权重×3</span></span></div>
+        <div class="tgr tr-act"><span class="trn">季末2.8万亿资金缺口</span><span><span class="trs trs-act">已触发</span><span class="tra">→ 资金面权重×2</span></span></div>
+        <div class="tgr tr-act"><span class="trn">融资盘强平风险</span><span><span class="trs trs-act">已触发</span><span class="tra">→ 4600只下跌后连锁</span></span></div>
+        <div class="tgr tr-act"><span class="trn">波动率ATR扩张</span><span><span class="trs trs-act">已触发</span><span class="tra">→ 波动率权重×2</span></span></div>
+        <div class="tgr tr-act"><span class="trn">板块轮动枯竭</span><span><span class="trs trs-act">已触发</span><span class="tra">→ 行业面权重×2</span></span></div>
+        <div class="tgr tr-warn"><span class="trn">基金半年度漂移纠偏</span><span><span class="trs trs-warn">今日执行</span><span class="tra">→ 机构集中调仓</span></span></div>
+        <div class="tgr tr-warn"><span class="trn">上证破中期均线</span><span><span class="trs trs-warn">跌破30/60日线</span><span class="tra">→ 中期转弱</span></span></div>
+        <div class="tgr tr-ok"><span class="trn">央行逆回购+MLF对冲</span><span><span class="trs trs-ok">已落地</span><span class="tra">→ 政策托底，局部对冲</span></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ROW 5: 个股 + 行业 ===== -->
+<div class="row row-2">
+  <div class="panel">
+    <div class="panel-head">关注股矩阵 · 17只 · 按6/26涨跌排序</div>
+    <div class="panel-body-sm" style="padding:8px 12px;">
+      <table class="tbl">
+        <thead><tr><th>标的</th><th>收盘</th><th>涨跌</th><th>成交</th><th>评级</th><th>操作</th></tr></thead>
+        <tbody>
+          <tr><td><span class="sn">中微公司</span><span class="b b-z">紫苏叶</span></td><td>413.00</td><td class="up">+3.48%</td><td style="color:var(--text3)">131亿</td><td><span class="b b-g">强</span></td><td><span class="b b-h">持仓核心</span></td></tr>
+          <tr><td><span class="sn">北方华创</span><span class="b b-z">紫苏叶</span></td><td>813.37</td><td class="up">+1.93%</td><td style="color:var(--text3)">100亿</td><td><span class="b b-g">强</span></td><td><span class="b b-h">持仓核心</span></td></tr>
+          <tr><td><span class="sn">兆易创新</span></td><td>770.00</td><td class="down">-0.67%</td><td style="color:var(--text3)">374亿</td><td><span class="b b-w">中性</span></td><td><span class="b b-w">关注博弈</span></td></tr>
+          <tr><td><span class="sn">正丹股份</span></td><td>16.00</td><td class="down">-2.50%</td><td style="color:var(--text3)">2.2亿</td><td><span class="b b-w">中性</span></td><td><span class="b b-w">观望</span></td></tr>
+          <tr><td><span class="sn">寒武纪</span></td><td>1458.00</td><td class="down">-3.12%</td><td style="color:var(--text3)">182亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-w">观望</span></td></tr>
+          <tr><td><span class="sn">紫光国微</span></td><td>83.98</td><td class="down">-4.02%</td><td style="color:var(--text3)">40.7亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-h">持有</span></td></tr>
+          <tr><td><span class="sn">海光信息</span></td><td>344.90</td><td class="down">-4.27%</td><td style="color:var(--text3)">138亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-w">观望</span></td></tr>
+          <tr><td><span class="sn">影石创新</span></td><td>131.85</td><td class="down">-4.47%</td><td style="color:var(--text3)">2.9亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-w">观望</span></td></tr>
+          <tr><td><span class="sn">比亚迪</span></td><td>78.20</td><td class="down">-4.86%</td><td style="color:var(--text3)">52.7亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-w">回避</span></td></tr>
+          <tr><td><span class="sn">景嘉微</span></td><td>52.97</td><td class="down">-4.99%</td><td style="color:var(--text3)">7.0亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-w">观望</span></td></tr>
+          <tr><td><span class="sn">中芯国际</span></td><td>148.76</td><td class="down">-5.16%</td><td style="color:var(--text3)">162亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-h">持有</span></td></tr>
+          <tr><td><span class="sn">宁德时代</span></td><td>381.00</td><td class="down">-5.20%</td><td style="color:var(--text3)">181亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-w">回避</span></td></tr>
+          <tr><td><span class="sn">中际旭创</span></td><td>1253.89</td><td class="down">-5.25%</td><td style="color:var(--text3)">445亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-c">回避</span></td></tr>
+          <tr><td><span class="sn">东山精密</span></td><td>260.32</td><td class="down">-5.61%</td><td style="color:var(--text3)">182亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-c">回避</span></td></tr>
+          <tr><td><span class="sn">江淮汽车</span></td><td>26.87</td><td class="down">-6.70%</td><td style="color:var(--text3)">21.9亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-w">回避</span></td></tr>
+          <tr><td><span class="sn">天孚通信</span></td><td>318.00</td><td class="down">-7.01%</td><td style="color:var(--text3)">157亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-c">回避</span></td></tr>
+          <tr><td><span class="sn">新易盛</span></td><td>566.00</td><td class="down">-7.29%</td><td style="color:var(--text3)">353亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-c">回避</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">行业表现 · 最强/最弱</div>
+    <div class="panel-body-sm">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--divider);font-size:12px;">
+        <span style="font-weight:500;">🎯 光刻机/硅片</span><span style="color:var(--green);font-weight:700;">逆势大涨·有研硅20cm</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--divider);font-size:12px;">
+        <span style="font-weight:500;">🎯 半导体设备</span><span style="color:var(--green);font-weight:700;">逆势抗跌·北方+1.9%/中微+3.5%</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--divider);font-size:12px;">
+        <span style="font-weight:500;">➖ 存储芯片</span><span style="color:var(--amber);font-weight:700;">分化·兆易-0.67%抗跌</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--divider);font-size:12px;">
+        <span style="font-weight:500;">🔴 AI光模块</span><span style="color:var(--red);font-weight:700;">暴跌·新易盛-7.3% 回避</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--divider);font-size:12px;">
+        <span style="font-weight:500;">🔴 新能源车</span><span style="color:var(--red);font-weight:700;">大跌·宁德-5.2%/比亚迪-4.9%</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;font-size:12px;">
+        <span style="font-weight:500;">🔴 AI芯片</span><span style="color:var(--red);font-weight:700;">大跌·寒武纪-3.1%/海光-4.3%</span>
+      </div>
+      <div class="divider"></div>
+      <div class="fn">
+        <strong>唯一抗跌方向：半导体设备 + 存储芯片 + 硅片产业链</strong><br>
+        确认偏误防护已触发：瓶颈分高 ≠ 短期买入信号。费半传导尚未出清。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ROW 6: 操作 + 时间窗口 ===== -->
+<div class="row row-2">
+  <div class="panel">
+    <div class="panel-head">今日操作矩阵</div>
+    <div class="panel-body-sm">
+      <div class="op-grid">
+        <div class="op-card" style="border-left-color:var(--green);">
+          <div class="op-title" style="color:var(--green);">持仓核心</div>
+          <div class="op-stocks">北方华创 · 中微公司</div>
+          <div class="op-note">紫苏叶✅逆势抗跌</div>
+        </div>
+        <div class="op-card" style="border-left-color:var(--amber);">
+          <div class="op-title" style="color:var(--amber);">关注博弈</div>
+          <div class="op-stocks">兆易创新</div>
+          <div class="op-note">存储涨价·高波动注意止盈</div>
+        </div>
+        <div class="op-card" style="border-left-color:var(--red);">
+          <div class="op-title" style="color:var(--red);">短期回避</div>
+          <div class="op-stocks">新易盛 · 中际 · 天孚 · 东山</div>
+          <div class="op-note">光模块·等费半传导出清</div>
+        </div>
+        <div class="op-card" style="border-left-color:var(--red);">
+          <div class="op-title" style="color:var(--red);">暂不加仓</div>
+          <div class="op-stocks">宁德 · 比亚迪 · 江淮 · 寒武纪</div>
+          <div class="op-note">等信号明确·现金7成+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">今日重点关注时间窗口</div>
+    <div class="panel-body-sm">
+      <div class="tl-row">
+        <span class="tl-time">09:25-09:30</span>
+        <span class="tl-desc">集合竞价 · 上证是否开盘于4000以下</span>
+        <span class="tl-action" style="color:var(--red);">破4000→减仓</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-time">09:30-10:00</span>
+        <span class="tl-desc">北向前30分钟净流向</span>
+        <span class="tl-action" style="color:var(--red);">流出&gt;20亿→防御</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-time">10:00-10:30</span>
+        <span class="tl-desc">科创50是否守住2000点</span>
+        <span class="tl-action" style="color:var(--red);">破2000→半导体承压</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-time">全天</span>
+        <span class="tl-desc">成交额是否维持3.5万亿+</span>
+        <span class="tl-action" style="color:var(--green);">缩量至3万亿→抛压减轻</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ROW 7: 偏误自检 + Q6 ===== -->
+<div class="row row-2">
+  <div class="panel">
+    <div class="panel-head">L0 认知偏误自检 · 6问</div>
+    <div class="panel-body-sm">
+      <div class="bias-grid">
+        <div class="bias-card">
+          <div class="bs-tag" style="color:var(--amber);">⚠️ 确认偏误</div>
+          <div class="bs-desc">暴跌后选择性寻看多理由？硅片涨价可能被放大</div>
+        </div>
+        <div class="bias-card">
+          <div class="bs-tag" style="color:var(--green);">✅ 反脆弱</div>
+          <div class="bs-desc">Q6反向论证强制机制运行中</div>
+        </div>
+        <div class="bias-card">
+          <div class="bs-tag" style="color:var(--amber);">⚠️ 禀赋效应</div>
+          <div class="bs-desc">北方/中微逆势走强·警惕持仓偏好</div>
+        </div>
+        <div class="bias-card">
+          <div class="bs-tag" style="color:var(--green);">✅ 系统性盲点</div>
+          <div class="bs-desc">2.8万亿资金缺口已纳入分析</div>
+        </div>
+        <div class="bias-card">
+          <div class="bs-tag" style="color:var(--amber);">⚠️ 一致性</div>
+          <div class="bs-desc">上周看震荡分化·周五暴跌需重新校准</div>
+        </div>
+        <div class="bias-card">
+          <div class="bs-tag" style="color:var(--green);">✅ Q6反向论证</div>
+          <div class="bs-desc">已论证"不反弹继续跌"的6条路径</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">Q6 反向论证 · "今日不会反弹继续下跌"的6条路径</div>
+    <div class="panel-body-sm">
+      <ol class="q6-list">
+        <li>费半-5.29% → 亚太半导体周一直接跟跌，科创50考验2000</li>
+        <li>季末机构调仓 → 公募漂移纠偏+资金回笼集中释放</li>
+        <li>北向加速流出 → 若周一继续大幅流出，情绪崩塌</li>
+        <li>周末消息真空 → 除硅片涨价外无实质政策利好</li>
+        <li>多杀多 → 4600只下跌后融资盘面临强平连锁</li>
+        <li>4000点整数关 → 开盘跌破触发技术性卖盘放大跌幅</li>
+      </ol>
+      <div class="divider"></div>
+      <div class="fn">
+        <strong style="color:var(--red);">证伪条件：</strong>北向开盘30分钟净流出&gt;20亿 + 上证有效跌破4000点 → 反弹预期证伪，进入下跌中继。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ROW 8: 预测准确率 ===== -->
+<div class="panel">
+  <div class="panel-head">预测准确率 · 连续追踪</div>
+  <div class="panel-body-sm">
+    <table class="tbl">
+      <thead><tr><th>日期</th><th>大盘方向</th><th>行业方向</th><th>个股方向</th><th>综合</th><th>主要偏差</th></tr></thead>
+      <tbody>
+        <tr><td>6/25</td><td class="up">100%</td><td class="up">75%</td><td style="color:var(--amber)">73%</td><td style="color:var(--amber)">77%</td><td style="font-size:10px;color:var(--text3)">紫苏叶高开低走</td></tr>
+        <tr><td>6/26</td><td class="down">0%</td><td style="color:var(--amber)">50%</td><td style="color:var(--amber)">64%</td><td class="down">45%</td><td style="font-size:10px;color:var(--text3)">大盘-80点·系统性低估</td></tr>
+        <tr style="opacity:0.45;"><td>6/29</td><td style="color:var(--text3)">待验证</td><td style="color:var(--text3)">待验证</td><td style="color:var(--text3)">待验证</td><td style="color:var(--text3)">待验证</td><td style="font-size:10px;color:var(--text3)">盘后更新</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer-row">
+  Decision Panel v5.0 · 6层闭环 v2.4 + L0/L0.5 + Lollapalooza · 数据源：TDX MCP + WebSearch · 2026-06-29 08:35 CST
+</div>
+
+</div>
+
+<script>
+(function() {
+  const STORAGE_KEY = 'dp-theme-v5';
+  const themeBar = document.getElementById('themeBar');
+  const buttons = themeBar.querySelectorAll('.theme-btn');
+
+  function setTheme(name) {
+    document.documentElement.setAttribute('data-theme', name);
+    buttons.forEach(b => b.classList.toggle('active', b.dataset.theme === name));
+    localStorage.setItem(STORAGE_KEY, name);
+  }
+
+  // restore saved
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved && saved !== 'dark') setTheme(saved);
+
+  // click handler
+  themeBar.addEventListener('click', (e) => {
+    const btn = e.target.closest('.theme-btn');
+    if (!btn) return;
+    setTheme(btn.dataset.theme);
+  });
+})();
+</script>
+
+</body>
+</html>

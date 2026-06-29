@@ -1,0 +1,5 @@
+﻿.vscode/
+.vercel/
+__pycache__/
+*.pyc
+temp/
