@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="x5-orientation" content="portrait">
+<meta name="x5-fullscreen" content="true">
+<meta name="x5-page-mode" content="app">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>行业分析仪表盘 · ISA</title>
+<style>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #222533;
+    --border: #2a2d3a;
+    --text: #e4e6f0;
+    --text2: #8b8fa3;
+    --text3: #5c6072;
+    --green: #38a169;
+    --green-bg: rgba(56,161,105,0.08);
+    --green-border: rgba(56,161,105,0.25);
+    --red: #e53e3e;
+    --red-bg: rgba(229,62,62,0.08);
+    --red-border: rgba(229,62,62,0.25);
+    --amber: #dd6b20;
+    --amber-bg: rgba(221,107,32,0.08);
+    --amber-border: rgba(221,107,32,0.25);
+    --blue: #4299e1;
+    --purple: #9f7aea;
+    --cyan: #38b2ac;
+    --gray: #718096;
+  }
+
+  body {
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 24px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 1300px; margin: 0 auto; }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+  .header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .header .subtitle {
+    font-size: 12px;
+    color: var(--text3);
+    margin-top: 4px;
+  }
+  .header .badge {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 11px;
+    color: var(--text2);
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  }
+
+  /* 总览条 */
+  .overview-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .ov-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .ov-card .ov-num {
+    font-size: 32px;
+    font-weight: 800;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  }
+  .ov-card .ov-label {
+    font-size: 11px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-top: 2px;
+  }
+  .ov-red { color: var(--red); }
+  .ov-amber { color: var(--amber); }
+  .ov-green { color: var(--green); }
+  .ov-purple { color: var(--purple); }
+
+  /* 行业卡片网格 */
+  .sector-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .sector-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .sector-card:hover { border-color: #3a3d52; }
+  .sector-card.dont-buy { border-left: 3px solid var(--red); }
+  .sector-card.watch { border-left: 3px solid var(--amber); }
+  .sector-card.can-buy { border-left: 3px solid var(--green); }
+  .sector-card.base { border-left: 3px solid var(--purple); }
+  .sector-card.too-hard { border-left: 3px solid var(--gray); }
+
+  .sc-header {
+    padding: 14px 16px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .sc-name {
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .sc-verdict {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 3px 10px;
+    border-radius: 12px;
+  }
+  .verdict-sell { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+  .verdict-watch { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+  .verdict-base { background: rgba(159,122,234,0.1); color: var(--purple); border: 1px solid rgba(159,122,234,0.25); }
+  .verdict-pass { background: rgba(113,128,150,0.1); color: var(--gray); border: 1px solid rgba(113,128,150,0.25); }
+
+  .sc-body { padding: 0 16px 12px; }
+
+  .sc-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .sc-metric {
+    background: var(--surface2);
+    border-radius: 6px;
+    padding: 8px 10px;
+    text-align: center;
+  }
+  .sc-metric .m-label {
+    font-size: 9px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+  .sc-metric .m-val {
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  }
+  .m-red { color: var(--red); }
+  .m-amber { color: var(--amber); }
+  .m-green { color: var(--green); }
+  .m-purple { color: var(--purple); }
+
+  .sc-trigger {
+    background: var(--surface2);
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    font-size: 11px;
+    color: var(--text2);
+  }
+  .sc-trigger strong { color: var(--text); font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace; }
+
+  .sc-flags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .sc-flag {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  .flag-green { background: var(--green-bg); color: var(--green); }
+  .flag-red { background: var(--red-bg); color: var(--red); }
+  .flag-amber { background: var(--amber-bg); color: var(--amber); }
+  .flag-purple { background: rgba(159,122,234,0.1); color: var(--purple); }
+
+  .sc-note {
+    margin-top: 8px;
+    font-size: 10px;
+    color: var(--text3);
+    line-height: 1.6;
+    padding: 8px 10px;
+    background: var(--surface2);
+    border-radius: 6px;
+    border-left: 2px solid var(--border);
+  }
+  .sc-note strong { color: var(--text2); }
+
+  /* 子赛道展开 */
+  .sub-sector {
+    margin-top: 6px;
+    padding: 6px 10px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+  }
+  .sub-sector .ss-name { color: var(--text2); font-weight: 500; }
+  .sub-sector .ss-status { font-size: 10px; font-weight: 600; }
+  .ss-red { color: var(--red); }
+  .ss-amber { color: var(--amber); }
+
+  .footer {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 8px;
+  }
+
+  /* 框架说明 */
+  .framework-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+  }
+  .framework-box h2 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 10px;
+  }
+  .framework-box .fw-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .fw-item {
+    background: var(--surface2);
+    border-radius: 8px;
+    padding: 12px;
+  }
+  .fw-item .fw-label {
+    font-size: 10px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 3px;
+  }
+  .fw-item .fw-desc {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+  .fw-item .fw-desc strong { color: var(--text); }
+
+  /* ═══════════ 移动端适配 ═══════════ */
+  @media (max-width: 768px) {
+    body { padding: 12px; }
+    .header { flex-direction: column; gap: 8px; }
+    .header h1 { font-size: 18px; }
+    .container { max-width: 100%; }
+    .indicators { grid-template-columns: 1fr; }
+    .rules-grid { grid-template-columns: repeat(2, 1fr); }
+    .sector-grid { grid-template-columns: 1fr; }
+    .overview-bar { grid-template-columns: repeat(2, 1fr); }
+    .framework-box .fw-grid { grid-template-columns: repeat(2, 1fr); }
+    .timeline { flex-wrap: wrap; }
+    .timeline-step { flex: 1 1 45%; }
+  }
+  @media (max-width: 480px) {
+    body { padding: 8px; }
+    .header h1 { font-size: 16px; }
+    .score-hero { flex-direction: column; text-align: center; padding: 20px; }
+    .rules-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+    .overview-bar { grid-template-columns: 1fr; }
+    .framework-box .fw-grid { grid-template-columns: 1fr; }
+    .sc-metrics { grid-template-columns: repeat(2, 1fr); }
+    .timeline-step { flex: 1 1 100%; }
+    .sc-header { flex-direction: column; gap: 6px; align-items: flex-start; }
+  }
+  @media (max-width: 380px) {
+    body { padding: 6px; }
+    .rules-grid { grid-template-columns: 1fr; }
+    .sc-metrics { grid-template-columns: 1fr; }
+  }
+  /* 触控优化 */
+  button, .sc-verdict, .sc-flag, .badge, .card-score, .timeline-step, .verdict, .fw-item {
+    -webkit-tap-highlight-color: transparent;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div>
+      <h1>Industry State Analyzer · 行业分析仪表盘</h1>
+      <div class="subtitle">v2.4 框架 · 瓶颈评分 + 三来源矛盾 + 品牌壁垒 · 触发买入条件量化</div>
+    </div>
+    <span class="badge">2026-06-28</span>
+  </div>
+
+  <!-- 框架说明 -->
+  <div class="framework-box">
+    <h2>v2.4 分析框架</h2>
+    <div class="fw-grid">
+      <div class="fw-item">
+        <div class="fw-label">L3 瓶颈评分</div>
+        <div class="fw-desc"><strong>物理壁垒 9 + 供给壁垒 9 + 寡头格局 9 + 品牌壁垒</strong>（独立标签不参与总分）。≥20分=紫苏叶级。</div>
+      </div>
+      <div class="fw-item">
+        <div class="fw-label">三来源矛盾</div>
+        <div class="fw-desc">价格趋势 / 基本面 / 市场情绪 三者交叉验证。出现矛盾→<strong>不动</strong>。超过两个热门赛道同时矛盾→整体悲观+10-15%。</div>
+      </div>
+      <div class="fw-item">
+        <div class="fw-label">品牌壁垒</div>
+        <div class="fw-desc">独立列，不参与瓶颈总分。白酒/化妆品等消费品壁垒≠物理壁垒，<strong>一代人品味变化即可溶解</strong>。</div>
+      </div>
+      <div class="fw-item">
+        <div class="fw-label">触发买入</div>
+        <div class="fw-desc">基于悲观概率×利润压缩×合理PE回推。不是预测底部，是<strong>设定愿意接飞刀的价格</strong>。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 总览 -->
+  <div class="overview-bar">
+    <div class="ov-card">
+      <div class="ov-num ov-red">5</div>
+      <div class="ov-label">不买 / 观望</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-num ov-amber">2</div>
+      <div class="ov-label">观察 / 接近触发</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-num ov-purple">1</div>
+      <div class="ov-label">底仓配置</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-num ov-green">0</div>
+      <div class="ov-label">当前可买</div>
+    </div>
+  </div>
+
+  <!-- 行业卡片 -->
+  <div class="sector-grid">
+
+    <!-- 核电 -->
+    <div class="sector-card base">
+      <div class="sc-header">
+        <div class="sc-name">核电</div>
+        <div class="sc-verdict verdict-base">底仓配置</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-metrics">
+          <div class="sc-metric"><div class="m-label">瓶颈评分</div><div class="m-val m-purple">27/30</div></div>
+          <div class="sc-metric"><div class="m-label">PE (广核)</div><div class="m-val">~11x</div></div>
+          <div class="sc-metric"><div class="m-label">悲观概率</div><div class="m-val m-green">15%</div></div>
+        </div>
+        <div class="sc-trigger">
+          触发买入：<strong>广核 PE&lt;9x</strong> 或股息率&gt;4.5%（约 <strong>3.2 元</strong>）| 核电 PE&lt;13x（约 <strong>6.8 元</strong>）
+        </div>
+        <div class="sc-flags">
+          <span class="sc-flag flag-purple">唯一紫苏叶 27分</span>
+          <span class="sc-flag flag-green">三来源无矛盾</span>
+          <span class="sc-flag flag-green">不需要拐点</span>
+          <span class="sc-flag flag-purple">AI 变量待兑现</span>
+        </div>
+        <div class="sc-note">
+          <strong>年化 5-8% + 股息 3-4%，永续配置型。</strong>日波动 0.5%，不可短线。唯一适合"底仓"的行业。东方电气 L2→L3 上调（唯一核岛总包商+2064亿订单）。
+        </div>
+      </div>
+    </div>
+
+    <!-- 医美 -->
+    <div class="sector-card watch">
+      <div class="sc-header">
+        <div class="sc-name">医美</div>
+        <div class="sc-verdict verdict-watch">观察中</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-metrics">
+          <div class="sc-metric"><div class="m-label">瓶颈评分</div><div class="m-val m-amber">18/30</div></div>
+          <div class="sc-metric"><div class="m-label">PE (爱美客)</div><div class="m-val">~22x</div></div>
+          <div class="sc-metric"><div class="m-label">悲观概率</div><div class="m-val m-red">45%</div></div>
+        </div>
+        <div class="sc-trigger">
+          触发买入：<strong>PE&lt;15x</strong>（约 <strong>65 元</strong>）或连续两季利润环比不再下滑
+        </div>
+        <div class="sc-flags">
+          <span class="sc-flag flag-amber">品牌壁垒独立标签</span>
+          <span class="sc-flag flag-red">利润加速下滑</span>
+          <span class="sc-flag flag-amber">爱美客 -35% 仍在下行</span>
+        </div>
+        <div class="sc-note">
+          <strong>不是在买便宜，是在接飞刀。</strong>PE 22x 看起来不贵但利润在加速下滑——分母缩水会让 PE 变大。与宁德区别：宁德 722 亿知道天花板，爱美客 12.91 亿不知道地板。
+        </div>
+      </div>
+    </div>
+
+    <!-- 消费（白酒） -->
+    <div class="sector-card watch">
+      <div class="sc-header">
+        <div class="sc-name">消费 · 白酒</div>
+        <div class="sc-verdict verdict-watch">观察中</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-metrics">
+          <div class="sc-metric"><div class="m-label">瓶颈评分</div><div class="m-val m-amber">品牌壁垒独立</div></div>
+          <div class="sc-metric"><div class="m-label">PE (茅台)</div><div class="m-val">~25x→15.7x</div></div>
+          <div class="sc-metric"><div class="m-label">提价折抵</div><div class="m-val m-red">完全抵消</div></div>
+        </div>
+        <div class="sc-trigger">
+          提价 8.6% → 理论利润 934 亿 → PE 从 25x 压缩到 15.7x → <strong>全部利润增长被估值压缩抵消</strong>
+        </div>
+        <div class="sc-flags">
+          <span class="sc-flag flag-amber">品牌壁垒≠物理壁垒</span>
+          <span class="sc-flag flag-red">消费降级趋势</span>
+          <span class="sc-flag flag-red">一代人品味可溶解</span>
+        </div>
+        <div class="sc-note">
+          <strong>白酒品牌壁垒和减速器物理壁垒本质不同。</strong>品牌壁垒可在一代人品味变化中溶解。消费降级判断有道理但缺少社零增速/白酒库存等具体数据。
+        </div>
+      </div>
+    </div>
+
+    <!-- 新能源 -->
+    <div class="sector-card dont-buy">
+      <div class="sc-header">
+        <div class="sc-name">新能源</div>
+        <div class="sc-verdict verdict-sell">不买</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-metrics">
+          <div class="sc-metric"><div class="m-label">瓶颈评分</div><div class="m-val">宁德 20/30</div></div>
+          <div class="sc-metric"><div class="m-label">PE (宁德)</div><div class="m-val">~18x</div></div>
+          <div class="sc-metric"><div class="m-label">故事状态</div><div class="m-val m-red">结束了</div></div>
+        </div>
+        <div class="sc-trigger">
+          宁德 722 亿利润 → 市场用低 PE 说"预期你的利润会跌" → 回 441 亿时股价看 233 元
+        </div>
+        <div class="sc-flags">
+          <span class="sc-flag flag-red">四个子赛道全不买</span>
+          <span class="sc-flag flag-red">产能过剩</span>
+          <span class="sc-flag flag-red">利润见顶</span>
+        </div>
+        <div class="sc-note">
+          新能源已从"成长赛道"变"成熟行业"——锂电/光伏/储能/新能源车四个子赛道互不相干，拒绝统一结论。宁德 PE 18x 不是便宜，是市场在定价利润下行。
+        </div>
+        <div class="sub-sector"><span class="ss-name">锂电</span><span class="ss-status ss-red">不买</span></div>
+        <div class="sub-sector"><span class="ss-name">光伏</span><span class="ss-status ss-red">不买 · 隆基 12.67 可能是底</span></div>
+        <div class="sub-sector"><span class="ss-name">储能</span><span class="ss-status ss-red">不买</span></div>
+        <div class="sub-sector"><span class="ss-name">新能源车</span><span class="ss-status ss-red">不买</span></div>
+      </div>
+    </div>
+
+    <!-- 机器人 -->
+    <div class="sector-card dont-buy">
+      <div class="sc-header">
+        <div class="sc-name">机器人</div>
+        <div class="sc-verdict verdict-sell">等估值对</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-metrics">
+          <div class="sc-metric"><div class="m-label">瓶颈评分</div><div class="m-val">25/30</div></div>
+          <div class="sc-metric"><div class="m-label">PE (绿的谐波)</div><div class="m-val m-red">~500x</div></div>
+          <div class="sc-metric"><div class="m-label">悲观概率</div><div class="m-val m-red">高</div></div>
+        </div>
+        <div class="sc-trigger">
+          即使最乐观剧本利润翻到 10 亿（2028），PE 仍 90x。等板块回调 <strong>20-30%</strong>。
+        </div>
+        <div class="sc-flags">
+          <span class="sc-flag flag-green">瓶颈 25 分真紫苏叶</span>
+          <span class="sc-flag flag-red">PE 高到消灭任何安全边际</span>
+          <span class="sc-flag flag-red">宇树 IPO 二元炸弹</span>
+          <span class="sc-flag flag-amber">449 只概念股 &lt;10 只受益</span>
+        </div>
+        <div class="sc-note">
+          <strong>"3 万台 vs 8000 万台汽车"一句话杀死叙事。</strong>谐波减速器 25/30 是瓶颈理论最有说服力的应用。但瓶颈 25 分配 PE 500x——避开了"紫苏叶被充分定价"的尴尬。宇树 IPO 是二元炸弹不是确定性催化剂。
+        </div>
+      </div>
+    </div>
+
+    <!-- 医药 -->
+    <div class="sector-card dont-buy">
+      <div class="sc-header">
+        <div class="sc-name">医药</div>
+        <div class="sc-verdict verdict-sell">数据不全</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-metrics">
+          <div class="sc-metric"><div class="m-label">瓶颈评分</div><div class="m-val">—</div></div>
+          <div class="sc-metric"><div class="m-label">药明康德利润</div><div class="m-val m-red">—</div></div>
+          <div class="sc-metric"><div class="m-label">迈瑞利润</div><div class="m-val m-red">—</div></div>
+        </div>
+        <div class="sc-flags">
+          <span class="sc-flag flag-red">数据缺口严重</span>
+          <span class="sc-flag flag-amber">三行业合并报告深度不足</span>
+        </div>
+        <div class="sc-note">
+          与消费、化工三行业合并报告仅 272 行（vs 机器人 319 行/新能源 358 行）。药明康德和迈瑞利润数据缺失，瓶颈评分退化为"感觉排列组合"。需要独立深度分析。
+        </div>
+      </div>
+    </div>
+
+    <!-- 化工 -->
+    <div class="sector-card dont-buy">
+      <div class="sc-header">
+        <div class="sc-name">化工</div>
+        <div class="sc-verdict verdict-sell">数据不全</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-metrics">
+          <div class="sc-metric"><div class="m-label">瓶颈评分</div><div class="m-val">—</div></div>
+          <div class="sc-metric"><div class="m-label">数据状态</div><div class="m-val m-red">—</div></div>
+          <div class="sc-metric"><div class="m-label">分析深度</div><div class="m-val m-amber">不足</div></div>
+        </div>
+        <div class="sc-flags">
+          <span class="sc-flag flag-amber">与医药消费合并，未独立分析</span>
+          <span class="sc-flag flag-red">缺少利润与估值数据</span>
+        </div>
+        <div class="sc-note">
+          三行业合并报告中化工部分深度最浅。芒格建议去翻煤炭/化工/航运等非热点行业，但目前化工尚无完整 v2.4 框架评估。需要独立报告。
+        </div>
+      </div>
+    </div>
+
+    <!-- 低空经济 -->
+    <div class="sector-card too-hard">
+      <div class="sc-header">
+        <div class="sc-name">低空经济</div>
+        <div class="sc-verdict verdict-pass">Too Hard</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-metrics">
+          <div class="sc-metric"><div class="m-label">瓶颈评分</div><div class="m-val" style="color:var(--gray)">—</div></div>
+          <div class="sc-metric"><div class="m-label">分析状态</div><div class="m-val" style="color:var(--gray)">放弃</div></div>
+          <div class="sc-metric"><div class="m-label">三来源</div><div class="m-val m-red">全矛盾</div></div>
+        </div>
+        <div class="sc-flags">
+          <span class="sc-flag" style="background:rgba(113,128,150,0.1);color:var(--gray)">能力圈外</span>
+          <span class="sc-flag" style="background:rgba(113,128,150,0.1);color:var(--gray)">宗申动力仅是巧合</span>
+        </div>
+        <div class="sc-note">
+          宗申动力是在低空经济里翻出来的——这种公司不会主动跳到热榜第一页。但行业整体三来源全矛盾，框架无法给出有效评估。已划入禁区。
+        </div>
+      </div>
+    </div>
+
+    <!-- 待覆盖 -->
+    <div class="sector-card" style="border:1px dashed var(--border);">
+      <div class="sc-header">
+        <div class="sc-name" style="color:var(--text3);">待覆盖行业</div>
+        <div class="sc-verdict" style="background:rgba(113,128,150,0.05);color:var(--text3);border:1px solid rgba(113,128,150,0.15);">未分析</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-note">
+          <strong>芒格建议翻的非热点行业：</strong>煤炭、航运、以及更多消费/医药细分赛道。目前这些方向尚无 v2.4 框架的独立分析。去翻的理由——"你一直在热的这边翻"。
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;">
+          <span class="sc-flag" style="background:rgba(113,128,150,0.06);color:var(--text3);">煤炭</span>
+          <span class="sc-flag" style="background:rgba(113,128,150,0.06);color:var(--text3);">航运</span>
+          <span class="sc-flag" style="background:rgba(113,128,150,0.06);color:var(--text3);">消费细分</span>
+          <span class="sc-flag" style="background:rgba(113,128,150,0.06);color:var(--text3);">医药细分</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    v2.4 框架 · 瓶颈评分 + 品牌壁垒独立标签 + 三来源矛盾交叉验证 · 更新于 2026-06-28
+  </div>
+
+</div>
+</body>
+</html>
