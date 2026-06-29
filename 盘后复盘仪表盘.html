@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="x5-orientation" content="portrait">
+<meta name="x5-fullscreen" content="true">
+<meta name="x5-page-mode" content="app">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>盘后复盘仪表盘 · PSR</title>
+<style>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #222533;
+    --border: #2a2d3a;
+    --text: #e4e6f0;
+    --text2: #8b8fa3;
+    --text3: #5c6072;
+    --green: #38a169;
+    --green-bg: rgba(56,161,105,0.08);
+    --red: #e53e3e;
+    --red-bg: rgba(229,62,62,0.08);
+    --amber: #dd6b20;
+    --amber-bg: rgba(221,107,32,0.08);
+    --blue: #4299e1;
+    --purple: #9f7aea;
+    --cyan: #38b2ac;
+  }
+
+  body {
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 20px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 1400px; margin: 0 auto; }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  .header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
+  .header .subtitle { font-size: 12px; color: var(--text3); margin-top: 3px; }
+  .header .date-badge {
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 6px;
+    padding: 4px 12px; font-size: 12px; color: var(--text2);
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  }
+  .header .market-badge {
+    display: inline-block; padding: 3px 10px; border-radius: 12px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.5px; margin-left: 8px;
+  }
+  .badge-red { background: var(--red-bg); color: var(--red); border: 1px solid rgba(229,62,62,0.25); }
+  .badge-amber { background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(221,107,32,0.25); }
+
+  /* 大盘概览 */
+  .index-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .index-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    text-align: center;
+  }
+  .index-card .ix-name { font-size: 11px; color: var(--text3); margin-bottom: 3px; }
+  .index-card .ix-val { font-size: 18px; font-weight: 700; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace; }
+  .index-card .ix-chg { font-size: 13px; font-weight: 600; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace; margin-top: 2px; }
+  .ix-up { color: var(--green); }
+  .ix-down { color: var(--red); }
+
+  .market-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .stat-mini {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 14px; display: flex; justify-content: space-between; align-items: center;
+  }
+  .stat-mini .sm-label { font-size: 11px; color: var(--text3); }
+  .stat-mini .sm-val { font-size: 14px; font-weight: 600; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace; }
+
+  /* 双栏布局 */
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .panel-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px; font-weight: 600; color: var(--text2);
+    text-transform: uppercase; letter-spacing: 0.6px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .panel-body { padding: 12px 16px; }
+
+  /* 情景条 */
+  .scenario-strip {
+    display: flex;
+    gap: 6px;
+  }
+  .scenario-bar {
+    flex: 1; border-radius: 6px; padding: 10px 12px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .scenario-bar .sc-prob { font-size: 22px; font-weight: 800; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace; }
+  .scenario-bar .sc-label { font-size: 10px; margin-top: 2px; }
+  .scenario-bar .sc-range { font-size: 10px; color: rgba(255,255,255,0.6); margin-top: 4px; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace; }
+  .sc-bull { background: rgba(56,161,105,0.1); border: 1px solid rgba(56,161,105,0.2); color: var(--green); }
+  .sc-base { background: rgba(66,153,225,0.08); border: 1px solid rgba(66,153,225,0.2); color: var(--blue); }
+  .sc-bear { background: rgba(229,62,62,0.06); border: 1px solid rgba(229,62,62,0.15); color: var(--red); }
+
+  /* 持仓表格 */
+  .pos-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+  .pos-table th {
+    background: var(--surface2); padding: 6px 8px; text-align: left;
+    border-bottom: 1px solid var(--border); color: var(--text3); font-size: 10px; font-weight: 500;
+  }
+  .pos-table td {
+    padding: 6px 8px; border-bottom: 1px solid rgba(42,45,58,0.5);
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace; font-size: 11px;
+  }
+  .pos-table .stock-name { font-family: 'Inter', 'PingFang SC', sans-serif; font-weight: 500; color: var(--text); }
+  .pos-table .up { color: var(--green); font-weight: 600; }
+  .pos-table .down { color: var(--red); font-weight: 600; }
+  .pos-table .tag-zsy { 
+    display: inline-block; padding: 1px 5px; border-radius: 3px;
+    font-size: 9px; font-weight: 600; 
+    background: rgba(159,122,234,0.12); color: var(--purple);
+  }
+  .pos-table .verdict {
+    display: inline-block; padding: 1px 6px; border-radius: 3px;
+    font-size: 9px; font-weight: 600; font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  }
+  .v-hold { background: rgba(66,153,225,0.1); color: var(--blue); }
+  .v-watch { background: rgba(221,107,32,0.1); color: var(--amber); }
+  .v-cut { background: rgba(229,62,62,0.1); color: var(--red); }
+  .v-buy { background: rgba(56,161,105,0.1); color: var(--green); }
+
+  /* 涨跌条 */
+  .chg-bar-wrap {
+    height: 4px; background: var(--surface2); border-radius: 2px;
+    margin-top: 1px; overflow: hidden;
+  }
+  .chg-bar { height: 100%; border-radius: 2px; transition: width 0.3s; }
+
+  /* 行业 */
+  .sector-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 0; border-bottom: 1px solid rgba(42,45,58,0.4);
+    font-size: 11px;
+  }
+  .sector-row .sr-name { font-weight: 500; }
+  .sector-row .sr-dir { font-weight: 600; font-size: 10px; }
+  .sr-up { color: var(--green); }
+  .sr-down { color: var(--red); }
+
+  /* 准确率 */
+  .accuracy-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px; margin-bottom: 10px;
+  }
+  .acc-card {
+    background: var(--surface2); border-radius: 6px; padding: 10px; text-align: center;
+  }
+  .acc-card .acc-pct { font-size: 22px; font-weight: 800; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace; }
+  .acc-card .acc-label { font-size: 10px; color: var(--text3); margin-top: 2px; }
+  .acc-good { color: var(--green); }
+  .acc-ok { color: var(--amber); }
+  .acc-bad { color: var(--red); }
+
+  .risk-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 6px 0; font-size: 11px; border-bottom: 1px solid rgba(42,45,58,0.3);
+  }
+  .risk-row .risk-lvl {
+    font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 3px;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  }
+  .lvl-p0 { background: var(--red-bg); color: var(--red); }
+  .lvl-p1 { background: var(--amber-bg); color: var(--amber); }
+  .lvl-p2 { background: rgba(113,128,150,0.1); color: var(--text3); }
+  .lvl-triggered { margin-left: 4px; font-size: 9px; color: var(--red); font-weight: 600; }
+
+  .full-panel {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    margin-bottom: 16px; overflow: hidden;
+  }
+
+  .ops-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+  }
+  .op-card {
+    background: var(--surface2); border-radius: 8px; padding: 10px 12px;
+  }
+  .op-card .op-action {
+    font-size: 14px; font-weight: 700; margin-bottom: 4px;
+  }
+  .op-card .op-stocks { font-size: 10px; color: var(--text3); line-height: 1.5; }
+  .op-card .op-reason { font-size: 9px; color: var(--text3); margin-top: 4px; }
+
+  .footer { text-align: center; font-size: 10px; color: var(--text3); margin-top: 8px; }
+
+  /* ═══════════ 移动端适配 ═══════════ */
+  @media (max-width: 768px) {
+    body { padding: 12px; }
+    .header { flex-direction: column; gap: 8px; }
+    .header h1 { font-size: 18px; }
+    .index-strip { grid-template-columns: repeat(3, 1fr); }
+    .market-stats { grid-template-columns: repeat(2, 1fr); }
+    .main-grid { grid-template-columns: 1fr; }
+    .ops-grid { grid-template-columns: repeat(2, 1fr); }
+    .accuracy-grid { grid-template-columns: repeat(2, 1fr); }
+    .scenario-strip { flex-direction: column; }
+    .pos-table { font-size: 10px; }
+    .pos-table td { padding: 4px 4px; font-size: 10px; }
+    .pos-table th { padding: 4px 4px; font-size: 9px; }
+  }
+  @media (max-width: 480px) {
+    .index-strip { grid-template-columns: repeat(2, 1fr); gap: 4px; }
+    .index-card { padding: 8px 10px; }
+    .index-card .ix-val { font-size: 15px; }
+    .market-stats { grid-template-columns: 1fr; }
+    .ops-grid { grid-template-columns: 1fr; }
+    .accuracy-grid { grid-template-columns: repeat(2, 1fr); gap: 4px; }
+    .acc-card .acc-pct { font-size: 18px; }
+    .header h1 { font-size: 16px; }
+    .scenario-strip { flex-direction: column; }
+  }
+  @media (max-width: 380px) {
+    body { padding: 8px; }
+    .index-strip { grid-template-columns: 1fr 1fr; gap: 3px; }
+    .pos-table td, .pos-table th { padding: 3px 2px; font-size: 9px; }
+  }
+  /* 触控优化 */
+  button, .verdict, .tag-zsy, .risk-lvl { 
+    -webkit-tap-highlight-color: transparent; 
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div>
+      <h1>盘后复盘仪表盘 · Post-Session Recap</h1>
+      <div class="subtitle">
+        6层闭环 v2.1 · 11只持仓 + 12只观察 · 
+        <span class="market-badge badge-red">黑色星期五 -2.26%</span>
+      </div>
+    </div>
+    <div class="date-badge">2026-06-26 周五</div>
+  </div>
+
+  <!-- 大盘概览 -->
+  <div class="index-strip">
+    <div class="index-card">
+      <div class="ix-name">上证指数</div>
+      <div class="ix-val" style="color:var(--red)">4027</div>
+      <div class="ix-chg ix-down">-2.26%</div>
+    </div>
+    <div class="index-card">
+      <div class="ix-name">深证成指</div>
+      <div class="ix-val" style="color:var(--red)">15782</div>
+      <div class="ix-chg ix-down">-3.44%</div>
+    </div>
+    <div class="index-card">
+      <div class="ix-name">创业板指</div>
+      <div class="ix-val" style="color:var(--red)">4194</div>
+      <div class="ix-chg ix-down">-4.07%</div>
+    </div>
+    <div class="index-card">
+      <div class="ix-name">科创50</div>
+      <div class="ix-val" style="color:var(--red)">2032</div>
+      <div class="ix-chg ix-down">-1.65%</div>
+    </div>
+    <div class="index-card">
+      <div class="ix-name">沪深300</div>
+      <div class="ix-val" style="color:var(--red)">4868</div>
+      <div class="ix-chg ix-down">-3.03%</div>
+    </div>
+  </div>
+
+  <div class="market-stats">
+    <div class="stat-mini">
+      <span class="sm-label">成交额</span>
+      <span class="sm-val">3.55万亿</span>
+    </div>
+    <div class="stat-mini">
+      <span class="sm-label">涨跌比</span>
+      <span class="sm-val" style="color:var(--red)">976 : 5122 <span style="font-size:10px;color:var(--text3)">1:5.2</span></span>
+    </div>
+    <div class="stat-mini">
+      <span class="sm-label">北向资金</span>
+      <span class="sm-val" style="color:var(--red)">-26.4亿</span>
+    </div>
+  </div>
+
+  <!-- 双栏 -->
+  <div class="main-grid">
+
+    <!-- 持仓矩阵 -->
+    <div class="panel">
+      <div class="panel-header">
+        持仓矩阵 · 11只
+        <span style="font-size:10px;color:var(--text3)">↑2 · ↓9</span>
+      </div>
+      <div class="panel-body" style="padding:8px 12px; overflow-x: auto; -webkit-overflow-scrolling: touch;">
+        <table class="pos-table">
+          <thead><tr>
+            <th>标的</th><th>收盘</th><th>涨跌幅</th><th>成交额</th><th>预判</th><th>操作</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="stock-name">南大光电</span> <span class="tag-zsy">紫苏叶</span></td>
+              <td>78.12</td><td class="up">+4.55%</td><td>87.6亿</td>
+              <td><span class="verdict v-hold">偏多✅</span></td>
+              <td><span class="verdict v-buy">关注低吸</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">北方华创</span></td>
+              <td>813.37</td><td class="up">+1.93%</td><td>100.1亿</td>
+              <td><span class="verdict v-hold">偏多✅</span></td>
+              <td><span class="verdict v-hold">持有</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">鼎龙股份</span> <span class="tag-zsy">紫苏叶</span></td>
+              <td>95.07</td><td class="down">-0.40%</td><td>55.8亿</td>
+              <td><span class="verdict v-hold">偏多✅</span></td>
+              <td><span class="verdict v-buy">关注低吸</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">中国核电</span></td>
+              <td>8.93</td><td class="down">-0.56%</td><td>9.2亿</td>
+              <td><span class="verdict v-hold">偏多✅</span></td>
+              <td><span class="verdict v-hold">底仓持有</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">中国一重</span></td>
+              <td>3.29</td><td class="down">-1.79%</td><td>1.9亿</td>
+              <td><span class="verdict v-watch">—</span></td>
+              <td><span class="verdict v-watch">观望</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">江苏神通</span> <span class="tag-zsy">紫苏叶</span></td>
+              <td>14.17</td><td class="down">-3.14%</td><td>1.4亿</td>
+              <td><span class="verdict v-watch">—</span></td>
+              <td><span class="verdict v-watch">观望</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">韦尔股份</span></td>
+              <td>86.72</td><td class="down">-3.33%</td><td>19.4亿</td>
+              <td><span class="verdict v-watch">—</span></td>
+              <td><span class="verdict v-watch">观望</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">紫光国微</span></td>
+              <td>83.98</td><td class="down">-4.02%</td><td>40.8亿</td>
+              <td><span class="verdict v-cut">偏多❌</span></td>
+              <td><span class="verdict v-hold">持有</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">中芯国际</span></td>
+              <td>148.76</td><td class="down">-5.16%</td><td>161.7亿</td>
+              <td><span class="verdict v-cut">偏多❌</span></td>
+              <td><span class="verdict v-hold">持有</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">东方电气</span></td>
+              <td>28.47</td><td class="down">-5.51%</td><td>19.3亿</td>
+              <td><span class="verdict v-watch">—</span></td>
+              <td><span class="verdict v-watch">观望</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">沃尔核材</span></td>
+              <td>17.77</td><td class="down">-7.25%</td><td>8.8亿</td>
+              <td><span class="verdict v-watch">—</span></td>
+              <td><span class="verdict v-watch">观望</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 观察池 -->
+    <div class="panel">
+      <div class="panel-header">
+        观察池 · 12只
+        <span style="font-size:10px;color:var(--text3)">↑1 · ↓11</span>
+      </div>
+      <div class="panel-body" style="padding:8px 12px; overflow-x: auto; -webkit-overflow-scrolling: touch;">
+        <table class="pos-table">
+          <thead><tr>
+            <th>标的</th><th>收盘</th><th>涨跌幅</th><th>预判</th><th>操作</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="stock-name">中微公司</span></td>
+              <td>413.00</td><td class="up">+3.47%</td>
+              <td><span class="verdict v-hold">偏多✅</span></td>
+              <td><span class="verdict v-buy">关注</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">兆易创新</span></td>
+              <td>770.00</td><td class="down">-0.67%</td>
+              <td><span class="verdict v-cut">偏空✅</span></td>
+              <td><span class="verdict v-cut">减仓</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">正丹股份</span></td>
+              <td>16.00</td><td class="down">-2.50%</td>
+              <td><span class="verdict v-watch">—</span></td>
+              <td><span class="verdict v-watch">观望</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">寒武纪</span></td>
+              <td>1458.00</td><td class="down">-3.12%</td>
+              <td><span class="verdict v-hold">中性✅</span></td>
+              <td><span class="verdict v-watch">观望</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">海光信息</span></td>
+              <td>344.90</td><td class="down">-4.27%</td>
+              <td><span class="verdict v-cut">偏多❌</span></td>
+              <td><span class="verdict v-hold">持有</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">景嘉微</span></td>
+              <td>52.97</td><td class="down">-4.99%</td>
+              <td><span class="verdict v-watch">中性</span></td>
+              <td><span class="verdict v-watch">观望</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">宁德时代</span></td>
+              <td>381.00</td><td class="down">-5.20%</td>
+              <td><span class="verdict v-cut">偏多❌</span></td>
+              <td><span class="verdict v-watch">观望</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">中际旭创</span></td>
+              <td>1253.89</td><td class="down">-5.25%</td>
+              <td><span class="verdict v-cut">偏空✅</span></td>
+              <td><span class="verdict v-watch">观望</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">东山精密</span></td>
+              <td>260.32</td><td class="down">-5.61%</td>
+              <td><span class="verdict v-cut">偏空✅</span></td>
+              <td><span class="verdict v-cut">减仓</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">江淮汽车</span></td>
+              <td>26.87</td><td class="down">-6.70%</td>
+              <td><span class="verdict v-cut">偏多❌</span></td>
+              <td><span class="verdict v-watch">观望</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">天孚通信</span></td>
+              <td>318.00</td><td class="down">-7.01%</td>
+              <td><span class="verdict v-cut">偏空✅</span></td>
+              <td><span class="verdict v-watch">观望</span></td>
+            </tr>
+            <tr>
+              <td><span class="stock-name">新易盛</span></td>
+              <td>566.00</td><td class="down">-7.29%</td>
+              <td><span class="verdict v-cut">偏空✅</span></td>
+              <td><span class="verdict v-cut">减仓</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 明日三情景 + 预测准确率 -->
+  <div class="main-grid">
+
+    <div class="panel">
+      <div class="panel-header">明日展望 · 6/30 周一</div>
+      <div class="panel-body">
+        <div class="scenario-strip">
+          <div class="scenario-bar sc-bull" style="flex:35">
+            <div class="sc-prob">35%</div>
+            <div class="sc-label">技术反弹</div>
+            <div class="sc-range">4060 ~ 4120</div>
+          </div>
+          <div class="scenario-bar sc-base" style="flex:45">
+            <div class="sc-prob">45%</div>
+            <div class="sc-label">缩量震荡</div>
+            <div class="sc-range">4000 ~ 4060</div>
+          </div>
+          <div class="scenario-bar sc-bear" style="flex:20">
+            <div class="sc-prob">20%</div>
+            <div class="sc-label">继续下探</div>
+            <div class="sc-range">3950 ~ 4000</div>
+          </div>
+        </div>
+        <div style="margin-top:12px;font-size:11px;color:var(--text2);line-height:1.7;">
+          <strong style="color:var(--text)">核心观察：</strong>4000心理关口支撑 + 季末过后资金回补 → 技术反弹概率不低。
+          但光模块/存储短期仍有回调压力，设备/材料方向逻辑未破。<br>
+          <strong style="color:var(--purple)">核电</strong>（中国核电-0.56%）最抗跌，独立逻辑验证。
+          <strong style="color:var(--green)">南大光电+4.55%</strong>逆势领涨，紫苏叶逻辑确认。
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">今日预测准确率</div>
+      <div class="panel-body">
+        <div class="accuracy-grid">
+          <div class="acc-card">
+            <div class="acc-pct acc-bad">0%</div>
+            <div class="acc-label">大盘方向</div>
+          </div>
+          <div class="acc-card">
+            <div class="acc-pct acc-ok">50%</div>
+            <div class="acc-label">行业方向</div>
+          </div>
+          <div class="acc-card">
+            <div class="acc-pct acc-ok">64%</div>
+            <div class="acc-label">个股方向</div>
+          </div>
+          <div class="acc-card">
+            <div class="acc-pct acc-bad">45%</div>
+            <div class="acc-label">信号置信度</div>
+          </div>
+        </div>
+        <div style="font-size:10px;color:var(--text3);line-height:1.6;">
+          <strong style="color:var(--red)">大盘偏差：</strong>预判4080-4140震荡 → 实际4027（跌破80点）<br>
+          <strong style="color:var(--green)">方向正确9项：</strong>北方华创✅南大光电✅中微✅新易盛✅中际✅天孚✅兆易✅东山✅核电✅<br>
+          <strong style="color:var(--red)">方向错误5项：</strong>中芯❌紫光❌江淮❌宁德❌海光❌<br>
+          偏差根因：低估季末结算 + 超涨获利了结的集中爆发
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 行业 + 操作 -->
+  <div class="main-grid">
+    <div class="panel">
+      <div class="panel-header">行业表现</div>
+      <div class="panel-body">
+        <div class="sector-row">
+          <span class="sr-name">AI芯片/半导体 · 存储/光模块</span>
+          <span class="sr-dir sr-down">全线杀跌 · 获利了结</span>
+        </div>
+        <div class="sector-row">
+          <span class="sr-name">AI芯片/半导体 · 设备/材料</span>
+          <span class="sr-dir" style="color:var(--amber)">内部分化 · 北方+1.9%/中微+3.5%抗跌</span>
+        </div>
+        <div class="sector-row">
+          <span class="sr-name">低空经济</span>
+          <span class="sr-dir sr-down">大幅杀跌 · 江淮-6.70% 催化未兑现</span>
+        </div>
+        <div class="sector-row">
+          <span class="sr-name">新能源</span>
+          <span class="sr-dir sr-down">杀跌 · 宁德-5.20%</span>
+        </div>
+        <div class="sector-row">
+          <span class="sr-name" style="color:var(--purple)">核电</span>
+          <span class="sr-dir" style="color:var(--green)">相对抗跌 · 中国核电-0.56% 独立逻辑</span>
+        </div>
+        <div class="sector-row">
+          <span class="sr-name">机器人</span>
+          <span class="sr-dir sr-down">跟随杀跌 · 无独立催化</span>
+        </div>
+        <div class="sector-row" style="border:none;">
+          <span class="sr-name">银行</span>
+          <span class="sr-dir" style="color:var(--green)">逆势护盘 · 工行/建行创阶段新高</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">明日操作策略</div>
+      <div class="panel-body">
+        <div class="ops-grid">
+          <div class="op-card">
+            <div class="op-action" style="color:var(--green)">关注机会</div>
+            <div class="op-stocks">北方华创 · 南大光电 · 中微公司</div>
+            <div class="op-reason">半导体设备/材料逆势抗跌，逻辑未破</div>
+          </div>
+          <div class="op-card">
+            <div class="op-action" style="color:var(--purple)">底仓持有</div>
+            <div class="op-stocks">中国核电 · 鼎龙股份</div>
+            <div class="op-reason">核电最抗跌+紫苏叶逻辑</div>
+          </div>
+          <div class="op-card">
+            <div class="op-action" style="color:var(--red)">减仓/观望</div>
+            <div class="op-stocks">新易盛 · 中际旭创 · 兆易创新</div>
+            <div class="op-reason">光模块/存储短期仍有回调压力</div>
+          </div>
+          <div class="op-card">
+            <div class="op-action" style="color:var(--amber)">等待企稳</div>
+            <div class="op-stocks">江淮汽车 · 宁德时代</div>
+            <div class="op-reason">催化兑现失败，等方向确认</div>
+          </div>
+        </div>
+        <div style="margin-top:10px;font-size:10px;color:var(--text3);line-height:1.6;">
+          <strong>仓位建议：</strong>维持4-5成，不急于抄底。关键观察：周一北向是否回流、4000点支撑是否有效。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 风险矩阵 -->
+  <div class="full-panel">
+    <div class="panel-header">风险矩阵 · P0-P2</div>
+    <div class="panel-body">
+      <div class="risk-row">
+        <span>科创50 RSI 72 → 超买回调</span>
+        <span><span class="risk-lvl lvl-p0">P0</span><span class="lvl-triggered">已触发</span> 科创-1.65%</span>
+      </div>
+      <div class="risk-row">
+        <span>周五获利了结惯例</span>
+        <span><span class="risk-lvl lvl-p0">P0</span><span class="lvl-triggered">已触发</span> 全线杀跌</span>
+      </div>
+      <div class="risk-row">
+        <span>半导体虹吸效应反转</span>
+        <span><span class="risk-lvl lvl-p1">P1</span><span class="lvl-triggered">已触发</span> 资金→银行/材料</span>
+      </div>
+      <div class="risk-row">
+        <span>北向资金持续流出</span>
+        <span><span class="risk-lvl lvl-p1">P1</span> -26.4亿，连续第二日</span>
+      </div>
+      <div class="risk-row">
+        <span>季末解禁/资金结算</span>
+        <span><span class="risk-lvl lvl-p2">P2</span> 6月底压力释放中</span>
+      </div>
+      <div class="risk-row" style="border:none;">
+        <span>4000点心理关口</span>
+        <span><span class="risk-lvl lvl-p2">P2</span> 周一关键支撑观察</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    v2.1 · 6层闭环框架 · 数据来源：TDX · 东方财富 · 新浪财经 · 生成于 2026-06-26 15:05 CST
+  </div>
+
+</div>
+</body>
+</html>
