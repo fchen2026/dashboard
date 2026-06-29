@@ -39,6 +39,11 @@
     --font-mono: 'IBM Plex Mono', monospace;
     --font-heading: 'DM Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
     --h1-size: 26px;
+    
+    --cseg-low: #8b3030;
+    --cseg-mid: #a0621a;
+    --cseg-high: #2d6b2d;
+    --cseg-max: #4a5a6b;
     --panel-radius: 6px;
     --body-padding: 28px 32px;
   }
@@ -73,6 +78,11 @@
     --font-mono: 'IBM Plex Mono', monospace;
     --font-heading: 'DM Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
     --h1-size: 26px;
+    
+    --cseg-low: #d44a4a;
+    --cseg-mid: #e8a020;
+    --cseg-high: #3a9a3a;
+    --cseg-max: #5a7a9a;
     --panel-radius: 6px;
     --body-padding: 28px 32px;
   }
@@ -107,6 +117,11 @@
     --font-mono: 'IBM Plex Mono', monospace;
     --font-heading: 'DM Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
     --h1-size: 26px;
+    
+    --cseg-low: #6b2800;
+    --cseg-mid: #9a5a10;
+    --cseg-high: #3d5a1a;
+    --cseg-max: #4a3d2a;
     --panel-radius: 6px;
     --body-padding: 28px 32px;
   }
@@ -141,6 +156,12 @@
     --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
     --font-heading: 'Crimson Text', 'Noto Serif SC', 'STSong', Georgia, serif;
     --h1-size: 36px;
+    --panel-radius: 2px;
+    
+    --cseg-low: #9a3030;
+    --cseg-mid: #b07818;
+    --cseg-high: #2d7a2d;
+    --cseg-max: #506070;
     --panel-radius: 2px;
     --body-padding: 48px 64px;
   }
@@ -418,7 +439,7 @@
     font-size: 12px;
     font-weight: 500;
     font-family: 'IBM Plex Mono', monospace;
-    color: rgba(255,255,255,0.55);
+    color: #fff;
     border-radius: 6px;
     transition: all 0.25s ease;
   }
@@ -467,7 +488,7 @@
     font-weight: 800;
     font-family: 'IBM Plex Mono', monospace;
     line-height: 1;
-    color: var(--red);
+    color: var(--amber);
   }
   .posrec .prl { font-size: 12px; color: var(--text2); line-height: 1.5; }
   .posrec .prl strong { color: var(--text); font-size: 13px; }
@@ -713,18 +734,6 @@
     color: var(--amber);
   }
 
-  /* Light theme adjust --text3 for contrast on white */
-  [data-theme="light"] .tgr .tra { color: #5c6370; }
-  [data-theme="light"] .cseg { color: rgba(0,0,0,0.6); }
-  [data-theme="light"] .cseg-active { color: #fff; }
-  
-  /* Amber theme confidence bar text */
-  [data-theme="amber"] .cseg { color: rgba(255,255,255,0.55); }
-  [data-theme="amber"] .cseg-active { color: #0d0b07; }
-
-  /* Magazine confidence bar text */
-  [data-theme="magazine"] .cseg { color: rgba(0,0,0,0.55); }
-  [data-theme="magazine"] .cseg-active { color: #fff; }
 
   @media (max-width: 900px) {
     .theme-bar {
@@ -809,7 +818,7 @@
       <div class="frag-action-row">
         <span class="b b-stop">⛔ 不推荐新建仓位</span>
         <span class="b b-stop">⛔ 不推荐追涨/追板块</span>
-        <span style="font-size:11px;color:var(--green);font-weight:600;">✅ 仅允许持有已有仓位+观察</span>
+        <span style="font-size:11px;color:var(--green);font-weight:600;">○ 仅允许持有已有仓位+观察</span>
       </div>
     </div>
   </div>
@@ -856,7 +865,7 @@
         <div class="lolc"><div class="lols" style="color:var(--red)">🔴</div><div class="loll">费半-5.29%<br>传导未出清</div></div>
         <div class="lolc"><div class="lols" style="color:var(--red)">🔴</div><div class="loll">北向-80亿<br>难以逆转</div></div>
         <div class="lolc"><div class="lols" style="color:var(--amber)">🟡</div><div class="loll">逆回购落地<br>再无新催化</div></div>
-        <div class="lolc"><div class="lols" style="color:var(--green)">✅</div><div class="loll">北方华创/中微<br>紫苏叶安全</div></div>
+        <div class="lolc"><div class="lols" style="color:var(--green)">●</div><div class="loll">北方华创/中微<br>紫苏叶安全</div></div>
       </div>
     </div>
   </div>
@@ -867,10 +876,10 @@
       <div class="cbar-wrap">
         <div class="cmk" style="left:42.5%;">▾ 当前 45%</div>
         <div class="cbar">
-          <div class="cseg" style="flex:30;background:#2d1f1f;">&lt;45% · 0~1成</div>
-          <div class="cseg cseg-active" style="flex:25;background:#3d2a1a;">45-59% · 2~3成</div>
-          <div class="cseg" style="flex:25;background:#1a2d1f;opacity:0.7;">60-74% · 4~5成</div>
-          <div class="cseg" style="flex:20;background:#1a1f2d;opacity:0.5;">≥75% · 6~7成</div>
+          <div class="cseg" style="flex:30;background:var(--cseg-low);">&lt;45% · 0~1成</div>
+          <div class="cseg cseg-active" style="flex:25;background:var(--cseg-mid);">45-59% · 2~3成</div>
+          <div class="cseg" style="flex:25;background:var(--cseg-high);opacity:0.8;">60-74% · 4~5成</div>
+          <div class="cseg" style="flex:20;background:var(--cseg-max);opacity:0.75;">≥75% · 6~7成</div>
         </div>
       </div>
       <div class="posrec">
@@ -882,7 +891,7 @@
       </div>
       <div class="fn" style="margin-top:10px;">
         若上证有效跌破4000 → 触发减仓至 <span class="hl">2成以下</span><br>
-        核心持仓：北方华创 / 中微公司（紫苏叶✅逆势抗跌可持有）
+        核心持仓：北方华创 / 中微公司（紫苏叶板块逆势抗跌，可持有）
       </div>
     </div>
   </div>
@@ -1015,7 +1024,7 @@
         <div class="op-card" style="border-left-color:var(--green);">
           <div class="op-title" style="color:var(--green);">持仓核心</div>
           <div class="op-stocks">北方华创 · 中微公司</div>
-          <div class="op-note">紫苏叶✅逆势抗跌</div>
+          <div class="op-note">紫苏叶板块逆势抗跌</div>
         </div>
         <div class="op-card" style="border-left-color:var(--amber);">
           <div class="op-title" style="color:var(--amber);">关注博弈</div>
@@ -1074,7 +1083,7 @@
           <div class="bs-desc">暴跌后选择性寻看多理由？硅片涨价可能被放大</div>
         </div>
         <div class="bias-card">
-          <div class="bs-tag" style="color:var(--green);">✅ 反脆弱</div>
+          <div class="bs-tag" style="color:var(--green);">反脆弱</div>
           <div class="bs-desc">Q6反向论证强制机制运行中</div>
         </div>
         <div class="bias-card">
@@ -1082,7 +1091,7 @@
           <div class="bs-desc">北方/中微逆势走强·警惕持仓偏好</div>
         </div>
         <div class="bias-card">
-          <div class="bs-tag" style="color:var(--green);">✅ 系统性盲点</div>
+          <div class="bs-tag" style="color:var(--green);">系统性盲点</div>
           <div class="bs-desc">2.8万亿资金缺口已纳入分析</div>
         </div>
         <div class="bias-card">
@@ -1090,7 +1099,7 @@
           <div class="bs-desc">上周看震荡分化·周五暴跌需重新校准</div>
         </div>
         <div class="bias-card">
-          <div class="bs-tag" style="color:var(--green);">✅ Q6反向论证</div>
+          <div class="bs-tag" style="color:var(--green);">Q6反向论证</div>
           <div class="bs-desc">已论证"不反弹继续跌"的6条路径</div>
         </div>
       </div>
