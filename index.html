@@ -87,45 +87,6 @@
     --body-padding: 28px 32px;
   }
 
-  /* ═══════════ 暖色琥珀 ═══════════ */
-  [data-theme="amber"] {
-    --bg: #0d0b07;
-    --surface: #1a1410;
-    --surface2: #241c14;
-    --border: #2d2418;
-    --divider: #2d2418;
-
-    --text: #f5efe6;
-    --text2: #c4b58a;
-    --text3: #8c7a5c;
-
-    --green: #a16207;
-    --green-bg: rgba(161,98,7,0.12);
-    --green-border: rgba(161,98,7,0.2);
-    --red: #e5a50a;
-    --red-bg: rgba(229,165,10,0.1);
-    --red-border: rgba(229,165,10,0.2);
-    --amber: #fbbf24;
-    --amber-bg: rgba(251,191,36,0.1);
-    --amber-border: rgba(251,191,36,0.22);
-    --blue: #d4a373;
-    --blue-bg: rgba(212,163,115,0.08);
-    --purple: #c9a87c;
-    --purple-bg: rgba(201,168,124,0.08);
-
-    --font-body: 'DM Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    --font-mono: 'IBM Plex Mono', monospace;
-    --font-heading: 'DM Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    --h1-size: 26px;
-    
-    --cseg-low: #6b2800;
-    --cseg-mid: #9a5a10;
-    --cseg-high: #3d5a1a;
-    --cseg-max: #4a3d2a;
-    --panel-radius: 6px;
-    --body-padding: 28px 32px;
-  }
-
   /* ═══════════ 财经杂志 ═══════════ */
   [data-theme="magazine"] {
     --bg: #faf9f5;
@@ -203,45 +164,6 @@
     --cseg-max: #5a5a7a;
     --panel-radius: 16px;
     --body-padding: 32px 40px;
-  }
-
-  /* ═══════════ Pop Laboratory ═══════════ */
-  [data-theme="laboratory"] {
-    --bg: #F2F2F2;
-    --surface: #ffffff;
-    --surface2: #e8e8e8;
-    --border: rgba(45,41,38,0.12);
-    --divider: rgba(45,41,38,0.06);
-
-    --text: #2D2926;
-    --text2: #666666;
-    --text3: #999999;
-
-    --green: #B8D8BE;
-    --green-bg: rgba(184,216,190,0.12);
-    --green-border: rgba(184,216,190,0.25);
-    --red: #E91E63;
-    --red-bg: rgba(233,30,99,0.08);
-    --red-border: rgba(233,30,99,0.18);
-    --amber: #FFF200;
-    --amber-bg: rgba(255,242,0,0.12);
-    --amber-border: rgba(255,242,0,0.25);
-    --blue: #4A90D9;
-    --blue-bg: rgba(74,144,217,0.08);
-    --purple: #9C27B0;
-    --purple-bg: rgba(156,39,176,0.06);
-
-    --font-body: 'Space Mono', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', monospace;
-    --font-mono: 'Space Mono', monospace;
-    --font-heading: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    --h1-size: 28px;
-
-    --cseg-low: #E91E63;
-    --cseg-mid: #FF9800;
-    --cseg-high: #4CAF50;
-    --cseg-max: #2D2926;
-    --panel-radius: 6px;
-    --body-padding: 28px 32px;
   }
 
   /* ═══════════ Bento Craft ═══════════ */
@@ -796,7 +718,6 @@
   .theme-btn.active { background: var(--amber-bg); color: var(--amber); font-weight: 700; }
 
   [data-theme="light"] .theme-btn.active { color: var(--amber); }
-  [data-theme="amber"] .theme-btn.active { color: var(--amber); background: rgba(251,191,36,0.18); }
   [data-theme="magazine"] .theme-btn.active { color: #8b6914; background: rgba(139,105,20,0.1); }
 
   /* Magazine theme overrides */
@@ -866,49 +787,6 @@
   [data-theme="memphis"] .theme-btn.active {
     color: #fff;
     background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-  }
-
-  /* Laboratory theme overrides */
-  [data-theme="laboratory"] body {
-    background-image:
-      linear-gradient(rgba(45,41,38,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(45,41,38,0.04) 1px, transparent 1px);
-    background-size: 24px 24px;
-  }
-  [data-theme="laboratory"] .panel {
-    border: 2px solid rgba(45,41,38,0.12);
-    border-radius: 6px;
-  }
-  [data-theme="laboratory"] .panel-head {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border-bottom: 2px solid var(--divider);
-  }
-  [data-theme="laboratory"] .hdr h1 {
-    font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
-    font-weight: 900;
-    letter-spacing: 2px;
-  }
-  [data-theme="laboratory"] .section-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    background: var(--surface2);
-    padding: 4px 12px;
-    border-radius: 3px;
-  }
-  [data-theme="laboratory"] .highlight,
-  [data-theme="laboratory"] mark {
-    background: rgba(255,242,0,0.25);
-    padding: 0 4px;
-  }
-  [data-theme="laboratory"] .theme-btn.active {
-    background: #2D2926;
-    color: #FFF200;
-    font-family: 'Space Mono', monospace;
   }
 
   /* Bento theme overrides */
@@ -982,11 +860,9 @@
 <div class="theme-bar" id="themeBar">
   <button class="theme-btn active" data-theme="dark">深色工业</button>
   <button class="theme-btn" data-theme="light">亮色专业</button>
-  <button class="theme-btn" data-theme="amber">暖色琥珀</button>
   <button class="theme-btn" data-theme="magazine">财经杂志</button>
   <span style="color:var(--divider);margin:0 2px;align-self:center;">|</span>
   <button class="theme-btn" data-theme="memphis">活力孟菲斯</button>
-  <button class="theme-btn" data-theme="laboratory">实验工坊</button>
   <button class="theme-btn" data-theme="bento">手工匠盒</button>
 </div>
 
