@@ -1,11 +1,16 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>投资决策面板 v5.1 · Decision Panel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, shrink-to-fit=no">
+<meta name="x5-orientation" content="portrait">
+<meta name="x5-fullscreen" content="true">
+<meta name="x5-page-mode" content="app">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>投资决策面板 · Decision Panel</title>
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Space+Mono:wght@400;700&family=ZCOOL+KuaiLe&display=swap');
+
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -35,9 +40,9 @@
     --purple: #c084fc;
     --purple-bg: rgba(192,132,252,0.08);
 
-    --font-body: 'DM Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    --font-mono: 'IBM Plex Mono', monospace;
-    --font-heading: 'DM Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --font-body: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --font-mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+    --font-heading: 'PingFang SC', 'Microsoft YaHei', sans-serif;
     --h1-size: 26px;
     
     --cseg-low: #8b3030;
@@ -74,54 +79,15 @@
     --purple: #7c3aed;
     --purple-bg: rgba(124,58,237,0.06);
 
-    --font-body: 'DM Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    --font-mono: 'IBM Plex Mono', monospace;
-    --font-heading: 'DM Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --font-body: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --font-mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+    --font-heading: 'PingFang SC', 'Microsoft YaHei', sans-serif;
     --h1-size: 26px;
     
     --cseg-low: #d44a4a;
     --cseg-mid: #e8a020;
     --cseg-high: #3a9a3a;
     --cseg-max: #5a7a9a;
-    --panel-radius: 6px;
-    --body-padding: 28px 32px;
-  }
-
-  /* ═══════════ 暖色琥珀 ═══════════ */
-  [data-theme="amber"] {
-    --bg: #0d0b07;
-    --surface: #1a1410;
-    --surface2: #241c14;
-    --border: #2d2418;
-    --divider: #2d2418;
-
-    --text: #f5efe6;
-    --text2: #c4b58a;
-    --text3: #8c7a5c;
-
-    --green: #a16207;
-    --green-bg: rgba(161,98,7,0.12);
-    --green-border: rgba(161,98,7,0.2);
-    --red: #e5a50a;
-    --red-bg: rgba(229,165,10,0.1);
-    --red-border: rgba(229,165,10,0.2);
-    --amber: #fbbf24;
-    --amber-bg: rgba(251,191,36,0.1);
-    --amber-border: rgba(251,191,36,0.22);
-    --blue: #d4a373;
-    --blue-bg: rgba(212,163,115,0.08);
-    --purple: #c9a87c;
-    --purple-bg: rgba(201,168,124,0.08);
-
-    --font-body: 'DM Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    --font-mono: 'IBM Plex Mono', monospace;
-    --font-heading: 'DM Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    --h1-size: 26px;
-    
-    --cseg-low: #6b2800;
-    --cseg-mid: #9a5a10;
-    --cseg-high: #3d5a1a;
-    --cseg-max: #4a3d2a;
     --panel-radius: 6px;
     --body-padding: 28px 32px;
   }
@@ -193,7 +159,7 @@
     --purple-bg: rgba(162,155,254,0.06);
 
     --font-body: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    --font-mono: 'IBM Plex Mono', monospace;
+    --font-mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
     --font-heading: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
     --h1-size: 26px;
 
@@ -203,45 +169,6 @@
     --cseg-max: #5a5a7a;
     --panel-radius: 16px;
     --body-padding: 32px 40px;
-  }
-
-  /* ═══════════ Pop Laboratory ═══════════ */
-  [data-theme="laboratory"] {
-    --bg: #F2F2F2;
-    --surface: #ffffff;
-    --surface2: #e8e8e8;
-    --border: rgba(45,41,38,0.12);
-    --divider: rgba(45,41,38,0.06);
-
-    --text: #2D2926;
-    --text2: #666666;
-    --text3: #999999;
-
-    --green: #B8D8BE;
-    --green-bg: rgba(184,216,190,0.12);
-    --green-border: rgba(184,216,190,0.25);
-    --red: #E91E63;
-    --red-bg: rgba(233,30,99,0.08);
-    --red-border: rgba(233,30,99,0.18);
-    --amber: #FFF200;
-    --amber-bg: rgba(255,242,0,0.12);
-    --amber-border: rgba(255,242,0,0.25);
-    --blue: #4A90D9;
-    --blue-bg: rgba(74,144,217,0.08);
-    --purple: #9C27B0;
-    --purple-bg: rgba(156,39,176,0.06);
-
-    --font-body: 'Space Mono', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', monospace;
-    --font-mono: 'Space Mono', monospace;
-    --font-heading: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    --h1-size: 28px;
-
-    --cseg-low: #E91E63;
-    --cseg-mid: #FF9800;
-    --cseg-high: #4CAF50;
-    --cseg-max: #2D2926;
-    --panel-radius: 6px;
-    --body-padding: 28px 32px;
   }
 
   /* ═══════════ Bento Craft ═══════════ */
@@ -271,8 +198,8 @@
     --purple-bg: rgba(155,123,166,0.06);
 
     --font-body: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    --font-mono: 'IBM Plex Mono', monospace;
-    --font-heading: 'ZCOOL KuaiLe', 'Noto Sans SC', 'PingFang SC', sans-serif;
+    --font-mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+    --font-heading: 'ZCOOL KuaiLe', 'PingFang SC', 'Microsoft YaHei', sans-serif;
     --h1-size: 30px;
 
     --cseg-low: #C06050;
@@ -406,14 +333,14 @@
   .ix .ixv {
     font-size: 22px;
     font-weight: 800;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
     letter-spacing: -0.5px;
     line-height: 1.1;
   }
   .ix .ixc {
     font-size: 13px;
     font-weight: 700;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
     margin-top: 4px;
   }
   .up { color: var(--red); }
@@ -432,7 +359,7 @@
   .sm .smv {
     font-size: 15px;
     font-weight: 700;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -487,7 +414,7 @@
   .sc4b .s4p {
     font-size: 28px;
     font-weight: 800;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
     line-height: 1;
   }
   .sc4b .s4l {
@@ -500,7 +427,7 @@
     font-size: 10px;
     margin-top: 4px;
     opacity: 0.65;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
   }
   .s4-bull { background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.15); color: var(--green); }
   .s4-base { background: rgba(96,165,250,0.06); border: 1px solid rgba(96,165,250,0.15); color: var(--blue); }
@@ -555,7 +482,7 @@
     justify-content: center;
     font-size: 12px;
     font-weight: 500;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
     color: #fff;
     border-radius: 6px;
     transition: all 0.25s ease;
@@ -572,7 +499,7 @@
     transform: translateX(-50%);
     font-size: 13px;
     font-weight: 800;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
     background: var(--amber);
     color: #0b0f14;
     padding: 5px 14px;
@@ -603,7 +530,7 @@
   .posrec .prn {
     font-size: 40px;
     font-weight: 800;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
     line-height: 1;
     color: var(--amber);
   }
@@ -638,7 +565,7 @@
     font-size: 12px;
   }
   .tgr .trn { font-weight: 500; color: var(--text); }
-  .tgr .trs { font-weight: 700; font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
+  .tgr .trs { font-weight: 700; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace; font-size: 11px; }
   .tgr .tra { font-size: 11px; color: var(--text2); margin-left: 8px; }
   .tr-act { border-left-color: var(--red) !important; }
   .tr-warn { border-left-color: var(--amber) !important; }
@@ -662,7 +589,7 @@
   .tbl td {
     padding: 7px 10px;
     border-bottom: 1px solid var(--divider);
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
     font-size: 12px;
   }
   .tbl .sn { font-family: 'DM Sans', 'PingFang SC', sans-serif; font-weight: 600; color: var(--text); font-size: 12px; }
@@ -693,7 +620,7 @@
     border-left: 3px solid;
   }
   .op-card .op-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
-  .op-card .op-stocks { font-size: 11px; color: var(--text3); font-family: 'IBM Plex Mono', monospace; }
+  .op-card .op-stocks { font-size: 11px; color: var(--text3); font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace; }
   .op-card .op-note { font-size: 10px; color: var(--text2); margin-top: 4px; }
 
   /* ===== TIMELINE ===== */
@@ -706,7 +633,7 @@
   }
   .tl-row + .tl-row { border-top: 1px solid var(--divider); }
   .tl-time {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
     color: var(--text2);
     font-weight: 500;
     min-width: 110px;
@@ -755,208 +682,133 @@
   .ts-closed { background: rgba(100,116,139,0.08); color: var(--text2); border: 1px solid rgba(100,116,139,0.2); }
   .ts-weekend { background: rgba(192,132,252,0.08); color: var(--purple); border: 1px solid rgba(192,132,252,0.2); }
 
-  /* ===== RESPONSIVE ===== */
-  @media (max-width: 1200px) {
-    .row-5 { grid-template-columns: repeat(3, 1fr); }
-    .row-2 { grid-template-columns: 1fr; }
-    .bias-grid { grid-template-columns: repeat(2, 1fr); }
-  }
+  
 
-  @media (prefers-reduced-motion: reduce) {
-    * { animation: none !important; transition: none !important; }
-  }
+/* ===== TAB NAVIGATION ===== */
+.tab-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.tab-nav {
+  display: flex;
+  gap: 2px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 4px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.tab-btn {
+  padding: 8px 18px;
+  border-radius: 7px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  background: transparent;
+  color: var(--text2);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+  flex-shrink: 0;
+}
+.tab-btn:hover { color: var(--text); background: var(--surface2); }
+.tab-btn.active {
+  background: var(--green-bg);
+  color: var(--green);
+  font-weight: 700;
+}
 
-  /* ===== THEME SWITCHER ===== */
-  .theme-bar {
-    display: flex;
-    gap: 6px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 4px;
-    margin-bottom: 24px;
-    align-self: flex-end;
-    width: fit-content;
-  }
-  .theme-btn {
-    padding: 6px 14px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    font-size: 11px;
-    font-weight: 600;
-    font-family: var(--font-body);
-    background: transparent;
-    color: var(--text2);
-    transition: all 0.2s ease;
-    white-space: nowrap;
-    letter-spacing: 0.2px;
-  }
-  .theme-btn:hover { color: var(--text); background: var(--surface2); }
-  .theme-btn.active { background: var(--amber-bg); color: var(--amber); font-weight: 700; }
+/* Theme bar in nav */
+.theme-bar {
+  display: flex;
+  gap: 4px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 3px;
+  flex-shrink: 0;
+}
+.theme-btn {
+  padding: 5px 11px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  background: transparent;
+  color: var(--text2);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  letter-spacing: 0.2px;
+}
+.theme-btn:hover { color: var(--text); background: var(--surface2); }
+.theme-btn.active { background: var(--amber-bg); color: var(--amber); font-weight: 700; }
+[data-theme="light"] .theme-btn.active { color: var(--amber); }
+[data-theme="magazine"] .theme-btn.active { color: #8b6914; background: rgba(139,105,20,0.1); }
+[data-theme="memphis"] .theme-btn.active { color: #fff; background: linear-gradient(135deg, #6c5ce7, #a29bfe); }
+[data-theme="bento"] .theme-btn.active { background: var(--amber); color: #FFF8F0; font-weight: 900; border-radius: 12px; }
 
-  [data-theme="light"] .theme-btn.active { color: var(--amber); }
-  [data-theme="amber"] .theme-btn.active { color: var(--amber); background: rgba(251,191,36,0.18); }
-  [data-theme="magazine"] .theme-btn.active { color: #8b6914; background: rgba(139,105,20,0.1); }
+/* Tab content */
+.tab-content { display: none; }
+.tab-content.active { display: block; }
 
-  /* Magazine theme overrides */
-  [data-theme="magazine"] .hdr h1 {
-    font-weight: 700;
-    font-style: italic;
-    letter-spacing: -0.3px;
-  }
-  [data-theme="magazine"] .panel-head {
-    font-size: 14px;
-    font-weight: 700;
-    padding: 18px 24px;
-    border-bottom: 2px solid var(--divider);
-  }
-  [data-theme="magazine"] .panel-body {
-    padding: 20px 24px;
-  }
-  [data-theme="magazine"] .panel-body-sm {
-    padding: 18px 22px;
-  }
-  [data-theme="magazine"] .section-label {
-    font-size: 13px;
-    letter-spacing: 2px;
-    font-weight: 700;
-  }
-  [data-theme="magazine"] .ix .ixv {
-    font-size: 26px;
-  }
-  [data-theme="magazine"] .hdr-sub {
-    font-style: italic;
-    font-size: 14px;
-  }
-  [data-theme="magazine"] table.tbl th {
-    font-size: 11px;
-    letter-spacing: 1px;
-  }
-  [data-theme="magazine"] .fn {
-    font-size: 13px;
-    line-height: 1.8;
-  }
-
-  /* Magazine drop cap on first panel of each row */
-  [data-theme="magazine"] .panel:first-child .panel-body .fn:first-of-type::first-letter,
-  [data-theme="magazine"] .panel:first-child .panel-body-sm .fn:first-of-type::first-letter {
-    font-size: 2em;
-    font-weight: 700;
-    float: left;
-    line-height: 0.8;
-    margin-right: 6px;
-    color: var(--amber);
-  }
-
-  /* Memphis theme overrides */
-  [data-theme="memphis"] .panel {
-    border-radius: 16px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    overflow: hidden;
-  }
-  [data-theme="memphis"] .panel-head {
-    border-bottom: 3px solid var(--divider);
-    padding: 16px 20px;
-  }
-  [data-theme="memphis"] .hdr h1 {
-    font-weight: 900;
-    letter-spacing: 1px;
-  }
-  [data-theme="memphis"] .theme-btn.active {
-    color: #fff;
-    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-  }
-
-  /* Laboratory theme overrides */
-  [data-theme="laboratory"] body {
-    background-image:
-      linear-gradient(rgba(45,41,38,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(45,41,38,0.04) 1px, transparent 1px);
-    background-size: 24px 24px;
-  }
-  [data-theme="laboratory"] .panel {
-    border: 2px solid rgba(45,41,38,0.12);
-    border-radius: 6px;
-  }
-  [data-theme="laboratory"] .panel-head {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border-bottom: 2px solid var(--divider);
-  }
-  [data-theme="laboratory"] .hdr h1 {
-    font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
-    font-weight: 900;
-    letter-spacing: 2px;
-  }
-  [data-theme="laboratory"] .section-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    background: var(--surface2);
-    padding: 4px 12px;
-    border-radius: 3px;
-  }
-  [data-theme="laboratory"] .highlight,
-  [data-theme="laboratory"] mark {
-    background: rgba(255,242,0,0.25);
-    padding: 0 4px;
-  }
-  [data-theme="laboratory"] .theme-btn.active {
-    background: #2D2926;
-    color: #FFF200;
-    font-family: 'Space Mono', monospace;
-  }
-
-  /* Bento theme overrides */
-  [data-theme="bento"] .panel {
-    border: 3px solid var(--border);
-    border-radius: 20px;
-    box-shadow:
-      4px 4px 0 rgba(180,160,140,0.15),
-      0 0 0 2px #FFF8F0,
-      0 0 0 5px var(--border);
-    background: var(--surface);
-  }
-  [data-theme="bento"] .panel-head {
-    font-size: 16px;
-    font-weight: 900;
-    padding: 20px 24px 14px;
-    border-bottom: 2px dashed var(--divider);
-  }
-  [data-theme="bento"] .panel-head::before {
-    content: '';
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    background: var(--amber);
-    border-radius: 50%;
-    margin-right: 10px;
-    vertical-align: middle;
-  }
-  [data-theme="bento"] .hdr h1 {
-    font-weight: 900;
-    text-shadow: 1px 1px 0 rgba(92,64,51,0.06);
-  }
-  [data-theme="bento"] .hdr {
-    border-bottom: 3px double var(--divider);
-  }
-  [data-theme="bento"] table.tbl th {
-    border-bottom: 2px solid var(--border);
-  }
-  [data-theme="bento"] .theme-btn.active {
-    background: var(--amber);
-    color: #FFF8F0;
-    font-weight: 900;
-    border-radius: 12px;
-  }
-
-  @media (max-width: 900px) {
-    .row { grid-template-columns: 1fr; }
-  }
+/* ===== GLOBAL RESPONSIVE ===== */
+@media (max-width: 1200px) {
+  .tab-btn { padding: 7px 13px; font-size: 12px; }
+}
+@media (max-width: 768px) {
+  body { padding: 12px; }
+  [data-theme="magazine"] body { padding: 16px 12px; }
+  .tab-nav-bar { flex-direction: column; align-items: stretch; gap: 8px; }
+  .tab-btn { padding: 7px 10px; font-size: 11px; }
+  .theme-btn { padding: 4px 7px; font-size: 9px; }
+  .row { grid-template-columns: 1fr; }
+  .row-3, .row-5 { grid-template-columns: 1fr 1fr; }
+  .row-2 { grid-template-columns: 1fr; }
+  .cv3 { grid-template-columns: 1fr; }
+  .bias-grid { grid-template-columns: 1fr; }
+  .index-strip { grid-template-columns: 1fr 1fr; }
+  .market-stats { grid-template-columns: 1fr; }
+  .ops-grid { grid-template-columns: 1fr; }
+  .lolla { grid-template-columns: repeat(2, 1fr); }
+  .sc4 { flex-wrap: wrap; }
+  .sc4b { min-width: 45%; }
+  .hdr { flex-direction: column; gap: 10px; }
+  .hdr-meta { align-items: flex-start; }
+  .score-hero { flex-direction: column; text-align: center; }
+  .score-circle { margin: 0 auto; }
+  .indicators { grid-template-columns: 1fr; }
+  .rules-grid { grid-template-columns: 1fr 1fr; }
+  .fw-grid { grid-template-columns: 1fr; }
+  .overview-bar { grid-template-columns: 1fr 1fr; }
+  .sector-grid { grid-template-columns: 1fr; }
+  .timeline { flex-direction: column; }
+  .accuracy-grid { grid-template-columns: 1fr 1fr; }
+  .main-grid { grid-template-columns: 1fr; }
+  .op-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  body { padding: 6px; }
+  .tab-btn { padding: 6px 8px; font-size: 10px; }
+  .theme-btn { padding: 3px 5px; font-size: 8px; }
+  .index-strip { grid-template-columns: 1fr 1fr; }
+  .row-3, .row-5 { grid-template-columns: 1fr; }
+  .rules-grid { grid-template-columns: 1fr; }
+  .overview-bar { grid-template-columns: 1fr; }
+  .lolla { grid-template-columns: 1fr 1fr; }
+  .sc4b { min-width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
 
 </style>
 </head>
@@ -965,428 +817,2362 @@
 <div class="container">
 
 <!-- ===== HEADER ===== -->
-<div class="hdr">
-  <div>
-    <h1>Decision Panel <span class="ver">v5.1</span></h1>
-    <div class="hdr-sub">6层闭环 v2.4 + L0偏误自检 + L0.5脆弱性检查 + Lollapalooza</div>
+<div class="hdr"><h1>投资决策面板 <span class="ver">v5.2</span></h1></div>
+
+<!-- ===== TAB NAVIGATION + THEME BAR ===== -->
+<div class="tab-nav-bar">
+  <div class="tab-nav" id="tabNav">
+    <button class="tab-btn active" data-tab="predict">盘前预测</button>
+    <button class="tab-btn" data-tab="review">盘后复盘</button>
+    <button class="tab-btn" data-tab="industry">行业分析</button>
+    <button class="tab-btn" data-tab="market">市场状态</button>
   </div>
-  <div class="hdr-meta">
-    <span class="hdr-date"><span>6/29 周一 盘前</span></span>
+  <div class="theme-bar" id="themeBar">
+    <button class="theme-btn active" data-theme="dark">深色工业</button>
+    <button class="theme-btn" data-theme="light">亮色专业</button>
+    <button class="theme-btn" data-theme="magazine">财经杂志</button>
+    <span style="color:var(--divider);margin:0 1px;align-self:center;font-size:10px;">|</span>
+    <button class="theme-btn" data-theme="memphis">活力孟菲斯</button>
+    <button class="theme-btn" data-theme="bento">手工匠盒</button>
+  </div>
+</div>
+
+<!-- ===== TAB 1: 盘前预测 ===== -->
+<!-- 盘前预测 Tab -->
+<div class="tab-content active" data-tab="predict">
+<style>
+
+[data-tab="predict"] .container { max-width: 1000px; margin: 0 auto; background: var(--surface); border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); overflow: hidden; }
+[data-tab="predict"] .header { background: var(--text); color: var(--bg); padding: 30px; text-align: center; }
+[data-tab="predict"] .brand-stamp { display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px; border: 2.5px solid var(--red); border-radius: 3px; transform: rotate(-2deg); margin-bottom: 15px; }
+[data-tab="predict"] .stamp-text { color: var(--red); font-weight: 700; font-size: 18px; }
+[data-tab="predict"] .stamp-sub { color: var(--red); opacity: 0.7; border-left: 1.5px solid rgba(229,62,62,0.5); padding-left: 8px; font-size: 12px; }
+[data-tab="predict"] .header h1 { font-size: 28px; margin: 10px 0; color: var(--bg); }
+[data-tab="predict"] .meta { font-size: 14px; opacity: 0.8; margin-top: 10px; }
+[data-tab="predict"] .report-meta { text-align: center; padding: 20px; color: var(--text3); font-size: 14px; border-bottom: 1px solid var(--divider); }
+[data-tab="predict"] .content { padding: 30px; }
+[data-tab="predict"] h2 { color: var(--text); font-size: 22px; margin: 30px 0 15px; padding-bottom: 8px; border-bottom: 2px solid var(--red); }
+[data-tab="predict"] h3 { color: var(--text2); font-size: 18px; margin: 20px 0 10px; }
+[data-tab="predict"] p { margin: 10px 0; line-height: 1.8; color: var(--text); }
+[data-tab="predict"] strong { color: var(--red); font-weight: 600; }
+[data-tab="predict"] table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+[data-tab="predict"] th { background: var(--text); color: var(--bg); padding: 10px; text-align: left; font-weight: 600; }
+[data-tab="predict"] td { padding: 10px; border-bottom: 1px solid var(--divider); color: var(--text); }
+[data-tab="predict"] tr:hover { background: var(--red-bg); }
+[data-tab="predict"] .up { color: var(--red); font-weight: 600; }
+[data-tab="predict"] .down { color: var(--green); font-weight: 600; }
+[data-tab="predict"] .warning { background: var(--amber-bg); border-left: 4px solid var(--amber); padding: 15px; margin: 20px 0; border-radius: 4px; color: var(--text); }
+[data-tab="predict"] .suggestion { background: var(--blue-bg); border-left: 4px solid var(--blue); padding: 15px; margin: 20px 0; border-radius: 4px; color: var(--text); }
+[data-tab="predict"] hr { border: none; border-top: 2px solid var(--divider); margin: 30px 0; }
+[data-tab="predict"] li { margin: 8px 0 8px 30px; color: var(--text); }
+[data-tab="predict"] code { background: var(--surface2); padding: 2px 6px; border-radius: 4px; color: var(--red); font-weight: 600; font-family: "Courier New", monospace; }
+[data-tab="predict"] .page-footer { text-align: center; padding: 20px; color: var(--text3); font-size: 12px; border-top: 1px solid var(--divider); }
+[data-tab="predict"] .disclaimer { background: var(--surface2); padding: 20px; margin: 30px 0; border-radius: 8px; text-align: center; color: var(--text3); font-size: 14px; }
+[data-tab="predict"] img { max-width: 100%; height: auto; }
+[data-tab="predict"] .container { background: transparent; box-shadow: none; }
+
+</style>
+<div class="container">
+        <div class="header">
+            <div class="brand-stamp">
+                <span class="stamp-text">NexWeave</span>
+                <span class="stamp-sub">RESEARCH</span>
+            </div>
+            <h1>盘前预测 · 2026-06-29（周一）</h1>
+        </div>
+        <div class="report-meta">© NexWeave Research | 2026-06-29</div>
+        <div class="content">
+<br><table>
+<thead>
+<tr>
+<th>数据源：TDX MCP + WebSearch</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table><p>> 框架版本：v2.4（6层闭环+市场脆弱性检查）</p><p>> 免责声明：本报告为自动化分析框架输出，不构成投资建议</p><br><hr><br><h2>L0 · 认知偏误自检（6问）</h2><br><table>
+<thead>
+<tr>
+<th>#</th>
+<th>偏误类型</th>
+<th>自检问题</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>确认偏误</td>
+<td>周五暴跌后是否选择性寻找看多理由？</td>
+<td>⚠️ 存在·注意周末硅片涨价利好可能被放大解读</td>
+</tr>
+<tr>
+<td>2</td>
+<td>反脆弱</td>
+<td>分析框架能否在大跌后保持中性？</td>
+<td>✅ 框架自带Q6反向论证强制机制</td>
+</tr>
+<tr>
+<td>3</td>
+<td>禀赋效应</td>
+<td>17只关注股是否影响了对整体市场的判断？</td>
+<td>⚠️ 部分持仓股（北方华创/中微公司）逆势走强，需警惕持仓偏好</td>
+</tr>
+<tr>
+<td>4</td>
+<td>系统性盲点</td>
+<td>是否遗漏了季末资金面冲击？</td>
+<td>✅ 已纳入2.8万亿资金缺口分析</td>
+</tr>
+<tr>
+<td>5</td>
+<td>一致性</td>
+<td>上周结论（震荡分化）是否影响本次判断？</td>
+<td>⚠️ 上周看震荡分化，但周五暴跌超预期，需重新校准</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Q6反向论证</strong></td>
+<td><strong>论证"今日不会反弹将继续下跌"的情形</strong></td>
+<td>见下方Q6反向论证</td>
+</tr>
+</tbody>
+</table><br><p><strong>Q6 · 反向论证强制执行：今日不会反弹将继续下跌的情形</strong></p><br><p>1. <strong>费城半导体-<span class="up">5.29%</span>传导</strong>：亚太半导体板块周一直接跟跌，科创50再度考验2000点</p><p>2. <strong>季末机构调仓压力</strong>：6月最后一个交易日，公募基金漂移纠偏+资金回笼压力集中释放</p><p>3. <strong>北向资金加速流出</strong>：交易型北向上周五净流出80亿+，若周一继续大幅流出，市场情绪崩塌</p><p>4. <strong>周末消息面真空</strong>：除硅片涨价外无实质性政策利好，利好已被周五尾盘price in</p><p>5. <strong>多杀多风险</strong>：周五4600只个股下跌，融资盘面临强平压力，周一可能触发连锁止损</p><p>6. <strong>上证4000点整数关</strong>：若开盘跌破4000点整数关口，技术性卖盘将放大跌幅</p><br><p>⚡ <strong>结论句（证伪方向）</strong>：如果北向资金开盘30分钟内净流出超20亿 + 上证有效跌破4000点，则反弹预期证伪，进入下跌中继阶段。</p><br><hr><br><h2>L0.5 · 市场脆弱性检查</h2><br><table>
+<thead>
+<tr>
+<th>检查项</th>
+<th>状态</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>波动率异常（VIX/ATR飙升）</td>
+<td>🔴</td>
+<td>周五沪指-<span class="up">2.26%</span>创3月以来最大单日跌幅，ATR已显著扩张</td>
+</tr>
+<tr>
+<td>板块轮动枯竭（无明确主线）</td>
+<td>🔴</td>
+<td>仅光刻机/半导体设备/猪肉三个方向局部走强，AI硬件集体崩跌</td>
+</tr>
+<tr>
+<td>资金面恶化（北向+融资双杀）</td>
+<td>🔴</td>
+<td>北向净流出80亿+（交易型创3月新高），全市场4600只下跌</td>
+</tr>
+</tbody>
+</table><br><p><strong>三项全🔴 → 触发暂停新分析机制</strong></p><li>⛔ 不推荐新建仓位</li><li>⛔ 不推荐追涨/追板块</li><li>✅ 仅允许持有已有仓位+观察</li><li>⚡ 进入防御模式，本次分析以风险警示为主</li><br><hr><br><h2>L1 · 宏观闭环</h2><br><h3>隔夜美股（6/26周五收盘）</h3><br><table>
+<thead>
+<tr>
+<th>指数</th>
+<th>收盘</th>
+<th>涨跌幅</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>道琼斯</td>
+<td>51,876</td>
+<td>-<span class="up">0.09%</span></td>
+<td>周涨幅<span class="up">+0.6%</span>，传统蓝筹抗跌</td>
+</tr>
+<tr>
+<td>标普500</td>
+<td>7,354</td>
+<td>-<span class="up">0.05%</span></td>
+<td>周跌幅-<span class="up">1.95%</span></td>
+</tr>
+<tr>
+<td>纳斯达克</td>
+<td>25,298</td>
+<td>-<span class="up">0.24%</span></td>
+<td>周跌幅-<span class="up">4.6%</span>，科技五连阴</td>
+</tr>
+<tr>
+<td>费城半导体</td>
+<td>13,204</td>
+<td>-<span class="up">5.29%</span></td>
+<td>周跌幅-<span class="up">7.94%</span>，安森美-<span class="up">23.66%</span>/西部数据-13%/希捷-12%</td>
+</tr>
+</tbody>
+</table><br><p><strong>核心个股</strong>：</p><li>英伟达 -<span class="up">1.6%</span> / 台积电 -<span class="up">2.79%</span> / 博通 -<span class="up">3.2%</span> / 美光 -<span class="up">4.65%</span></li><li>科技七巨头分化：微软+5%/苹果+3%/亚马逊<span class="up">+0.3%</span>逆势走强</li><li>存储方向：美光连续两日（+15%→-<span class="up">6.7%</span>）大幅波动</li><br><h3>宏观事件日历</h3><br><table>
+<thead>
+<tr>
+<th>事件</th>
+<th>时间</th>
+<th>影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>央行新增隔夜逆回购</td>
+<td>6/29-30</td>
+<td>📌 利好·不限量满足银行短期资金需求</td>
+</tr>
+<tr>
+<td>5000亿MLF续作（净投放2000亿）</td>
+<td>6/25已执行</td>
+<td>📌 利好·中长期流动性注入</td>
+</tr>
+<tr>
+<td>季末资金缺口2.8万亿</td>
+<td>6/29</td>
+<td>🔴 利空·历史级资金面压力</td>
+</tr>
+<tr>
+<td>太空算力产业大会（北京）</td>
+<td>6/29-30</td>
+<td>中性·题材催化，无批量落地</td>
+</tr>
+<tr>
+<td>四川宜宾5.5级地震</td>
+<td>6/29凌晨</td>
+<td>谨慎关注·暂无重大损失报告</td>
+</tr>
+<tr>
+<td>基金半年度排名/漂移纠偏</td>
+<td>6/29-30</td>
+<td>🔴 利空·公募集中调仓压力</td>
+</tr>
+</tbody>
+</table><br><h3>北向资金</h3><br><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数据</th>
+<th>来源/日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上周五北向净流出</td>
+<td>~80亿+（交易型创3月新高）</td>
+<td>报告数据，2026-06-26</td>
+</tr>
+<tr>
+<td>配置型</td>
+<td>小幅净流入</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>汇市参考</td>
+<td>离岸人民币6.79-6.81区间</td>
+<td>WebSearch，2026-06-27</td>
+</tr>
+</tbody>
+</table><br><p>⚡ <strong>宏观层结论</strong>：内外多空交织。海外费半-<span class="up">5.29%</span>是明确利空传导，但国内央行流动性对冲+硅片涨价是局部利好。宏观方向偏空，不支持今天快速修复。</p><br><hr><br><h2>L2 · 大盘闭环</h2><br><h3>五大指数收盘数据</h3><br><table>
+<thead>
+<tr>
+<th>指数</th>
+<th>收盘</th>
+<th>涨跌幅</th>
+<th>成交额(亿)</th>
+<th>日内区间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上证</td>
+<td>4,027.26</td>
+<td>-<span class="up">2.26%</span></td>
+<td>16,211</td>
+<td>4,007-4,100</td>
+</tr>
+<tr>
+<td>深成指</td>
+<td>15,782.22</td>
+<td>-<span class="up">3.44%</span></td>
+<td>19,312</td>
+<td>15,728-16,215</td>
+</tr>
+<tr>
+<td>创业板指</td>
+<td>4,194.21</td>
+<td>-<span class="up">4.07%</span></td>
+<td>9,381</td>
+<td>4,175-4,329</td>
+</tr>
+<tr>
+<td>科创50</td>
+<td>2,032.28</td>
+<td>-<span class="up">1.65%</span></td>
+<td>2,017</td>
+<td>1,976-2,076</td>
+</tr>
+<tr>
+<td>沪深300</td>
+<td>4,868.22</td>
+<td>-<span class="up">3.02%</span></td>
+<td>10,681</td>
+<td>4,845-4,982</td>
+</tr>
+</tbody>
+</table><br><p><strong>沪深两市合计成交额</strong>：35,524亿（较前日缩量419亿）</p><br><h3>技术指标</h3><br><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>上证</th>
+<th>研判</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>量价关系</td>
+<td>缩量下跌（-419亿）</td>
+<td>抛压未完全释放，但非恐慌性放量</td>
+</tr>
+<tr>
+<td>MA排列</td>
+<td>跌破30日/60日线中短期均线</td>
+<td>中期趋势转弱，60日线在4100区域</td>
+</tr>
+<tr>
+<td>RSI(14)</td>
+<td>结合日K跌幅估算约28-32</td>
+<td>进入超卖区域，有技术性反弹需求</td>
+</tr>
+<tr>
+<td>支撑位</td>
+<td>4,000（整数关口）+ 3,950（前低）</td>
+<td>关键防守位</td>
+</tr>
+<tr>
+<td>压力位</td>
+<td>4,100（60日线）+ 4,120（前收盘）</td>
+<td>反弹阻力区</td>
+</tr>
+</tbody>
+</table><br><h3>趋势判定</h3><br><table>
+<thead>
+<tr>
+<th>周期</th>
+<th>趋势</th>
+<th>依据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>短期（1-3日）</td>
+<td>⬇️ 下降偏空</td>
+<td>周五放量破位，跌破中期均线，短期空头主导</td>
+</tr>
+<tr>
+<td>中期（1-4周）</td>
+<td>➡️ 震荡偏空</td>
+<td>季末资金压力+海外传导，但硅片涨价+政策托底</td>
+</tr>
+<tr>
+<td>长期（月线）</td>
+<td>↗️ 上升趋势中的回调</td>
+<td>年初以来上升趋势未破，但幅度需观察</td>
+</tr>
+</tbody>
+</table><br><p>⚡ <strong>大盘层结论</strong>：上证短期空头主导，4000点整数关是关键防守位。日内预期低开（费半传导），但超卖+政策托底可能有探底回升，全天看震荡偏弱（上证3990-4060）。</p><br><hr><br><h2>L3 · 板块+瓶颈分析</h2><br><h3>关注行业瓶颈评分（30分制）</h3><br><table>
+<thead>
+<tr>
+<th>行业</th>
+<th>技术壁垒(15)</th>
+<th>供给瓶颈(10)</th>
+<th>需求刚性(5)</th>
+<th>**瓶颈总分**</th>
+<th>品牌壁垒(独立)</th>
+<th>核心判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI光模块</td>
+<td>10/15</td>
+<td>7/10</td>
+<td>4/5</td>
+<td><strong>21</strong></td>
+<td>中际旭创(强)</td>
+<td>周五板块暴跌10%+，瓶颈分中等但情绪破坏严重</td>
+</tr>
+<tr>
+<td>AI芯片/算力</td>
+<td>13/15</td>
+<td>8/10</td>
+<td>4/5</td>
+<td><strong>25</strong> ⚠️</td>
+<td>寒武纪(中偏低)</td>
+<td>费半-<span class="up">5.29%</span>+安森美-24%传导，短期冲击大</td>
+</tr>
+<tr>
+<td>半导体设备</td>
+<td>14/15</td>
+<td>8/10</td>
+<td>4/5</td>
+<td><strong>26</strong> ⚠️</td>
+<td>北方华创(强)</td>
+<td>国产替代逻辑不变，设备环节逆势抗跌</td>
+</tr>
+<tr>
+<td>存储芯片</td>
+<td>9/15</td>
+<td>8/10</td>
+<td>5/5</td>
+<td><strong>22</strong></td>
+<td>兆易创新(中)</td>
+<td>硅片涨价+存储涨价共振，兆易-<span class="up">0.67%</span>极抗跌</td>
+</tr>
+<tr>
+<td>汽车/新能源</td>
+<td>6/15</td>
+<td>4/10</td>
+<td>4/5</td>
+<td><strong>14</strong></td>
+<td>比亚迪(强)</td>
+<td>宁德-<span class="up">5.20%</span>/江淮-<span class="up">6.70%</span>全线杀跌，短期回避</td>
+</tr>
+</tbody>
+</table><br><p><strong>确认偏误防护</strong>：瓶颈评分≥24触发 → 半导体设备(26分)和AI芯片(25分)触发</p><li>防护指令：瓶颈分高 ≠ 短期买入信号。费半传导尚未出清，需等待盘面确认。</li><br><h3>周五板块表现速览</h3><br><table>
+<thead>
+<tr>
+<th>板块</th>
+<th>表现</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>光刻机/半导体硅片</td>
+<td>✅ 逆势大涨</td>
+<td>硅片涨价+国产替代，有研硅20cm涨停</td>
+</tr>
+<tr>
+<td>半导体设备</td>
+<td>✅ 逆势抗跌</td>
+<td>北方华创<span class="up">+1.93%</span>/中微<span class="up">+3.48%</span></td>
+</tr>
+<tr>
+<td>存储芯片</td>
+<td>➖ 分化</td>
+<td>兆易-<span class="up">0.67%</span>抗跌，佰维存储/德明利逆势走强</td>
+</tr>
+<tr>
+<td>AI光模块</td>
+<td>🔴 暴跌</td>
+<td>新易盛-<span class="up">7.29%</span>/天孚-<span class="up">7.01%</span>/中际旭创-<span class="up">5.25%</span></td>
+</tr>
+<tr>
+<td>新能源车</td>
+<td>🔴 大跌</td>
+<td>宁德-<span class="up">5.20%</span>/比亚迪-<span class="up">4.86%</span>/江淮-<span class="up">6.70%</span></td>
+</tr>
+<tr>
+<td>AI芯片</td>
+<td>🔴 大跌</td>
+<td>寒武纪-<span class="up">3.12%</span>/海光-<span class="up">4.27%</span></td>
+</tr>
+</tbody>
+</table><br><p>⚡ <strong>板块层结论</strong>：半导体设备+存储芯片是周五唯一抗跌方向，确认偏误防护已触发。光模块和新能源短期回避。硅片涨价产业链需关注今日持续性。</p><br><hr><br><h2>L4 · 个股分析（17只关注股）</h2><br><h3>周五涨跌幅排行</h3><br><table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>收盘</th>
+<th>涨跌幅</th>
+<th>成交额(亿)</th>
+<th>走势评级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>688012</td>
+<td>中微公司</td>
+<td>413.00</td>
+<td><strong><span class="up">+3.48%</span></strong></td>
+<td>131.5</td>
+<td>🔵 强·逆势领涨</td>
+</tr>
+<tr>
+<td>002371</td>
+<td>北方华创</td>
+<td>813.37</td>
+<td><strong><span class="up">+1.93%</span></strong></td>
+<td>100.1</td>
+<td>🔵 强·逆势领涨</td>
+</tr>
+<tr>
+<td>603986</td>
+<td>兆易创新</td>
+<td>770.00</td>
+<td>-<span class="up">0.67%</span></td>
+<td>374.2</td>
+<td>🟡 中性·极抗跌</td>
+</tr>
+<tr>
+<td>300641</td>
+<td>正丹股份</td>
+<td>16.00</td>
+<td>-<span class="up">2.50%</span></td>
+<td>2.2</td>
+<td>🟡 中性·缩量抗跌</td>
+</tr>
+<tr>
+<td>688256</td>
+<td>寒武纪</td>
+<td>1,458.00</td>
+<td>-<span class="up">3.12%</span></td>
+<td>182.4</td>
+<td>🔴 弱·破位下跌</td>
+</tr>
+<tr>
+<td>688041</td>
+<td>海光信息</td>
+<td>344.90</td>
+<td>-<span class="up">4.27%</span></td>
+<td>138.2</td>
+<td>🔴 弱</td>
+</tr>
+<tr>
+<td>688775</td>
+<td>影石创新</td>
+<td>131.85</td>
+<td>-<span class="up">4.47%</span></td>
+<td>2.9</td>
+<td>🔴 弱</td>
+</tr>
+<tr>
+<td>300474</td>
+<td>景嘉微</td>
+<td>52.97</td>
+<td>-<span class="up">4.99%</span></td>
+<td>7.0</td>
+<td>🔴 弱</td>
+</tr>
+<tr>
+<td>688981</td>
+<td>中芯国际</td>
+<td>148.76</td>
+<td>-<span class="up">5.16%</span></td>
+<td>161.7</td>
+<td>🔴 弱·费半传导</td>
+</tr>
+<tr>
+<td>300750</td>
+<td>宁德时代</td>
+<td>381.00</td>
+<td>-<span class="up">5.20%</span></td>
+<td>181.3</td>
+<td>🔴 弱·创业板领跌</td>
+</tr>
+<tr>
+<td>300308</td>
+<td>中际旭创</td>
+<td>1,253.89</td>
+<td>-<span class="up">5.25%</span></td>
+<td>444.8</td>
+<td>🔴 弱·光模块破位</td>
+</tr>
+<tr>
+<td>002384</td>
+<td>东山精密</td>
+<td>260.32</td>
+<td>-<span class="up">5.61%</span></td>
+<td>181.8</td>
+<td>🔴 弱</td>
+</tr>
+<tr>
+<td>600418</td>
+<td>江淮汽车</td>
+<td>26.87</td>
+<td>-<span class="up">6.70%</span></td>
+<td>21.9</td>
+<td>🔴 弱·汽车板块承压</td>
+</tr>
+<tr>
+<td>300394</td>
+<td>天孚通信</td>
+<td>318.00</td>
+<td>-<span class="up">7.01%</span></td>
+<td>156.6</td>
+<td>🔴 弱·光模块领跌</td>
+</tr>
+<tr>
+<td>300502</td>
+<td>新易盛</td>
+<td>566.00</td>
+<td>-<span class="up">7.29%</span></td>
+<td>352.8</td>
+<td>🔴 弱·光模块领跌</td>
+</tr>
+<tr>
+<td>002049</td>
+<td>紫光国微</td>
+<td>83.98</td>
+<td>-<span class="up">4.02%</span></td>
+<td>40.7</td>
+<td>🔴 弱</td>
+</tr>
+<tr>
+<td>002594</td>
+<td>比亚迪</td>
+<td>78.20</td>
+<td>-<span class="up">4.86%</span></td>
+<td>52.7</td>
+<td>🔴 弱</td>
+</tr>
+</tbody>
+</table><br><h3>关键个股分析</h3><br><p><strong>北方华创（002371）—— 核心持仓</strong></p><li>逆势<span class="up">+1.93%</span>，收盘813.37元，成交100亿</li><li>半导体设备国产替代逻辑+一季度净利+60%+支撑</li><li>⚡ 紫苏叶✅标的，中期持有逻辑不变，短期关注825-830压力</li><br><p><strong>中微公司（688012）—— 核心持仓</strong></p><li>逆势<span class="up">+3.48%</span>，收盘413元，成交131亿</li><li>一季度净利+197%（含非经常性），但扣非后增速依然强劲</li><li>⚡ 紫苏叶✅标的，短期有望延续强势</li><br><p><strong>兆易创新（603986）</strong></p><li>-<span class="up">0.67%</span>极抗跌，成交374亿，盘中从732到779大幅波动</li><li>存储涨价+硅片涨价共振，短期博弈窗口</li><li>⚡ 上周2日<span class="up">+20.9%</span>后高位消化，关注今日能否站稳770</li><br><p><strong>光模块三巨头（新易盛/中际旭创/天孚通信）</strong></p><li>集体暴跌-5%~-<span class="up">7.3%</span>，板块情绪崩溃</li><li>⚡ 短期回避，等待费半传导出清+板块企稳信号</li><br><hr><br><h2>L5 · 三来源独立交叉验证</h2><br><h3>来源①：价格趋势（K线+均线+RSI）</h3><br><table>
+<thead>
+<tr>
+<th>指数</th>
+<th>短期趋势</th>
+<th>RSI估算</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上证</td>
+<td>⬇️ 向下破位</td>
+<td>~28-32超卖</td>
+<td>偏空但有超卖反弹需求</td>
+</tr>
+<tr>
+<td>科创50</td>
+<td>➡️ 震荡</td>
+<td>下影线探底回升</td>
+<td>中性，2000点有支撑</td>
+</tr>
+<tr>
+<td>创业板</td>
+<td>⬇️ 空头</td>
+<td>破位明显</td>
+<td>偏空，回避成长</td>
+</tr>
+</tbody>
+</table><br><h3>来源②：基本面（财报+管理层+产业）</h3><br><table>
+<thead>
+<tr>
+<th>因子</th>
+<th>状态</th>
+<th>方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1-5月规上工业利润<span class="up">+18.8%</span>（电子<span class="up">+103.9%</span>）</td>
+<td>✅ 明确利好</td>
+<td>◀ 偏多·工业端</td>
+</tr>
+<tr>
+<td>硅片涨价（立昂微7/1起+10-15%）</td>
+<td>✅ 产业景气确认</td>
+<td>◀ 偏多·半导体上游</td>
+</tr>
+<tr>
+<td>央行隔夜逆回购+MLF净投放2000亿</td>
+<td>✅ 流动性托底</td>
+<td>◀ 偏多·流动性</td>
+</tr>
+<tr>
+<td>季末资金缺口2.8万亿</td>
+<td>🔴 历史压力</td>
+<td>▶ 偏空·资金面</td>
+</tr>
+<tr>
+<td>基金半年度漂移纠偏</td>
+<td>🔴 集中抛售</td>
+<td>▶ 偏空·机构行为</td>
+</tr>
+</tbody>
+</table><br><h3>来源③：市场情绪（资金流向+舆论）</h3><br><table>
+<thead>
+<tr>
+<th>因子</th>
+<th>状态</th>
+<th>方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>北向资金交易型净流出80亿+</td>
+<td>🔴 创近3月新高</td>
+<td>▶ 偏空</td>
+</tr>
+<tr>
+<td>主力净流出272亿</td>
+<td>🔴 大规模流出</td>
+<td>▶ 偏空</td>
+</tr>
+<tr>
+<td>下跌4600只/上涨仅790只</td>
+<td>🔴 极度弱势</td>
+<td>▶ 偏空</td>
+</tr>
+<tr>
+<td>半导体涨价舆论发酵</td>
+<td>✅ 周末刷屏</td>
+<td>◀ 偏多·情绪修复</td>
+</tr>
+</tbody>
+</table><br><h3>交叉验证判定</h3><br><table>
+<thead>
+<tr>
+<th>来源</th>
+<th>方向</th>
+<th>权重</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>①价格趋势</td>
+<td>▶ 偏空</td>
+<td>3</td>
+</tr>
+<tr>
+<td>②基本面</td>
+<td>➡️ 多空交织略偏多</td>
+<td>2</td>
+</tr>
+<tr>
+<td>③市场情绪</td>
+<td>▶ 偏空</td>
+<td>3</td>
+</tr>
+</tbody>
+</table><br><p><strong>判定结果：2偏空 + 1中性略偏多 → 谨慎偏空，不行动</strong></p><br><li>3同向→行动：❌ 不适用</li><li>2同向+1中性→谨慎：✅ 当前情形。价格趋势+情绪双偏空，基本面略偏多</li><li>有矛盾→不动：⚠️ 部分矛盾（基本面逆势看多 vs 价格/情绪看空）</li><br><p><strong>⚡ 结论：不行动。今日不是加仓日，也不是抄底日。</strong></p><br><hr><br><h2>L6 · 决策</h2><br><h3>三情景分析</h3><br><table>
+<thead>
+<tr>
+<th>情景</th>
+<th>概率</th>
+<th>上证区间</th>
+<th>触发条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 低开修复（探底回升）</td>
+<td><strong>40%</strong></td>
+<td>3,990-4,060</td>
+<td>央行逆回购支撑+超卖反弹+硅片涨价持续</td>
+</tr>
+<tr>
+<td>② 继续下跌（中继调整）</td>
+<td><strong>35%</strong></td>
+<td>3,950-4,020</td>
+<td>费半传导+北向持续流出+机构调仓</td>
+</tr>
+<tr>
+<td>③ 恐慌杀跌（多杀多）</td>
+<td><strong>25%</strong></td>
+<td>3,880-3,960</td>
+<td>跌破4000+融资连环强平+北向百亿级流出</td>
+</tr>
+</tbody>
+</table><br><p><strong>悲观情景合计：25%+35%=60%（≥30%，触发风险预警）</strong></p><li>⚡ 提前制定应对：若上证有效跌破4000点，减仓至2成以下</li><br><h3>Lollapalooza保护层检查</h3><br><table>
+<thead>
+<tr>
+<th>保护项</th>
+<th>状态</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.上证单独破位 vs 全市场共跌</td>
+<td>🔴 全市场共跌（深成指-<span class="up">3.44%</span>/创业板-<span class="up">4.07%</span>）</td>
+<td>非局部风险</td>
+</tr>
+<tr>
+<td>2.北向流出是否可能逆转</td>
+<td>🟡 央行流动性注入可能减缓，但难以逆转</td>
+<td>中性偏不利</td>
+</tr>
+<tr>
+<td>3.费半传导是否消化</td>
+<td>🔴 尚未。周五跌幅巨大，周一亚太半导体直接跟跌</td>
+<td>风险未出清</td>
+</tr>
+<tr>
+<td>4.是否有超预期政策对冲</td>
+<td>🟡 央行逆回购已落地，但再无其他催化</td>
+<td>中性</td>
+</tr>
+<tr>
+<td>5.核心持仓（北方华创/中微）是否仍安全</td>
+<td>✅ 逆势走强，基本面支撑明确</td>
+<td>可持有</td>
+</tr>
+</tbody>
+</table><br><p><strong>Lollapalooza风险评分</strong>：3/5 (🔴🔴🔴🟡🟡) — 中等偏高，多重负向因素叠加</p><br><h3>仓位建议</h3><br><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>当前建议仓位</td>
+<td><strong>2-3成（防御模式）</strong></td>
+</tr>
+<tr>
+<td>核心持仓</td>
+<td>北方华创、中微公司（紫苏叶✅标的，逆势抗跌可持有）</td>
+</tr>
+<tr>
+<td>关注持有</td>
+<td>兆易创新（存储涨价博弈，高波动注意止盈）</td>
+</tr>
+<tr>
+<td>暂不加仓</td>
+<td>光模块三巨头/新能源/汽车——等待信号明确</td>
+</tr>
+<tr>
+<td>现金比例</td>
+<td>建议保持7成以上</td>
+</tr>
+</tbody>
+</table><br><h3>今日重点关注信号</h3><br><table>
+<thead>
+<tr>
+<th>时间窗口</th>
+<th>信号</th>
+<th>应对</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>09:25-09:30</td>
+<td>集合竞价上证是否开盘于4000以下</td>
+<td>若破4000，触发减仓指令</td>
+</tr>
+<tr>
+<td>09:30-10:00</td>
+<td>北向资金前30分钟净流向</td>
+<td>若净流出>20亿，维持防御</td>
+</tr>
+<tr>
+<td>10:00-10:30</td>
+<td>科创50是否守住2000点</td>
+<td>若破2000，半导体板块全面承压</td>
+</tr>
+<tr>
+<td>全天</td>
+<td>成交额是否维持3.5万亿+</td>
+<td>缩量至3万亿以下=抛压减轻</td>
+</tr>
+</tbody>
+</table><br><h3>时间框架分离声明</h3><br><p>> 本报告为 <strong>自动化日频分析（v2.4框架）</strong>，聚焦今日（2026-06-29）的盘前判断与操作指引。</p><p>> 不包含中期（2-4周）或长期（季/年）展望。中期板块配置逻辑参见独立报告。</p><p>> 日频判断与中期展望可能因短期情绪冲击而产生方向性差异，互不干扰。</p><br><hr><br><h2>总结简表</h2><br><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>判断</th>
+<th>置信度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>大盘方向</td>
+<td>低开震荡偏弱，探底回升可能</td>
+<td>45%</td>
+</tr>
+<tr>
+<td>上证区间</td>
+<td>3,990-4,060</td>
+<td>—</td>
+</tr>
+<tr>
+<td>核心风险</td>
+<td>费半传导+季末资金面+4000点保卫战</td>
+<td>—</td>
+</tr>
+<tr>
+<td>最强方向</td>
+<td>半导体设备/存储芯片（硅片涨价链）</td>
+<td>—</td>
+</tr>
+<tr>
+<td>最弱方向</td>
+<td>AI光模块/新能源车/AI芯片</td>
+<td>—</td>
+</tr>
+<tr>
+<td>建议仓位</td>
+<td>2-3成</td>
+<td>—</td>
+</tr>
+<tr>
+<td>行动指令</td>
+<td>⏸️ 不行动</td>
+<td>—</td>
+</tr>
+</tbody>
+</table><br><hr><br><p>*数据来源说明：指数/个股行情数据来自 TDX MCP（通达信），验证日期2026-06-29 08:35。宏观新闻/补数据来自 WebSearch（新浪财经/东方财富/金十数据/知乎等公开来源）。*</p><br>
+        </div>
+        <div class="page-footer">© NexWeave Research · v3.0 · 2026-06-29</div>
+    </div>
+</div>
+
+<!-- 盘后复盘 Tab -->
+<div class="tab-content" data-tab="review">
+<style>
+
+[data-tab="review"] * { margin: 0; padding: 0; box-sizing: border-box; }
+[data-tab="review"] { background: var(--bg); color: var(--text); font-family: 'Noto Serif SC', 'Source Han Serif SC', Georgia, 'Times New Roman', serif; line-height: 1.7; padding: 20px; }
+[data-tab="review"] .header { text-align: center; padding: 24px 0 16px; border-bottom: 3px double var(--text); margin-bottom: 20px; }
+[data-tab="review"] .brand-stamp { display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px; border: 2.5px solid var(--red); border-radius: 3px; transform: rotate(-2deg); margin: 0 12px; }
+[data-tab="review"] .stamp-text { color: var(--red); font-weight: 700; font-size: 16px; letter-spacing: 1px; }
+[data-tab="review"] .stamp-sub { color: var(--red); opacity: 0.7; border-left: 1.5px solid rgba(229,62,62,0.5); padding-left: 8px; font-size: 12px; }
+[data-tab="review"] .type-label { display: inline-block; padding: 3px 10px; border-radius: 2px; font-size: 12px; font-weight: 700; color: #fff; letter-spacing: 1px; }
+[data-tab="review"] .type-label.post { background: var(--red); }
+[data-tab="review"] .meta { color: var(--text3); font-size: 13px; margin-top: 6px; }
+[data-tab="review"] .report-meta { text-align: right; color: var(--text3); font-size: 11px; margin: 4px 0 16px; }
+[data-tab="review"] h2 { font-size: 20px; color: var(--text); border-bottom: 2px solid var(--text); padding-bottom: 4px; margin: 28px 0 12px; }
+[data-tab="review"] h3 { font-size: 16px; color: var(--text2); margin: 18px 0 8px; }
+[data-tab="review"] p { margin: 6px 0; font-size: 14px; line-height: 1.8; color: var(--text); }
+[data-tab="review"] .condensed { font-size: 13px; line-height: 1.6; }
+[data-tab="review"] .summary-box { background: var(--surface); border-left: 3px solid var(--red); padding: 12px 16px; margin: 12px 0; font-size: 14px; color: var(--text); }
+[data-tab="review"] .summary-box.warn { border-left-color: var(--amber); }
+[data-tab="review"] .summary-box.bear { border-left-color: var(--green); }
+[data-tab="review"] .tag { display: inline-block; padding: 1px 6px; border-radius: 2px; font-size: 11px; font-weight: 600; margin-right: 3px; }
+[data-tab="review"] .tag-up { background: var(--red-bg); color: var(--red); }
+[data-tab="review"] .tag-down { background: var(--green-bg); color: var(--green); }
+[data-tab="review"] .tag-gold { background: var(--amber-bg); color: var(--amber); }
+[data-tab="review"] .tag-neutral { background: var(--surface2); color: var(--text3); }
+[data-tab="review"] .up { color: var(--red); font-weight: 700; }
+[data-tab="review"] .down { color: var(--green); font-weight: 700; }
+[data-tab="review"] .neutral { color: var(--text3); }
+[data-tab="review"] table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+[data-tab="review"] th { background: var(--text); color: var(--bg); padding: 6px 8px; text-align: left; font-weight: 600; font-size: 12px; }
+[data-tab="review"] td { padding: 5px 8px; border-bottom: 1px solid var(--divider); color: var(--text); }
+[data-tab="review"] tr:nth-child(even) { background: var(--surface); }
+[data-tab="review"] td.num { text-align: right; font-family: 'Courier New', monospace; }
+[data-tab="review"] .signal-row td:first-child { font-weight: 600; }
+[data-tab="review"] .verdict { display: inline-block; padding: 2px 8px; border-radius: 2px; font-size: 12px; font-weight: 700; color: #fff; margin: 2px; }
+[data-tab="review"] .verdict.pass { background: var(--red); }
+[data-tab="review"] .verdict.fail { background: var(--green); }
+[data-tab="review"] .verdict.warn { background: var(--amber); }
+[data-tab="review"] .scene-bar { display: flex; margin: 10px 0; height: 28px; border-radius: 3px; overflow: hidden; font-size: 12px; font-weight: 600; }
+[data-tab="review"] .scene-bar .bull { background: var(--red); color: #fff; text-align: center; line-height: 28px; }
+[data-tab="review"] .scene-bar .base { background: var(--text3); color: #fff; text-align: center; line-height: 28px; }
+[data-tab="review"] .scene-bar .bear { background: var(--green); color: #fff; text-align: center; line-height: 28px; }
+[data-tab="review"] .block { font-family: 'Courier New', monospace; background: var(--text-ghost); padding: 10px 14px; margin: 8px 0; font-size: 13px; line-height: 1.5; border-radius: 3px; white-space: pre-wrap; }
+[data-tab="review"] .flex-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 10px 0; }
+[data-tab="review"] .flex-card { flex: 1; min-width: 220px; background: var(--surface); padding: 10px 14px; border-radius: 3px; font-size: 13px; }
+[data-tab="review"] .flex-card h4 { font-size: 14px; margin-bottom: 6px; color: var(--text2); }
+[data-tab="review"] .page-footer { text-align: center; border-top: 2px solid var(--divider); margin-top: 30px; padding-top: 12px; color: var(--text3); font-size: 11px; }
+[data-tab="review"] hr.divider { border: none; border-top: 1px solid var(--divider); margin: 16px 0; }
+[data-tab="review"] .checklist { list-style: none; padding: 0; font-size: 13px; }
+[data-tab="review"] .checklist li { padding: 3px 0; color: var(--text); }
+[data-tab="review"] .checklist li:before { content: '□ '; color: var(--text3); }
+[data-tab="review"] .checklist li.ok:before { content: '☑ '; color: var(--red); }
+[data-tab="review"] .checklist li.fail:before { content: '☒ '; color: var(--green); }
+[data-tab="review"] .scope-bar { display: flex; gap: 6px; margin: 10px 0; }
+[data-tab="review"] .scope-dot { flex: 1; padding: 4px 6px; text-align: center; font-size: 11px; font-weight: 600; border-radius: 2px; color: #fff; }
+[data-tab="review"] .scope-dot.red { background: var(--red); }
+[data-tab="review"] .scope-dot.yellow { background: var(--amber); }
+[data-tab="review"] .scope-dot.green { background: var(--green); }
+
+</style>
+<!-- ====== 页眉 ====== -->
+<div class="header">
+  <span class="type-label post">盘后复盘</span>
+  <div class="brand-stamp">
+    <span class="stamp-text">NexWeave</span>
+    <span class="stamp-sub">RESEARCH</span>
+  </div>
+  <div class="meta">2026年6月29日（周一）15:10 CST · 6层闭环 v2.4 · TDX verified</div>
+  <div class="meta" style="font-size:11px;margin-top:4px">📋 盘前预测对照：<code>盘前预测_2026-06-29.md</code>（workspace 2 · 08:35生成 · <strong>准确率67%</strong>）</div>
+</div>
+
+<div class="report-meta">© NexWeave Research</div>
+
+<!-- ====== 摘要 ====== -->
+<div class="summary-box">
+  <strong>核心结论</strong>：6/26黑色星期五后首个交易日，市场显著分化。上证<span class="up">+1.16%</span>收复部分失地，但科创50继续下跌<span class="down">-3.27%</span>（两日累计<span class="down">-4.86%</span>）。半导体设备/材料逆势暴涨（中微<span class="up">+10.59%</span>/北方华创<span class="up">+5.76%</span>/兆易<span class="up">+9.09%</span>），但AI光模块全线崩溃（天孚<span class="down">-7.19%</span>/新易盛<span class="down">-1.60%</span>/中际<span class="down">-2.70%</span>）。瓶颈理论再次验证：上游设备 vs 下游光模块，资金用脚投票。
+</div>
+
+<!-- ====== L0.5 市场脆弱性 ====== -->
+<h2>L0.5 · 市场脆弱性检查</h2>
+<h3>应用理论：共享资金视角 + 集中度风险模型</h3>
+
+<div class="scope-bar">
+  <div class="scope-dot yellow">① 赛道集中度 🟡偏高<br>4赛道~50%资金</div>
+  <div class="scope-dot yellow">② 全线估值 🟡偏高<br>AI 50-60x PE</div>
+  <div class="scope-dot red">③ 压力测试 🔴<br>6/26全市场暴跌</div>
+</div>
+<p style="font-size:13px"><span class="tag tag-gold">调整规则</span> 一项🔴 + 两项🟡 → <strong>所有行业悲观概率统一上调+5%</strong></p>
+
+<!-- ====== L0 ====== -->
+<h2>L0 · 认知偏误自检</h2>
+<h3>应用理论：芒格25种误判心理学 + 双向思维</h3>
+
+<div class="flex-row">
+  <div class="flex-card">
+    <h4>Q1 确认偏误</h4>
+    <p class="condensed">"黑色星期五后必有反弹"→ ishful thinking。标记所有"反弹"信号为可疑。</p>
+  </div>
+  <div class="flex-card">
+    <h4>Q2 反脆弱</h4>
+    <p class="condensed">持仓再跌停三原因：①季末结算延续 ②AI泡沫叙事 ③北向出逃拖累。</p>
+  </div>
+</div>
+
+<div class="summary-box warn">
+  <strong>Q6 · 反向论证（已完成）</strong><br>
+  看空论证链条更完整：①缩量反弹=死猫跳 ②科创连跌破位 ③光模块龙头转势 ④资金流向北证非回科技 ⑤季末出清风险仍在。<br>
+  <span class="tag tag-down">结论</span> 看空5条 → 看多仅1条（"跌够了该反弹"）→ <strong>看空逻辑更缜密</strong>
+</div>
+
+<ul class="checklist">
+  <li class="ok">偏误警告：确认偏误（"必反弹"思维）</li>
+  <li class="ok">Q6反向论证：已完成，看空链条更完整</li>
+  <li class="ok">情绪状态：正常（市场分歧大，未过热/未冰点）</li>
+</ul>
+
+<!-- ====== L1 ====== -->
+<h2>L1 · 宏观闭环</h2>
+<h3>应用理论：费雪方程式 MV=PQ</h3>
+
+<div class="flex-row">
+  <div class="flex-card"><h4><span class="tag tag-up">偏多</span></h4>
+    <p class="condensed">6/26超跌反弹需求<br>半导体设备国产替代逻辑<br>周末无重大利空</p>
+  </div>
+  <div class="flex-card"><h4><span class="tag tag-neutral">中性</span></h4>
+    <p class="condensed">七月政治局会议预期<br>北向资金动向待核实</p>
+  </div>
+  <div class="flex-card"><h4><span class="tag tag-down">偏空</span></h4>
+    <p class="condensed">季末最后2天资金结算<br>AI光模块持续破位<br>科创50两日<span class="down">-4.86%</span></p>
+  </div>
+</div>
+
+<div class="summary-box">
+  ⚡ <strong>宏观结论</strong>：偏多因素微弱（超跌反弹+国产替代），偏空因素实质（季末结算+光模块信心崩溃）。上证反弹但结构极度分化——涨的是便宜货（北证<span class="up">+4.61%</span>），跌的是科技信仰（科创<span class="down">-3.27%</span>）。
+</div>
+
+<!-- ====== L2 ====== -->
+<h2>L2 · 大盘复盘</h2>
+<h3>应用理论：道氏理论（三重运动 + 量价配合）</h3>
+
+<table>
+<tr><th>指数</th><th>收盘</th><th>涨跌幅</th><th>最高</th><th>最低</th></tr>
+<tr><td>上证</td><td class="num">4,073.90</td><td class="up num">+1.16%</td><td class="num">4,075.33</td><td class="num">3,992.55</td></tr>
+<tr><td>深成</td><td class="num">15,812.87</td><td class="up num">+0.19%</td><td class="num">15,938.23</td><td class="num">15,487.93</td></tr>
+<tr><td>创业板</td><td class="num">4,216.70</td><td class="up num">+0.54%</td><td class="num">4,265.46</td><td class="num">4,103.63</td></tr>
+<tr style="background:var(--green-bg)"><td><strong>科创50</strong></td><td class="num">1,225.48</td><td class="down num"><strong>-3.27%</strong></td><td class="num">1,266.18</td><td class="num">1,223.54</td></tr>
+<tr style="background:var(--red-bg)"><td><strong>北证50</strong></td><td class="num">2,126.01</td><td class="up num"><strong>+4.61%</strong></td><td class="num">2,127.80</td><td class="num">2,013.51</td></tr>
+<tr><td>沪深300</td><td class="num">4,926.92</td><td class="up num">+1.21%</td><td class="num">4,928.60</td><td class="num">4,827.15</td></tr>
+</table>
+
+<div class="flex-row">
+  <div class="flex-card">
+    <h4>量价关系</h4>
+    <p class="condensed">上证低开3,992→高走4,075，典型的"破位→恐慌盘出清→反弹"。但缩量，需警惕6/30季末再探。</p>
+  </div>
+  <div class="flex-card">
+    <h4>科创50</h4>
+    <p class="condensed">开盘冲高1,266后单边下跌至1,223，全天无抵抗。涨跌比76:244。<strong>趋势已从超买回调演变为系统性出逃。</strong></p>
+  </div>
+</div>
+
+<div class="summary-box">
+  ⚡ <strong>趋势判定</strong>：上证/沪深300 → 震荡；科创50 → <span class="tag tag-down">下降趋势确认</span>（LL+LH）。资金从科技向蓝筹+北证转移。明日6/30季末仍面临出清风险。
+</div>
+
+<!-- ====== L3 ====== -->
+<h2>L3 · 板块复盘</h2>
+<h3>应用理论：板块轮动理论 + 瓶颈理论</h3>
+
+<table>
+<tr><th>排名</th><th>板块</th><th>今日</th><th>代表标的</th><th>定位</th></tr>
+<tr><td>🥇</td><td>半导体设备</td><td class="up">逆势暴涨</td><td>中微+10.59% · 北方+5.76%</td><td><span class="tag tag-up">领先·上游瓶颈</span></td></tr>
+<tr><td>🥈</td><td>存储芯片</td><td class="up">强势反弹</td><td>兆易创新+9.09%</td><td>美光催化·HBM</td></tr>
+<tr><td>🥉</td><td>新能源/电池</td><td class="up">温和反弹</td><td>宁德+2.98%</td><td>轮动受益</td></tr>
+<tr><td>4</td><td>汽车</td><td class="down">弱</td><td>江淮-2.49%</td><td>超涨回调</td></tr>
+<tr style="background:var(--green-bg)"><td><strong>5</strong></td><td><strong>AI光模块</strong></td><td class="down"><strong>全线暴跌</strong></td><td><strong>天孚-7.19%·中际-2.70%</strong></td><td><span class="tag tag-down">🔴转势</span></td></tr>
+<tr><td>6</td><td>AI PCB</td><td class="down">跌幅扩大</td><td>东山-4.12%</td><td>跟跌光模块</td></tr>
+</table>
+
+<div class="summary-box warn">
+  <strong>瓶颈理论第三次验证</strong><br>
+  上游（设备/代工）vs 下游（模组/光模块）——分化的差距在拉大而非收窄。AI光模块已从"获利了结"演变为"趋势性下跌"，短期不宜抄底。
+</div>
+
+<div class="summary-box">
+  ⚡ <strong>板块轮动预判</strong>：明日6/30季末 → 设备可能冲高回落（锁定利润）· 光模块可能继续下探 · 新能源保持温和反弹 · 北证风格切换可���延续。
+</div>
+
+<!-- ====== L4 ====== -->
+<h2>L4 · 个股复盘（17支标的）</h2>
+<h3>应用理论：瓶颈三要素 + 基础技术信号</h3>
+
+<h3>🔴 半导体设备（瓶颈上游·今日最强）</h3>
+<table>
+<tr><th>代码</th><th>名称</th><th>收盘</th><th>涨跌幅</th><th>振幅</th><th>换手</th></tr>
+<tr><td>688012</td><td><strong>中微公司</strong></td><td class="num">456.69</td><td class="up num"><strong>+10.59%</strong></td><td class="num">9.63%</td><td class="num">4.36%</td></tr>
+<tr><td>002371</td><td><strong>北方华创</strong></td><td class="num">860.19</td><td class="up num"><strong>+5.76%</strong></td><td class="num">8.60%</td><td class="num">2.07%</td></tr>
+</table>
+
+<h3>🟡 AI芯片/算力</h3>
+<table>
+<tr><th>代码</th><th>名称</th><th>收盘</th><th>涨跌幅</th><th>振幅</th><th>换手</th></tr>
+<tr><td>603986</td><td><strong>兆易创新</strong></td><td class="num">840.00</td><td class="up num"><strong>+9.09%</strong></td><td class="num">12.57%</td><td class="num">8.1%</td></tr>
+<tr><td>688041</td><td>海光信息</td><td class="num">354.84</td><td class="up num">+2.88%</td><td class="num">6.96%</td><td class="num">2.0%</td></tr>
+<tr><td>688256</td><td>寒武纪</td><td class="num">1482.00</td><td class="up num">+1.65%</td><td class="num">8.36%</td><td class="num">2.41%</td></tr>
+<tr><td>300474</td><td>景嘉微</td><td class="num">53.05</td><td class="up num">+0.15%</td><td class="num">6.70%</td><td class="num">2.92%</td></tr>
+</table>
+
+<h3>🔴 AI光模块/PCB（今日最弱）</h3>
+<table>
+<tr><th>代码</th><th>名称</th><th>收盘</th><th>涨跌幅</th><th>振幅</th><th>换手</th></tr>
+<tr style="background:var(--green-bg)"><td>300394</td><td><strong>天孚通信</strong></td><td class="num">295.15</td><td class="down num"><strong>-7.19%</strong></td><td class="num">7.91%</td><td class="num">4.85%</td></tr>
+<tr style="background:var(--green-bg)"><td>002384</td><td><strong>东山精密</strong></td><td class="num">249.59</td><td class="down num"><strong>-4.12%</strong></td><td class="num">9.41%</td><td class="num">5.45%</td></tr>
+<tr><td>300308</td><td>中际旭创</td><td class="num">1220.00</td><td class="down num">-2.70%</td><td class="num">7.56%</td><td class="num">3.18%</td></tr>
+<tr><td>300502</td><td>新易盛</td><td class="num">556.96</td><td class="down num">-1.60%</td><td class="num">9.16%</td><td class="num">4.13%</td></tr>
+</table>
+
+<h3>🟢 新能源/汽车/半导体</h3>
+<table>
+<tr><th>代码</th><th>名称</th><th>收盘</th><th>涨跌幅</th><th>振幅</th><th>换手</th></tr>
+<tr><td>300750</td><td>宁德时代</td><td class="num">392.36</td><td class="up num">+2.98%</td><td class="num">4.67%</td><td class="num">1.0%</td></tr>
+<tr><td>002594</td><td>比亚迪</td><td class="num">79.64</td><td class="up num">+1.84%</td><td class="num">4.28%</td><td class="num">1.5%</td></tr>
+<tr><td>002049</td><td>紫光国微</td><td class="num">85.35</td><td class="up num">+1.63%</td><td class="num">7.22%</td><td class="num">5.51%</td></tr>
+<tr><td>688981</td><td>中芯国际</td><td class="num">151.00</td><td class="up num">+1.51%</td><td class="num">8.06%</td><td class="num">5.14%</td></tr>
+<tr><td>600418</td><td>江淮汽车</td><td class="num">26.20</td><td class="down num">-2.49%</td><td class="num">7.18%</td><td class="num">5.49%</td></tr>
+<tr><td>300641</td><td>正丹股份</td><td class="num">15.27</td><td class="down num">-4.56%</td><td class="num">9.06%</td><td class="num">2.41%</td></tr>
+<tr><td>688775</td><td>影石创新</td><td class="num">133.52</td><td class="up num">+1.27%</td><td class="num">4.22%</td><td class="num">0.9%</td></tr>
+</table>
+
+<div class="summary-box">
+  ⚡ <strong>个股结论</strong>：设备双雄（中微+北方华创）今日最大亮点。光模块四剑客趋势已坏，<strong>不抄底</strong>。宁德/比亚迪逻辑独立可持有。明日季末最后一天，警惕获利了结。
+</div>
+
+<!-- ====== L5 ====== -->
+<h2>L5 · 信号复盘（含盘前预测对照）</h2>
+<h3>应用理论：三来源独立交叉验证</h3>
+
+<h3>6/29盘前预测逐项对照 ⭐今日核心</h3>
+<table>
+<tr><th>#</th><th>预测项</th><th>预测值</th><th>实际值</th><th>结果</th></tr>
+<tr><td>1</td><td>大盘方向</td><td>低开震荡偏弱·探底回升</td><td>低开3992→深V至4073</td><td><span class="verdict pass">✅ 正确</span></td></tr>
+<tr><td>2</td><td>上证区间</td><td>3990~4060</td><td>3992~4075→收4074</td><td><span class="verdict pass">✅ 基本正确</span></td></tr>
+<tr><td>3</td><td>最强方向</td><td>半导体设备/存储</td><td>中微+10.59%/北方+5.76%</td><td><span class="verdict pass">✅ 完美</span></td></tr>
+<tr><td>4</td><td>最弱方向</td><td>AI光模块</td><td>天孚-7.19%/新易盛-1.60%</td><td><span class="verdict pass">✅ 完美</span></td></tr>
+<tr><td>5</td><td>科创50</td><td>关注守2000</td><td>收1225.48（-3.27%）</td><td><span class="verdict fail">❌ 溃退超预期</span></td></tr>
+<tr><td>6</td><td>北证50</td><td>无预测</td><td>+4.61%领涨全市场</td><td><span class="verdict fail">❌ 遗漏</span></td></tr>
+</table>
+<p style="font-size:13px"><strong>盘前预测大盘方向准确率</strong>：<span class="verdict pass">67%（4/6）</span> · 信号置信度从盘前45%→盘后60%</p>
+
+<h3>盘前预测 · 个股走势评级对照（17只逐项）</h3>
+<table>
+<tr><th>代码</th><th>名称</th><th>盘前评级</th><th>今日涨跌</th><th>结果</th></tr>
+<tr><td>688012</td><td>中微公司</td><td>🔵强</td><td class="up">+10.59%</td><td><span class="verdict pass">✅</span></td></tr>
+<tr><td>002371</td><td>北方华创</td><td>🔵强</td><td class="up">+5.76%</td><td><span class="verdict pass">✅</span></td></tr>
+<tr><td>603986</td><td>兆易创新</td><td>🟡中性</td><td class="up">+9.09%</td><td>🟡保守</td></tr>
+<tr><td>300641</td><td>正丹股份</td><td>🟡中性</td><td class="down">-4.56%</td><td><span class="verdict fail">❌</span></td></tr>
+<tr><td>688256</td><td>寒武纪</td><td>🔴弱</td><td class="up">+1.65%</td><td><span class="verdict fail">❌</span></td></tr>
+<tr><td>688041</td><td>海光信息</td><td>🔴弱</td><td class="up">+2.88%</td><td><span class="verdict fail">❌</span></td></tr>
+<tr><td>688775</td><td>影石创新</td><td>🔴弱</td><td class="up">+1.27%</td><td><span class="verdict fail">❌</span></td></tr>
+<tr><td>300474</td><td>景嘉微</td><td>🔴弱</td><td class="up">+0.15%</td><td>⚠️争议</td></tr>
+<tr><td>688981</td><td>中芯国际</td><td>🔴弱</td><td class="up">+1.51%</td><td><span class="verdict fail">❌</span></td></tr>
+<tr><td>300750</td><td>宁德时代</td><td>🔴弱</td><td class="up">+2.98%</td><td><span class="verdict fail">❌</span></td></tr>
+<tr><td>300308</td><td>中际旭创</td><td>🔴弱</td><td class="down">-2.70%</td><td><span class="verdict pass">✅</span></td></tr>
+<tr><td>002384</td><td>东山精密</td><td>🔴弱</td><td class="down">-4.12%</td><td><span class="verdict pass">✅</span></td></tr>
+<tr><td>600418</td><td>江淮汽车</td><td>🔴弱</td><td class="down">-2.49%</td><td><span class="verdict pass">✅</span></td></tr>
+<tr><td>300394</td><td>天孚通信</td><td>🔴弱</td><td class="down">-7.19%</td><td><span class="verdict pass">✅</span></td></tr>
+<tr><td>300502</td><td>新易盛</td><td>🔴弱</td><td class="down">-1.60%</td><td><span class="verdict pass">✅</span></td></tr>
+<tr><td>002049</td><td>紫光国微</td><td>🔴弱</td><td class="up">+1.63%</td><td><span class="verdict fail">❌</span></td></tr>
+<tr><td>002594</td><td>比亚迪</td><td>🔴弱</td><td class="up">+1.84%</td><td><span class="verdict fail">❌</span></td></tr>
+</table>
+
+<div class="flex-row" style="margin:12px 0">
+  <div class="flex-card"><h4>✅ 正确 41%</h4><p class="condensed">中微·北方·中际·东山·江淮·天孚·新易盛（趋势延续型）</p></div>
+  <div class="flex-card"><h4>❌ 错误 47%</h4><p class="condensed">正丹·寒武纪·海光·影石·中芯·宁德·紫光·比亚迪（超跌反弹·盘前系统性偏空）</p></div>
+</div>
+<p style="font-size:12px;color:var(--text3)">根本原因：6/26暴跌后盘前框架系统性偏空——把"一天暴跌"当成"趋势逆转"，低估超跌反弹广度。核心持仓（中微/北方）紫苏叶✅判断无误，光模块回避✅正确。最大偏差：宁德（盘前🔴弱 vs 实际+2.98%反弹）。</p>
+
+<h3>今日三来源信号（6/29）</h3>
+<table class="signal-row">
+<tr><th>来源</th><th>输入数据</th><th>判定</th></tr>
+<tr><td>①价格趋势</td><td>上证深V但量缩·科创连跌</td><td><span class="tag tag-neutral">🟡中性</span></td></tr>
+<tr><td>②基本面</td><td>设备业绩确定·光模块需求不确定</td><td><span class="tag tag-neutral">🟡分化</span></td></tr>
+<tr><td>③市场情绪</td><td>资金科创流出→北证流入</td><td><span class="tag tag-down">🔴偏空</span></td></tr>
+</table>
+
+<div class="summary-box warn">
+  ⚡ <strong>三来源判定</strong>：2中性+1偏空 → <strong>观望等待</strong>。矛盾信号，不操作。这本身就是v2.4框架被设计来做的事。
+</div>
+
+<!-- ====== L6 ====== -->
+<h2>L6 · 决策闭环</h2>
+<h3>应用理论：贝叶斯更新 + 安全边际 + Lollapalooza保护</h3>
+
+<h3>三情景（明日6/30）</h3>
+<div class="scene-bar">
+  <div class="bull" style="width:15%">乐观 15%<br>4,100~4,180</div>
+  <div class="base" style="width:50%">基准 50%<br>4,030~4,110</div>
+  <div class="bear" style="width:35%">悲观 35%<br>3,950~4,030</div>
+</div>
+<p style="font-size:12px;color:var(--text3)">悲观≥30%铁律 ✅（35%含+5%脆弱性调整）</p>
+
+<h3>操作矩阵</h3>
+<table>
+<tr><th>操作</th><th>标的</th><th>理由</th></tr>
+<tr><td><span class="tag tag-up">持有</span></td><td>北方华创·中微·中芯·海光</td><td>瓶颈逻辑未破·趋势完好</td></tr>
+<tr><td><span class="tag tag-up">持有观望</span></td><td>宁德·比亚迪·紫光国微</td><td>逻辑独立·不受光模块拖累</td></tr>
+<tr style="background:var(--green-bg)"><td><span class="tag tag-down">不抄底</span></td><td><strong>天孚·中际·新易盛·东山</strong></td><td>趋势已坏·三来源未同向</td></tr>
+<tr><td><span class="tag tag-gold">关注</span></td><td>兆易创新</td><td>+9.09%但量太大·等缩量确认</td></tr>
+<tr><td><span class="tag tag-neutral">观望</span></td><td>江淮·正丹·影石</td><td>方向不明</td></tr>
+</table>
+
+<h3>P0-P2 风险矩阵</h3>
+<table>
+<tr><th>等级</th><th>风险项</th><th>概率</th><th>应对</th></tr>
+<tr style="background:var(--red-bg)"><td><span class="tag tag-up">P0</span></td><td>6/30季末最后出清</td><td>高</td><td>仓位≤5成</td></tr>
+<tr style="background:var(--red-bg)"><td><span class="tag tag-up">P0</span></td><td>AI光模块继续暴跌</td><td>中高</td><td>不抄底·等信号</td></tr>
+<tr><td><span class="tag tag-gold">P1</span></td><td>风格切换持续·科技→蓝筹</td><td>中</td><td>增配沪深300/新能源对冲</td></tr>
+<tr><td><span class="tag tag-gold">P1</span></td><td>设备冲高回落·季末锁定利润</td><td>中</td><td>部分止盈·不追高</td></tr>
+<tr><td><span class="tag tag-neutral">P2</span></td><td>北证风格为一日游</td><td>中</td><td>不参与北证</td></tr>
+</table>
+
+<div class="summary-box">
+  ⚡ <strong>决策结论</strong>：<strong>观望不动</strong>。设备强但季末风险未消，光模块弱但不知是否见底。三来源信号矛盾。最佳策略：持有核心（设备/新能源），等待6/30季末出清后再评估。<strong>不抄底光模块是第一优先级。</strong>
+</div>
+
+<hr class="divider">
+
+<h3>⚠️ 触发条件接近</h3>
+<table>
+<tr><th>标的</th><th>今日收盘</th><th>关键触发价</th><th>距触发</th></tr>
+<tr><td>天孚通信</td><td class="num">295.15</td><td class="num">250~260</td><td class="down">-12%</td></tr>
+<tr><td>中际旭创</td><td class="num">1220.00</td><td class="num">1000~1050</td><td class="down">-14%</td></tr>
+<tr><td>东山精密</td><td class="num">249.59</td><td class="num">200~210</td><td class="down">-17%</td></tr>
+</table>
+<p style="font-size:12px;color:var(--text3)">暂无标的触发买入条件。光模块仍在下跌途中，支撑位仅供参考。</p>
+
+<hr class="divider">
+
+<!-- 反向检验 -->
+<h3>反向检验5项</h3>
+<ul class="checklist">
+  <li class="fail">Q1 三来源独立同向？ → ❌ 不同向</li>
+  <li class="ok">Q2 悲观≥30%？三情景=100%？ → ✅</li>
+  <li class="ok">Q3 证伪检查通过 → ✅ 每层质疑被下一层回应</li>
+  <li class="ok">Q4 板块联动检查 → ✅ 一致</li>
+  <li class="ok">Q5 检验红线 → ✅ 全部通过</li>
+</ul>
+
+<!-- ====== 页脚 ====== -->
+<div class="page-footer">
+  © NexWeave Research · 盘后复盘 · 2026-06-29 · 框架 v2.4 · 盘前预测对照：workspace 2 · 数据：TDX MCP verified
+</div>
+</div>
+
+<div class="tab-content" data-tab="industry"><style>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+
+
+  .container { max-width: 1300px; margin: 0 auto; }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+  .header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .header .subtitle {
+    font-size: 12px;
+    color: var(--text3);
+    margin-top: 4px;
+  }
+  .header .badge {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 11px;
+    color: var(--text2);
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  }
+
+  /* 总览条 */
+  .overview-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .ov-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .ov-card .ov-num {
+    font-size: 32px;
+    font-weight: 800;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  }
+  .ov-card .ov-label {
+    font-size: 11px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-top: 2px;
+  }
+  .ov-red { color: var(--red); }
+  .ov-amber { color: var(--amber); }
+  .ov-green { color: var(--green); }
+  .ov-purple { color: var(--purple); }
+
+  /* 行业卡片网格 */
+  .sector-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .sector-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .sector-card:hover { border-color: var(--text3); }
+  .sector-card.dont-buy { border-left: 3px solid var(--red); }
+  .sector-card.watch { border-left: 3px solid var(--amber); }
+  .sector-card.can-buy { border-left: 3px solid var(--green); }
+  .sector-card.base { border-left: 3px solid var(--purple); }
+  .sector-card.too-hard { border-left: 3px solid var(--gray); }
+
+  .sc-header {
+    padding: 14px 16px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .sc-name {
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .sc-verdict {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 3px 10px;
+    border-radius: 12px;
+  }
+  .verdict-sell { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+  .verdict-watch { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+  .verdict-base { background: var(--purple-bg); color: var(--purple); border: 1px solid rgba(192,132,252,0.2); }
+  .verdict-pass { background: rgba(100,116,139,0.1); color: var(--gray); border: 1px solid rgba(113,128,150,0.25); }
+
+  .sc-body { padding: 0 16px 12px; }
+
+  .sc-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .sc-metric {
+    background: var(--surface2);
+    border-radius: 6px;
+    padding: 8px 10px;
+    text-align: center;
+  }
+  .sc-metric .m-label {
+    font-size: 9px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+  .sc-metric .m-val {
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  }
+  .m-red { color: var(--red); }
+  .m-amber { color: var(--amber); }
+  .m-green { color: var(--green); }
+  .m-purple { color: var(--purple); }
+
+  .sc-trigger {
+    background: var(--surface2);
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    font-size: 11px;
+    color: var(--text2);
+  }
+  .sc-trigger strong { color: var(--text); font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace; }
+
+  .sc-flags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .sc-flag {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  .flag-green { background: var(--green-bg); color: var(--green); }
+  .flag-red { background: var(--red-bg); color: var(--red); }
+  .flag-amber { background: var(--amber-bg); color: var(--amber); }
+  .flag-purple { background: var(--purple-bg); color: var(--purple); }
+
+  .sc-note {
+    margin-top: 8px;
+    font-size: 10px;
+    color: var(--text3);
+    line-height: 1.6;
+    padding: 8px 10px;
+    background: var(--surface2);
+    border-radius: 6px;
+    border-left: 2px solid var(--border);
+  }
+  .sc-note strong { color: var(--text2); }
+
+  /* 子赛道展开 */
+  .sub-sector {
+    margin-top: 6px;
+    padding: 6px 10px;
+    background: rgba(0,0,0,0.12);
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+  }
+  .sub-sector .ss-name { color: var(--text2); font-weight: 500; }
+  .sub-sector .ss-status { font-size: 10px; font-weight: 600; }
+  .ss-red { color: var(--red); }
+  .ss-amber { color: var(--amber); }
+
+  .footer {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 8px;
+  }
+
+  /* 框架说明 */
+  .framework-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+  }
+  .framework-box h2 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 10px;
+  }
+  .framework-box .fw-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .fw-item {
+    background: var(--surface2);
+    border-radius: 8px;
+    padding: 12px;
+  }
+  .fw-item .fw-label {
+    font-size: 10px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 3px;
+  }
+  .fw-item .fw-desc {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+  .fw-item .fw-desc strong { color: var(--text); }
+
+  /* ═══════════ 移动端适配 ═══════════ */
+  @media (max-width: 768px) {
+    .header h1 { font-size: 18px; }
+    .container { max-width: 100%; }
+    .indicators { grid-template-columns: 1fr; }
+    .rules-grid { grid-template-columns: repeat(2, 1fr); }
+    .sector-grid { grid-template-columns: 1fr; }
+    .overview-bar { grid-template-columns: repeat(2, 1fr); }
+    .framework-box .fw-grid { grid-template-columns: repeat(2, 1fr); }
+    .timeline { flex-wrap: wrap; }
+    .timeline-step { flex: 1 1 45%; }
+  }
+  @media (max-width: 480px) {
+    .score-hero { flex-direction: column; text-align: center; padding: 20px; }
+    .rules-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+    .overview-bar { grid-template-columns: 1fr; }
+    .framework-box .fw-grid { grid-template-columns: 1fr; }
+    .sc-metrics { grid-template-columns: repeat(2, 1fr); }
+    .timeline-step { flex: 1 1 100%; }
+    .sc-header { flex-direction: column; gap: 6px; align-items: flex-start; }
+  }
+  @media (max-width: 380px) {
+    .sc-metrics { grid-template-columns: 1fr; }
+  }
+  /* 触控优化 */
+  button, .sc-verdict, .sc-flag, .badge, .card-score, .timeline-step, .verdict, .fw-item {
+    -webkit-tap-highlight-color: transparent;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+</style><div class="container">
+
+  <div class="header">
     <div>
-      <span class="tag tag-r">脆弱性三项全🔴</span>
-      <span class="tag tag-a" style="margin-left:6px;">防御模式</span>
+      <h1>Industry State Analyzer · 行业分析仪表盘</h1>
+      <div class="subtitle">v2.4 框架 · 瓶颈评分 + 三来源矛盾 + 品牌壁垒 · 触发买入条件量化</div>
     </div>
+    <span class="badge">2026-06-28</span>
   </div>
-</div>
 
-<div class="theme-bar" id="themeBar">
-  <button class="theme-btn active" data-theme="dark">深色工业</button>
-  <button class="theme-btn" data-theme="light">亮色专业</button>
-  <button class="theme-btn" data-theme="amber">暖色琥珀</button>
-  <button class="theme-btn" data-theme="magazine">财经杂志</button>
-  <span style="color:var(--divider);margin:0 2px;align-self:center;">|</span>
-  <button class="theme-btn" data-theme="memphis">活力孟菲斯</button>
-  <button class="theme-btn" data-theme="laboratory">实验工坊</button>
-  <button class="theme-btn" data-theme="bento">手工匠盒</button>
-</div>
-
-<!-- ===== ROW 1: 大盘概览 ===== -->
-<div class="row row-5">
-  <div class="ix"><div class="ixn">上证指数</div><div class="ixv down">4027</div><div class="ixc down">-2.26%</div></div>
-  <div class="ix"><div class="ixn">深证成指</div><div class="ixv down">15782</div><div class="ixc down">-3.44%</div></div>
-  <div class="ix"><div class="ixn">创业板指</div><div class="ixv down">4194</div><div class="ixc down">-4.07%</div></div>
-  <div class="ix"><div class="ixn">科创50</div><div class="ixv down">2032</div><div class="ixc down">-1.65%</div></div>
-  <div class="ix"><div class="ixn">沪深300</div><div class="ixv down">4868</div><div class="ixc down">-3.02%</div></div>
-</div>
-<div class="row row-3">
-  <div class="sm">
-    <span class="sml">成交额</span>
-    <span class="smv">3.55万亿 <span class="sm-sub">缩量419亿</span></span>
-  </div>
-  <div class="sm">
-    <span class="sml">涨跌比</span>
-    <span class="smv down">790 : 4600 <span class="sm-sub">1:5.8</span></span>
-  </div>
-  <div class="sm">
-    <span class="sml">北向资金</span>
-    <span class="smv down">-80亿+ <span class="sm-sub" style="color:var(--red)">创3月新高</span></span>
-  </div>
-</div>
-
-<!-- ===== ROW 2: 脆弱性 + 四情景 ===== -->
-<div class="row row-2">
-  <div class="panel">
-    <div class="panel-head">
-      L0.5 市场脆弱性检查
-      <span class="ph-sub" style="color:var(--red);">⛔ 三项全🔴 → 暂停新分析</span>
-    </div>
-    <div class="panel-body-sm">
-      <div class="frag-row">
-        <span class="frag-chip frag-r">🔴 波动率异常</span>
-        <span class="frag-desc">沪指-2.26%创3月最大单日跌幅，ATR显著扩张</span>
+  <!-- 框架说明 -->
+  <div class="framework-box">
+    <h2>v2.4 分析框架</h2>
+    <div class="fw-grid">
+      <div class="fw-item">
+        <div class="fw-label">L3 瓶颈评分</div>
+        <div class="fw-desc"><strong>物理壁垒 9 + 供给壁垒 9 + 寡头格局 9 + 品牌壁垒</strong>（独立标签不参与总分）。≥20分=紫苏叶级。</div>
       </div>
-      <div class="frag-row">
-        <span class="frag-chip frag-r">🔴 板块轮动枯竭</span>
-        <span class="frag-desc">仅光刻机/设备/猪肉三个方向局部走强，AI硬件集体崩跌</span>
+      <div class="fw-item">
+        <div class="fw-label">三来源矛盾</div>
+        <div class="fw-desc">价格趋势 / 基本面 / 市场情绪 三者交叉验证。出现矛盾→<strong>不动</strong>。超过两个热门赛道同时矛盾→整体悲观+10-15%。</div>
       </div>
-      <div class="frag-row">
-        <span class="frag-chip frag-r">🔴 北向+融资双杀</span>
-        <span class="frag-desc">北向-80亿+交易型创3月新高，4600只下跌融资盘承压</span>
+      <div class="fw-item">
+        <div class="fw-label">品牌壁垒</div>
+        <div class="fw-desc">独立列，不参与瓶颈总分。白酒/化妆品等消费品壁垒≠物理壁垒，<strong>一代人品味变化即可溶解</strong>。</div>
       </div>
-      <div class="frag-action-row">
-        <span class="b b-stop">⛔ 不推荐新建仓位</span>
-        <span class="b b-stop">⛔ 不推荐追涨/追板块</span>
-        <span style="font-size:11px;color:var(--green);font-weight:600;">○ 仅允许持有已有仓位+观察</span>
+      <div class="fw-item">
+        <div class="fw-label">触发买入</div>
+        <div class="fw-desc">基于悲观概率×利润压缩×合理PE回推。不是预测底部，是<strong>设定愿意接飞刀的价格</strong>。</div>
       </div>
     </div>
   </div>
 
-  <div class="panel">
-    <div class="panel-head">
-      四情景 · 6/29 周一
-      <span class="ph-sub" style="color:var(--red);">肥尾 20%</span>
+  <!-- 总览 -->
+  <div class="overview-bar">
+    <div class="ov-card">
+      <div class="ov-num ov-red">5</div>
+      <div class="ov-label">不买 / 观望</div>
     </div>
-    <div class="panel-body-sm">
-      <div class="sc4">
-        <div class="sc4b s4-bull" style="flex:30">
-          <div class="s4p">30%</div><div class="s4l">低开修复</div><div class="s4r">4030 ~ 4100</div>
-        </div>
-        <div class="sc4b s4-base" style="flex:25">
-          <div class="s4p">25%</div><div class="s4l">探底震荡</div><div class="s4r">3990 ~ 4060</div>
-        </div>
-        <div class="sc4b s4-bear" style="flex:25">
-          <div class="s4p">25%</div><div class="s4l">继续下探</div><div class="s4r">3950 ~ 4020</div>
-        </div>
-        <div class="sc4b s4-tail" style="flex:20">
-          <div class="s4p">20%</div><div class="s4l">黑天鹅</div><div class="s4r">&lt; 3880</div>
-          <div class="tail-cap">多杀多</div>
-        </div>
-      </div>
-      <div class="fn" style="margin-top:12px;">
-        <strong>悲观 + 黑天鹅 = 45%（≥30%触发风险预警）</strong><br>
-        肥尾触发条件：上证有效跌破4000 + 北向开盘30min流出&gt;20亿 + 融资连环强平
-      </div>
+    <div class="ov-card">
+      <div class="ov-num ov-amber">2</div>
+      <div class="ov-label">观察 / 接近触发</div>
     </div>
-  </div>
-</div>
-
-<!-- ===== ROW 3: Lollapalooza + 置信度 ===== -->
-<div class="row row-2">
-  <div class="panel">
-    <div class="panel-head">
-      Lollapalooza 保护层 · 多重负向力叠加检查
-      <span class="ph-sub" style="color:var(--red);">评分 3/5 🔴🔴🔴🟡🟡</span>
+    <div class="ov-card">
+      <div class="ov-num ov-purple">1</div>
+      <div class="ov-label">底仓配置</div>
     </div>
-    <div class="panel-body-sm">
-      <div class="lolla">
-        <div class="lolc"><div class="lols" style="color:var(--red)">🔴</div><div class="loll">全市场共跌<br>非局部风险</div></div>
-        <div class="lolc"><div class="lols" style="color:var(--red)">🔴</div><div class="loll">费半-5.29%<br>传导未出清</div></div>
-        <div class="lolc"><div class="lols" style="color:var(--red)">🔴</div><div class="loll">北向-80亿<br>难以逆转</div></div>
-        <div class="lolc"><div class="lols" style="color:var(--amber)">🟡</div><div class="loll">逆回购落地<br>再无新催化</div></div>
-        <div class="lolc"><div class="lols" style="color:var(--green)">●</div><div class="loll">北方华创/中微<br>紫苏叶安全</div></div>
-      </div>
+    <div class="ov-card">
+      <div class="ov-num ov-green">0</div>
+      <div class="ov-label">当前可买</div>
     </div>
   </div>
 
-  <div class="panel">
-    <div class="panel-head">置信度 → 仓位映射</div>
-    <div class="panel-body-sm">
-      <div class="cbar-wrap">
-        <div class="cmk" style="left:42.5%;">▾ 当前 45%</div>
-        <div class="cbar">
-          <div class="cseg" style="flex:30;background:var(--cseg-low);">&lt;45% · 0~1成</div>
-          <div class="cseg cseg-active" style="flex:25;background:var(--cseg-mid);">45-59% · 2~3成</div>
-          <div class="cseg" style="flex:25;background:var(--cseg-high);opacity:0.8;">60-74% · 4~5成</div>
-          <div class="cseg" style="flex:20;background:var(--cseg-max);opacity:0.75;">≥75% · 6~7成</div>
+  <!-- 行业卡片 -->
+  <div class="sector-grid">
+
+    <!-- 核电 -->
+    <div class="sector-card base">
+      <div class="sc-header">
+        <div class="sc-name">核电</div>
+        <div class="sc-verdict verdict-base">底仓配置</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-metrics">
+          <div class="sc-metric"><div class="m-label">瓶颈评分</div><div class="m-val m-purple">27/30</div></div>
+          <div class="sc-metric"><div class="m-label">PE (广核)</div><div class="m-val">~11x</div></div>
+          <div class="sc-metric"><div class="m-label">悲观概率</div><div class="m-val m-green">15%</div></div>
+        </div>
+        <div class="sc-trigger">
+          触发买入：<strong>广核 PE&lt;9x</strong> 或股息率&gt;4.5%（约 <strong>3.2 元</strong>）| 核电 PE&lt;13x（约 <strong>6.8 元</strong>）
+        </div>
+        <div class="sc-flags">
+          <span class="sc-flag flag-purple">唯一紫苏叶 27分</span>
+          <span class="sc-flag flag-green">三来源无矛盾</span>
+          <span class="sc-flag flag-green">不需要拐点</span>
+          <span class="sc-flag flag-purple">AI 变量待兑现</span>
+        </div>
+        <div class="sc-note">
+          <strong>年化 5-8% + 股息 3-4%，永续配置型。</strong>日波动 0.5%，不可短线。唯一适合"底仓"的行业。东方电气 L2→L3 上调（唯一核岛总包商+2064亿订单）。
         </div>
       </div>
-      <div class="posrec">
-        <div class="prn">2~3</div>
-        <div class="prl">
-          <strong>建议仓位（成）</strong><br>
-          置信度45% → 防御仓位 · 与 v2.4 结论一致
+    </div>
+
+    <!-- 医美 -->
+    <div class="sector-card watch">
+      <div class="sc-header">
+        <div class="sc-name">医美</div>
+        <div class="sc-verdict verdict-watch">观察中</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-metrics">
+          <div class="sc-metric"><div class="m-label">瓶颈评分</div><div class="m-val m-amber">18/30</div></div>
+          <div class="sc-metric"><div class="m-label">PE (爱美客)</div><div class="m-val">~22x</div></div>
+          <div class="sc-metric"><div class="m-label">悲观概率</div><div class="m-val m-red">45%</div></div>
+        </div>
+        <div class="sc-trigger">
+          触发买入：<strong>PE&lt;15x</strong>（约 <strong>65 元</strong>）或连续两季利润环比不再下滑
+        </div>
+        <div class="sc-flags">
+          <span class="sc-flag flag-amber">品牌壁垒独立标签</span>
+          <span class="sc-flag flag-red">利润加速下滑</span>
+          <span class="sc-flag flag-amber">爱美客 -35% 仍在下行</span>
+        </div>
+        <div class="sc-note">
+          <strong>不是在买便宜，是在接飞刀。</strong>PE 22x 看起来不贵但利润在加速下滑——分母缩水会让 PE 变大。与宁德区别：宁德 722 亿知道天花板，爱美客 12.91 亿不知道地板。
         </div>
       </div>
-      <div class="fn" style="margin-top:10px;">
-        若上证有效跌破4000 → 触发减仓至 <span class="hl">2成以下</span><br>
-        核心持仓：北方华创 / 中微公司（紫苏叶板块逆势抗跌，可持有）
+    </div>
+
+    <!-- 消费（白酒） -->
+    <div class="sector-card watch">
+      <div class="sc-header">
+        <div class="sc-name">消费 · 白酒</div>
+        <div class="sc-verdict verdict-watch">观察中</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-metrics">
+          <div class="sc-metric"><div class="m-label">瓶颈评分</div><div class="m-val m-amber">品牌壁垒独立</div></div>
+          <div class="sc-metric"><div class="m-label">PE (茅台)</div><div class="m-val">~25x→15.7x</div></div>
+          <div class="sc-metric"><div class="m-label">提价折抵</div><div class="m-val m-red">完全抵消</div></div>
+        </div>
+        <div class="sc-trigger">
+          提价 8.6% → 理论利润 934 亿 → PE 从 25x 压缩到 15.7x → <strong>全部利润增长被估值压缩抵消</strong>
+        </div>
+        <div class="sc-flags">
+          <span class="sc-flag flag-amber">品牌壁垒≠物理壁垒</span>
+          <span class="sc-flag flag-red">消费降级趋势</span>
+          <span class="sc-flag flag-red">一代人品味可溶解</span>
+        </div>
+        <div class="sc-note">
+          <strong>白酒品牌壁垒和减速器物理壁垒本质不同。</strong>品牌壁垒可在一代人品味变化中溶解。消费降级判断有道理但缺少社零增速/白酒库存等具体数据。
+        </div>
+      </div>
+    </div>
+
+    <!-- 新能源 -->
+    <div class="sector-card dont-buy">
+      <div class="sc-header">
+        <div class="sc-name">新能源</div>
+        <div class="sc-verdict verdict-sell">不买</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-metrics">
+          <div class="sc-metric"><div class="m-label">瓶颈评分</div><div class="m-val">宁德 20/30</div></div>
+          <div class="sc-metric"><div class="m-label">PE (宁德)</div><div class="m-val">~18x</div></div>
+          <div class="sc-metric"><div class="m-label">故事状态</div><div class="m-val m-red">结束了</div></div>
+        </div>
+        <div class="sc-trigger">
+          宁德 722 亿利润 → 市场用低 PE 说"预期你的利润会跌" → 回 441 亿时股价看 233 元
+        </div>
+        <div class="sc-flags">
+          <span class="sc-flag flag-red">四个子赛道全不买</span>
+          <span class="sc-flag flag-red">产能过剩</span>
+          <span class="sc-flag flag-red">利润见顶</span>
+        </div>
+        <div class="sc-note">
+          新能源已从"成长赛道"变"成熟行业"——锂电/光伏/储能/新能源车四个子赛道互不相干，拒绝统一结论。宁德 PE 18x 不是便宜，是市场在定价利润下行。
+        </div>
+        <div class="sub-sector"><span class="ss-name">锂电</span><span class="ss-status ss-red">不买</span></div>
+        <div class="sub-sector"><span class="ss-name">光伏</span><span class="ss-status ss-red">不买 · 隆基 12.67 可能是底</span></div>
+        <div class="sub-sector"><span class="ss-name">储能</span><span class="ss-status ss-red">不买</span></div>
+        <div class="sub-sector"><span class="ss-name">新能源车</span><span class="ss-status ss-red">不买</span></div>
+      </div>
+    </div>
+
+    <!-- 机器人 -->
+    <div class="sector-card dont-buy">
+      <div class="sc-header">
+        <div class="sc-name">机器人</div>
+        <div class="sc-verdict verdict-sell">等估值对</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-metrics">
+          <div class="sc-metric"><div class="m-label">瓶颈评分</div><div class="m-val">25/30</div></div>
+          <div class="sc-metric"><div class="m-label">PE (绿的谐波)</div><div class="m-val m-red">~500x</div></div>
+          <div class="sc-metric"><div class="m-label">悲观概率</div><div class="m-val m-red">高</div></div>
+        </div>
+        <div class="sc-trigger">
+          即使最乐观剧本利润翻到 10 亿（2028），PE 仍 90x。等板块回调 <strong>20-30%</strong>。
+        </div>
+        <div class="sc-flags">
+          <span class="sc-flag flag-green">瓶颈 25 分真紫苏叶</span>
+          <span class="sc-flag flag-red">PE 高到消灭任何安全边际</span>
+          <span class="sc-flag flag-red">宇树 IPO 二元炸弹</span>
+          <span class="sc-flag flag-amber">449 只概念股 &lt;10 只受益</span>
+        </div>
+        <div class="sc-note">
+          <strong>"3 万台 vs 8000 万台汽车"一句话杀死叙事。</strong>谐波减速器 25/30 是瓶颈理论最有说服力的应用。但瓶颈 25 分配 PE 500x——避开了"紫苏叶被充分定价"的尴尬。宇树 IPO 是二元炸弹不是确定性催化剂。
+        </div>
+      </div>
+    </div>
+
+    <!-- 医药 -->
+    <div class="sector-card dont-buy">
+      <div class="sc-header">
+        <div class="sc-name">医药</div>
+        <div class="sc-verdict verdict-sell">数据不全</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-metrics">
+          <div class="sc-metric"><div class="m-label">瓶颈评分</div><div class="m-val">—</div></div>
+          <div class="sc-metric"><div class="m-label">药明康德利润</div><div class="m-val m-red">—</div></div>
+          <div class="sc-metric"><div class="m-label">迈瑞利润</div><div class="m-val m-red">—</div></div>
+        </div>
+        <div class="sc-flags">
+          <span class="sc-flag flag-red">数据缺口严重</span>
+          <span class="sc-flag flag-amber">三行业合并报告深度不足</span>
+        </div>
+        <div class="sc-note">
+          与消费、化工三行业合并报告仅 272 行（vs 机器人 319 行/新能源 358 行）。药明康德和迈瑞利润数据缺失，瓶颈评分退化为"感觉排列组合"。需要独立深度分析。
+        </div>
+      </div>
+    </div>
+
+    <!-- 化工 -->
+    <div class="sector-card dont-buy">
+      <div class="sc-header">
+        <div class="sc-name">化工</div>
+        <div class="sc-verdict verdict-sell">数据不全</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-metrics">
+          <div class="sc-metric"><div class="m-label">瓶颈评分</div><div class="m-val">—</div></div>
+          <div class="sc-metric"><div class="m-label">数据状态</div><div class="m-val m-red">—</div></div>
+          <div class="sc-metric"><div class="m-label">分析深度</div><div class="m-val m-amber">不足</div></div>
+        </div>
+        <div class="sc-flags">
+          <span class="sc-flag flag-amber">与医药消费合并，未独立分析</span>
+          <span class="sc-flag flag-red">缺少利润与估值数据</span>
+        </div>
+        <div class="sc-note">
+          三行业合并报告中化工部分深度最浅。芒格建议去翻煤炭/化工/航运等非热点行业，但目前化工尚无完整 v2.4 框架评估。需要独立报告。
+        </div>
+      </div>
+    </div>
+
+    <!-- 低空经济 -->
+    <div class="sector-card too-hard">
+      <div class="sc-header">
+        <div class="sc-name">低空经济</div>
+        <div class="sc-verdict verdict-pass">Too Hard</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-metrics">
+          <div class="sc-metric"><div class="m-label">瓶颈评分</div><div class="m-val" style="color:var(--gray)">—</div></div>
+          <div class="sc-metric"><div class="m-label">分析状态</div><div class="m-val" style="color:var(--gray)">放弃</div></div>
+          <div class="sc-metric"><div class="m-label">三来源</div><div class="m-val m-red">全矛盾</div></div>
+        </div>
+        <div class="sc-flags">
+          <span class="sc-flag" style="background:rgba(100,116,139,0.1);color:var(--gray)">能力圈外</span>
+          <span class="sc-flag" style="background:rgba(100,116,139,0.1);color:var(--gray)">宗申动力仅是巧合</span>
+        </div>
+        <div class="sc-note">
+          宗申动力是在低空经济里翻出来的——这种公司不会主动跳到热榜第一页。但行业整体三来源全矛盾，框架无法给出有效评估。已划入禁区。
+        </div>
+      </div>
+    </div>
+
+    <!-- 待覆盖 -->
+    <div class="sector-card" style="border:1px dashed var(--border);">
+      <div class="sc-header">
+        <div class="sc-name" style="color:var(--text3);">待覆盖行业</div>
+        <div class="sc-verdict" style="background:rgba(100,116,139,0.05);color:var(--text3);border:1px solid rgba(100,116,139,0.15);">未分析</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-note">
+          <strong>芒格建议翻的非热点行业：</strong>煤炭、航运、以及更多消费/医药细分赛道。目前这些方向尚无 v2.4 框架的独立分析。去翻的理由——"你一直在热的这边翻"。
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;">
+          <span class="sc-flag" style="background:rgba(100,116,139,0.06);color:var(--text3);">煤炭</span>
+          <span class="sc-flag" style="background:rgba(100,116,139,0.06);color:var(--text3);">航运</span>
+          <span class="sc-flag" style="background:rgba(100,116,139,0.06);color:var(--text3);">消费细分</span>
+          <span class="sc-flag" style="background:rgba(100,116,139,0.06);color:var(--text3);">医药细分</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    v2.4 框架 · 瓶颈评分 + 品牌壁垒独立标签 + 三来源矛盾交叉验证 · 更新于 2026-06-28
+  </div>
+
+</div></div><div class="tab-content" data-tab="market"><style>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+  }
+  .header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--text);
+  }
+  .header .subtitle {
+    font-size: 12px;
+    color: var(--text3);
+    margin-top: 4px;
+    font-weight: 400;
+  }
+  .header .badge {
+    display: inline-block;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 11px;
+    color: var(--text2);
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  }
+
+  .score-hero {
+    background: var(--surface);
+    border: 1px solid var(--score-border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .score-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(ellipse at 20% 50%, rgba(229, 62, 62, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .score-circle {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: var(--score-bg);
+    border: 3px solid var(--score-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .score-circle .score-val {
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--red);
+    line-height: 1;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  }
+  .score-circle .score-max {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 2px;
+  }
+  .score-info { position: relative; z-index: 1; }
+  .score-info .score-label {
+    font-size: 13px;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .score-info .score-verdict {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .score-info .score-detail {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+  .score-info .score-detail span { color: var(--text); font-weight: 500; }
+
+  .indicators {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .indicator-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: border-color 0.2s;
+  }
+  .indicator-card:hover { border-color: var(--text3); }
+  .indicator-card .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+  .indicator-card .card-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .indicator-card .card-score {
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  }
+  .score-red { color: var(--red); }
+  .score-amber { color: var(--amber); }
+  .score-green { color: var(--green); }
+
+  .indicator-card .current-val {
+    font-size: 28px;
+    font-weight: 700;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+    margin-bottom: 2px;
+  }
+  .indicator-card .vs-mean {
+    font-size: 11px;
+    color: var(--text3);
+    margin-bottom: 10px;
+  }
+  .indicator-card .vs-mean .below { color: var(--red); }
+  .indicator-card .vs-mean .above { color: var(--amber); }
+  .indicator-card .vs-mean .near { color: var(--cyan); }
+
+  .indicator-card .prediction {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text2);
+    padding: 8px 0;
+    border-top: 1px solid var(--border);
+  }
+  .prediction .arrow-up { color: var(--red); font-weight: 700; }
+  .prediction .arrow-down { color: var(--green); font-weight: 700; }
+  .prediction .arrow-flat { color: var(--cyan); font-weight: 700; }
+  .prediction .pred-val { font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace; font-weight: 500; }
+
+  .gauge-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .gauge-bar {
+    flex: 1;
+    height: 4px;
+    background: var(--surface2);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+  .gauge-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.5s ease;
+  }
+  .gauge-fill.red { background: var(--red); }
+  .gauge-fill.amber { background: var(--amber); }
+  .gauge-fill.green { background: var(--green); }
+  .gauge-label {
+    font-size: 10px;
+    color: var(--text3);
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+    white-space: nowrap;
+  }
+
+  .rules-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  .rules-section h2 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 14px;
+  }
+  .rules-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .rule-box {
+    background: var(--surface2);
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+  }
+  .rule-box .rule-range {
+    font-size: 11px;
+    color: var(--text3);
+    margin-bottom: 4px;
+  }
+  .rule-box .rule-score {
+    font-size: 22px;
+    font-weight: 700;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+  }
+  .rule-box .rule-action {
+    font-size: 10px;
+    color: var(--text3);
+    margin-top: 4px;
+  }
+
+  .insight-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  .insight-box h2 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 12px;
+  }
+  .insight-box p {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.8;
+  }
+  .insight-box p strong { color: var(--text); }
+
+  .timeline {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .timeline-step {
+    flex: 1;
+    background: var(--surface2);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+  }
+  .timeline-step .ts-score {
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+    color: var(--text3);
+  }
+  .timeline-step .ts-label {
+    font-size: 10px;
+    color: var(--text3);
+    margin-top: 2px;
+  }
+  .timeline-step .ts-action {
+    font-size: 10px;
+    color: var(--text2);
+    margin-top: 6px;
+    font-weight: 500;
+  }
+  .timeline-step.active .ts-score { color: var(--red); }
+  .timeline-step.active .ts-label { color: var(--red); }
+  .timeline-step.active { border: 1px solid rgba(229, 62, 62, 0.25); }
+
+  .footer {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 8px;
+  }
+  .footer span { color: var(--text2); }
+
+  /* ═══════════ 移动端适配 ═══════════ */
+  @media (max-width: 768px) {
+    .header h1 { font-size: 18px; }
+    .container { max-width: 100%; }
+    .indicators { grid-template-columns: 1fr; }
+    .rules-grid { grid-template-columns: repeat(2, 1fr); }
+    .sector-grid { grid-template-columns: 1fr; }
+    .overview-bar { grid-template-columns: repeat(2, 1fr); }
+    .framework-box .fw-grid { grid-template-columns: repeat(2, 1fr); }
+    .timeline { flex-wrap: wrap; }
+    .timeline-step { flex: 1 1 45%; }
+  }
+  @media (max-width: 480px) {
+    .score-hero { flex-direction: column; text-align: center; padding: 20px; }
+    .rules-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+    .overview-bar { grid-template-columns: 1fr; }
+    .framework-box .fw-grid { grid-template-columns: 1fr; }
+    .sc-metrics { grid-template-columns: repeat(2, 1fr); }
+    .timeline-step { flex: 1 1 100%; }
+    .sc-header { flex-direction: column; gap: 6px; align-items: flex-start; }
+  }
+  @media (max-width: 380px) {
+    .sc-metrics { grid-template-columns: 1fr; }
+  }
+  /* 触控优化 */
+  button, .sc-verdict, .sc-flag, .badge, .card-score, .timeline-step, .verdict, .fw-item {
+    -webkit-tap-highlight-color: transparent;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+</style><div class="container">
+
+  <div class="header">
+    <div>
+      <h1>Market State Score · 市场状态仪表盘</h1>
+      <div class="subtitle">波动率 / 换手率 / ERP 三维量化 · TimesFM-2.5 预测驱动 · 2026-06-29</div>
+    </div>
+    <span class="badge">v1.0</span>
+  </div>
+
+  <!-- 总分 -->
+  <div class="score-hero">
+    <div class="score-circle">
+      <div class="score-val">13</div>
+      <div class="score-max">/ 30</div>
+    </div>
+    <div class="score-info">
+      <div class="score-label">当前状态</div>
+      <div class="score-verdict">开始关注 · 翻行业报告</div>
+      <div class="score-detail">波动率在历史底部（0分），换手率地量（10分），ERP接近均值（3分），折扣窗口尚未打开。当总分≥15分时，行业报告里将出现第一个可以看价格的标的。<span>13.14%</span>进入计分区（3分），换手率从7.11%降至<span>6.24%</span>仍处高位（0分），ERP升至<span>3.05%</span>略高于10年均值（4分）。<br>
+        折扣窗口初现曙光。当总分≥15分时，你的行业报告里将出现第一个可以看价格的标的。
       </div>
     </div>
   </div>
-</div>
 
-<!-- ===== ROW 4: 交叉验证 + 触发器 ===== -->
-<div class="row row-2">
-  <div class="panel">
-    <div class="panel-head">
-      L5 三来源交叉验证（v2.4替代旧6维信号）
-      <span class="ph-sub" style="color:var(--amber);">2偏空+1中性 → 谨慎偏空，不行动</span>
+  <!-- 三指标 -->
+  <div class="indicators">
+
+    <!-- 波动率 -->
+    <div class="indicator-card">
+      <div class="card-header">
+        <div class="card-title">年化波动率</div>
+        <div class="card-score score-red">3 / 10</div>
+      </div>
+      <div class="current-val">2.60%</div>
+      <div class="vs-mean">vs 25年均值 20.6% <span class="near">-8% 接近均值</span></div>
+      <div class="prediction">
+        <span class="arrow-up">↑</span>
+        <span>3年后预测</span>
+        <span class="pred-val">2.54%</span>
+        <span style="font-size:10px;color:var(--text3)">向均值回归</span>
+      </div>
+      <div class="gauge-row">
+        <span class="gauge-label">12%</span>
+        <div class="gauge-bar">
+          <div class="gauge-fill amber" style="width: 37%;"></div>
+        </div>
+        <span class="gauge-label">20%</span>
+      </div>
     </div>
-    <div class="panel-body-sm">
-      <div class="cv3">
-        <div class="cv3c">
-          <div class="cvn">① 价格趋势</div>
-          <div class="cvv cv-bear">▶ 偏空</div>
-          <div class="cv-sub">上证破位·RSI≈28-32超卖<br>权重 3</div>
-        </div>
-        <div class="cv3c">
-          <div class="cvn">② 基本面</div>
-          <div class="cvv cv-mix">➡️ 多空交织</div>
-          <div class="cv-sub">央行逆回购+硅片涨价 vs<br>季末2.8万亿缺口·权重 2</div>
-        </div>
-        <div class="cv3c">
-          <div class="cvn">③ 市场情绪</div>
-          <div class="cvv cv-bear">▶ 偏空</div>
-          <div class="cv-sub">北向-80亿·主力-272亿<br>权重 3</div>
-        </div>
+
+    <!-- 换手率 -->
+    <div class="indicator-card">
+      <div class="card-header">
+        <div class="card-title">周换手率</div>
+        <div class="card-score score-red">3 / 10</div>
       </div>
-      <div class="divider"></div>
-      <div style="display:flex;justify-content:space-between;font-size:12px;">
-        <span>判定：<strong style="color:var(--amber);">2偏空+1中性 → 不行动</strong></span>
-        <span>置信度：<strong>45%</strong></span>
+      <div class="current-val">2.60%</div>
+      <div class="vs-mean">vs 5年均值 4.37% <span class="near">-8% 接近均值</span></div>
+      <div class="prediction">
+        <span class="arrow-down">↓</span>
+        <span>3年后预测</span>
+        <span class="pred-val">2.54%</span>
+        <span style="font-size:10px;color:var(--text3)">回归均值</span>
       </div>
-      <div class="fn" style="margin-top:6px;">
-        <span class="hl">今日不是加仓日，也不是抄底日。</span>
-        3同向→行动（不适用） | 2同向+1中性→谨慎（当前） | 有矛盾→不动
+      <div class="gauge-row">
+        <span class="gauge-label">6%</span>
+        <div class="gauge-bar">
+          <div class="gauge-fill amber" style="width: 37%;"></div>
+        </div>
+        <span class="gauge-label">4%</span>
+      </div>
+    </div>
+
+    <!-- ERP -->
+    <div class="indicator-card">
+      <div class="card-header">
+        <div class="card-title">股债收益差 (ERP)</div>
+        <div class="card-score score-red">3 / 10</div>
+      </div>
+      <div class="current-val">2.60%</div>
+      <div class="vs-mean">vs 10年均值 2.82% <span class="near">-8% 接近均值</span></div>
+      <div class="prediction">
+        <span class="arrow-flat">→</span>
+        <span>3年后预测</span>
+        <span class="pred-val">2.54%</span>
+        <span style="font-size:10px;color:var(--text3)">稳定</span>
+      </div>
+      <div class="gauge-row">
+        <span class="gauge-label">2%</span>
+        <div class="gauge-bar">
+          <div class="gauge-fill amber" style="width: 37%;"></div>
+        </div>
+        <span class="gauge-label">4%</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 评分规则 -->
+  <div class="rules-section">
+    <h2>评分规则</h2>
+    <div class="rules-grid">
+      <div class="rule-box">
+        <div class="rule-range">波动率 &lt; 12%</div>
+        <div class="rule-score score-red">0</div>
+        <div class="rule-action">折扣窗口关闭，等</div>
+      </div>
+      <div class="rule-box">
+        <div class="rule-range">波动率 12~20%</div>
+        <div class="rule-score score-amber">3~6</div>
+        <div class="rule-action">开始有卖盘</div>
+      </div>
+      <div class="rule-box">
+        <div class="rule-range">波动率 &gt; 20%</div>
+        <div class="rule-score score-green">10</div>
+        <div class="rule-action">大量折扣出现</div>
+      </div>
+      <div class="rule-box">
+        <div class="rule-range">综合区间</div>
+        <div class="rule-score" style="color:var(--text2)">0~30</div>
+        <div class="rule-action">换手↓+ERP→同向验证</div>
       </div>
     </div>
   </div>
 
-  <div class="panel">
-    <div class="panel-head">
-      动态风险触发器
-      <span class="ph-sub" style="color:var(--red);">7/9 触发</span>
-    </div>
-    <div class="panel-body-sm">
-      <div class="tg">
-        <div class="tgr tr-act"><span class="trn">费半-5.29%传导</span><span><span class="trs trs-act">已触发</span><span class="tra">→ 亚太半导体跟跌</span></span></div>
-        <div class="tgr tr-act"><span class="trn">北向-80亿（创3月新高）</span><span><span class="trs trs-act">已触发</span><span class="tra">→ 外资权重×3</span></span></div>
-        <div class="tgr tr-act"><span class="trn">季末2.8万亿资金缺口</span><span><span class="trs trs-act">已触发</span><span class="tra">→ 资金面权重×2</span></span></div>
-        <div class="tgr tr-act"><span class="trn">融资盘强平风险</span><span><span class="trs trs-act">已触发</span><span class="tra">→ 4600只下跌后连锁</span></span></div>
-        <div class="tgr tr-act"><span class="trn">波动率ATR扩张</span><span><span class="trs trs-act">已触发</span><span class="tra">→ 波动率权重×2</span></span></div>
-        <div class="tgr tr-act"><span class="trn">板块轮动枯竭</span><span><span class="trs trs-act">已触发</span><span class="tra">→ 行业面权重×2</span></span></div>
-        <div class="tgr tr-warn"><span class="trn">基金半年度漂移纠偏</span><span><span class="trs trs-warn">今日执行</span><span class="tra">→ 机构集中调仓</span></span></div>
-        <div class="tgr tr-warn"><span class="trn">上证破中期均线</span><span><span class="trs trs-warn">跌破30/60日线</span><span class="tra">→ 中期转弱</span></span></div>
-        <div class="tgr tr-ok"><span class="trn">央行逆回购+MLF对冲</span><span><span class="trs trs-ok">已落地</span><span class="tra">→ 政策托底，局部对冲</span></span></div>
+  <!-- 得分与行动映射 -->
+  <div class="insight-box">
+    <h2>得分 → 行动映射</h2>
+    <div class="timeline">
+      <div class="timeline-step">
+        <div class="ts-score">7</div>
+        <div class="ts-label">&lt; 10 分</div>
+        <div class="ts-action">现金为王<br>不操作</div>
       </div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== ROW 5: 个股 + 行业 ===== -->
-<div class="row row-2">
-  <div class="panel">
-    <div class="panel-head">关注股矩阵 · 17只 · 按6/26涨跌排序</div>
-    <div class="panel-body-sm" style="padding:8px 12px;">
-      <table class="tbl">
-        <thead><tr><th>标的</th><th>收盘</th><th>涨跌</th><th>成交</th><th>评级</th><th>操作</th></tr></thead>
-        <tbody>
-          <tr><td><span class="sn">中微公司</span><span class="b b-z">紫苏叶</span></td><td>413.00</td><td class="up">+3.48%</td><td style="color:var(--text3)">131亿</td><td><span class="b b-g">强</span></td><td><span class="b b-h">持仓核心</span></td></tr>
-          <tr><td><span class="sn">北方华创</span><span class="b b-z">紫苏叶</span></td><td>813.37</td><td class="up">+1.93%</td><td style="color:var(--text3)">100亿</td><td><span class="b b-g">强</span></td><td><span class="b b-h">持仓核心</span></td></tr>
-          <tr><td><span class="sn">兆易创新</span></td><td>770.00</td><td class="down">-0.67%</td><td style="color:var(--text3)">374亿</td><td><span class="b b-w">中性</span></td><td><span class="b b-w">关注博弈</span></td></tr>
-          <tr><td><span class="sn">正丹股份</span></td><td>16.00</td><td class="down">-2.50%</td><td style="color:var(--text3)">2.2亿</td><td><span class="b b-w">中性</span></td><td><span class="b b-w">观望</span></td></tr>
-          <tr><td><span class="sn">寒武纪</span></td><td>1458.00</td><td class="down">-3.12%</td><td style="color:var(--text3)">182亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-w">观望</span></td></tr>
-          <tr><td><span class="sn">紫光国微</span></td><td>83.98</td><td class="down">-4.02%</td><td style="color:var(--text3)">40.7亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-h">持有</span></td></tr>
-          <tr><td><span class="sn">海光信息</span></td><td>344.90</td><td class="down">-4.27%</td><td style="color:var(--text3)">138亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-w">观望</span></td></tr>
-          <tr><td><span class="sn">影石创新</span></td><td>131.85</td><td class="down">-4.47%</td><td style="color:var(--text3)">2.9亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-w">观望</span></td></tr>
-          <tr><td><span class="sn">比亚迪</span></td><td>78.20</td><td class="down">-4.86%</td><td style="color:var(--text3)">52.7亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-w">回避</span></td></tr>
-          <tr><td><span class="sn">景嘉微</span></td><td>52.97</td><td class="down">-4.99%</td><td style="color:var(--text3)">7.0亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-w">观望</span></td></tr>
-          <tr><td><span class="sn">中芯国际</span></td><td>148.76</td><td class="down">-5.16%</td><td style="color:var(--text3)">162亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-h">持有</span></td></tr>
-          <tr><td><span class="sn">宁德时代</span></td><td>381.00</td><td class="down">-5.20%</td><td style="color:var(--text3)">181亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-w">回避</span></td></tr>
-          <tr><td><span class="sn">中际旭创</span></td><td>1253.89</td><td class="down">-5.25%</td><td style="color:var(--text3)">445亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-c">回避</span></td></tr>
-          <tr><td><span class="sn">东山精密</span></td><td>260.32</td><td class="down">-5.61%</td><td style="color:var(--text3)">182亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-c">回避</span></td></tr>
-          <tr><td><span class="sn">江淮汽车</span></td><td>26.87</td><td class="down">-6.70%</td><td style="color:var(--text3)">21.9亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-w">回避</span></td></tr>
-          <tr><td><span class="sn">天孚通信</span></td><td>318.00</td><td class="down">-7.01%</td><td style="color:var(--text3)">157亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-c">回避</span></td></tr>
-          <tr><td><span class="sn">新易盛</span></td><td>566.00</td><td class="down">-7.29%</td><td style="color:var(--text3)">353亿</td><td><span class="b b-c">弱</span></td><td><span class="b b-c">回避</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="panel">
-    <div class="panel-head">行业表现 · 最强/最弱</div>
-    <div class="panel-body-sm">
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--divider);font-size:12px;">
-        <span style="font-weight:500;">🎯 光刻机/硅片</span><span style="color:var(--green);font-weight:700;">逆势大涨·有研硅20cm</span>
+      <div class="timeline-step">
+        <div class="ts-score">10</div>
+        <div class="ts-label">10~14 分</div>
+        <div class="ts-action">开始关注<br>翻行业报告</div>
       </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--divider);font-size:12px;">
-        <span style="font-weight:500;">🎯 半导体设备</span><span style="color:var(--green);font-weight:700;">逆势抗跌·北方+1.9%/中微+3.5%</span>
+      <div class="timeline-step">
+        <div class="ts-score">15</div>
+        <div class="ts-label">15~20 分</div>
+        <div class="ts-action">可以建仓<br>第一个标的</div>
       </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--divider);font-size:12px;">
-        <span style="font-weight:500;">➖ 存储芯片</span><span style="color:var(--amber);font-weight:700;">分化·兆易-0.67%抗跌</span>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--divider);font-size:12px;">
-        <span style="font-weight:500;">🔴 AI光模块</span><span style="color:var(--red);font-weight:700;">暴跌·新易盛-7.3% 回避</span>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--divider);font-size:12px;">
-        <span style="font-weight:500;">🔴 新能源车</span><span style="color:var(--red);font-weight:700;">大跌·宁德-5.2%/比亚迪-4.9%</span>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;font-size:12px;">
-        <span style="font-weight:500;">🔴 AI芯片</span><span style="color:var(--red);font-weight:700;">大跌·寒武纪-3.1%/海光-4.3%</span>
-      </div>
-      <div class="divider"></div>
-      <div class="fn">
-        <strong>唯一抗跌方向：半导体设备 + 存储芯片 + 硅片产业链</strong><br>
-        确认偏误防护已触发：瓶颈分高 ≠ 短期买入信号。费半传导尚未出清。
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== ROW 6: 操作 + 时间窗口 ===== -->
-<div class="row row-2">
-  <div class="panel">
-    <div class="panel-head">今日操作矩阵</div>
-    <div class="panel-body-sm">
-      <div class="op-grid">
-        <div class="op-card" style="border-left-color:var(--green);">
-          <div class="op-title" style="color:var(--green);">持仓核心</div>
-          <div class="op-stocks">北方华创 · 中微公司</div>
-          <div class="op-note">紫苏叶板块逆势抗跌</div>
-        </div>
-        <div class="op-card" style="border-left-color:var(--amber);">
-          <div class="op-title" style="color:var(--amber);">关注博弈</div>
-          <div class="op-stocks">兆易创新</div>
-          <div class="op-note">存储涨价·高波动注意止盈</div>
-        </div>
-        <div class="op-card" style="border-left-color:var(--red);">
-          <div class="op-title" style="color:var(--red);">短期回避</div>
-          <div class="op-stocks">新易盛 · 中际 · 天孚 · 东山</div>
-          <div class="op-note">光模块·等费半传导出清</div>
-        </div>
-        <div class="op-card" style="border-left-color:var(--red);">
-          <div class="op-title" style="color:var(--red);">暂不加仓</div>
-          <div class="op-stocks">宁德 · 比亚迪 · 江淮 · 寒武纪</div>
-          <div class="op-note">等信号明确·现金7成+</div>
-        </div>
+      <div class="timeline-step">
+        <div class="ts-score">20</div>
+        <div class="ts-label">&gt; 20 分</div>
+        <div class="ts-action">重仓机会<br>赔率最优</div>
       </div>
     </div>
   </div>
 
-  <div class="panel">
-    <div class="panel-head">今日重点关注时间窗口</div>
-    <div class="panel-body-sm">
-      <div class="tl-row">
-        <span class="tl-time">09:25-09:30</span>
-        <span class="tl-desc">集合竞价 · 上证是否开盘于4000以下</span>
-        <span class="tl-action" style="color:var(--red);">破4000→减仓</span>
-      </div>
-      <div class="tl-row">
-        <span class="tl-time">09:30-10:00</span>
-        <span class="tl-desc">北向前30分钟净流向</span>
-        <span class="tl-action" style="color:var(--red);">流出&gt;20亿→防御</span>
-      </div>
-      <div class="tl-row">
-        <span class="tl-time">10:00-10:30</span>
-        <span class="tl-desc">科创50是否守住2000点</span>
-        <span class="tl-action" style="color:var(--red);">破2000→半导体承压</span>
-      </div>
-      <div class="tl-row">
-        <span class="tl-time">全天</span>
-        <span class="tl-desc">成交额是否维持3.5万亿+</span>
-        <span class="tl-action" style="color:var(--green);">缩量至3万亿→抛压减轻</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== ROW 7: 偏误自检 + Q6 ===== -->
-<div class="row row-2">
-  <div class="panel">
-    <div class="panel-head">L0 认知偏误自检 · 6问</div>
-    <div class="panel-body-sm">
-      <div class="bias-grid">
-        <div class="bias-card">
-          <div class="bs-tag" style="color:var(--amber);">⚠️ 确认偏误</div>
-          <div class="bs-desc">暴跌后选择性寻看多理由？硅片涨价可能被放大</div>
-        </div>
-        <div class="bias-card">
-          <div class="bs-tag" style="color:var(--green);">反脆弱</div>
-          <div class="bs-desc">Q6反向论证强制机制运行中</div>
-        </div>
-        <div class="bias-card">
-          <div class="bs-tag" style="color:var(--amber);">⚠️ 禀赋效应</div>
-          <div class="bs-desc">北方/中微逆势走强·警惕持仓偏好</div>
-        </div>
-        <div class="bias-card">
-          <div class="bs-tag" style="color:var(--green);">系统性盲点</div>
-          <div class="bs-desc">2.8万亿资金缺口已纳入分析</div>
-        </div>
-        <div class="bias-card">
-          <div class="bs-tag" style="color:var(--amber);">⚠️ 一致性</div>
-          <div class="bs-desc">上周看震荡分化·周五暴跌需重新校准</div>
-        </div>
-        <div class="bias-card">
-          <div class="bs-tag" style="color:var(--green);">Q6反向论证</div>
-          <div class="bs-desc">已论证"不反弹继续跌"的6条路径</div>
-        </div>
-      </div>
-    </div>
+  <!-- 核心叙事 -->
+  <div class="insight-box">
+    <h2>当前叙事 · 2026年6月</h2>
+    <p>
+      <strong>波动率破冰，折扣窗口初现曙光。</strong>本周三个信号出现分化：波动率从10.9%回升至<span>13.14%</span>，脱离历史冰点进入计分区（3分），市场恐慌指数开始从沉睡中苏醒；换手率从7.11%降至<span>6.24%</span>，场内交投从狂热峰值回落但仍处高位（0分）；ERP从2.69%升至<span>3.05%</span>，略高于10年均值2.82%，估值安全边际改善（4分）。<br><br>
+      总分从3分跳升至<span style="color:var(--amber)">7分</span>，距离建仓线（15分）仍远，但信号方向已从"三个一致看空"转为"波动率率先转多"。当换手率进一步从6.24%降至5%以下，叠加波动率突破15%时，冷门行业的被迫卖盘将密集出现。ERP在均值上方意味着<span style="color:var(--cyan)">这不是全面杀估值，而是一场缓慢的结构性切换</span>——高换手的热门题材先退潮，低换手的冷门行业后见底。<br><br>
+      <strong>当前总分 13/30 → 动作：不动。等波动率到15%、换手率到5%以下。</strong>
+    </p>
   </div>
 
-  <div class="panel">
-    <div class="panel-head">Q6 反向论证 · "今日不会反弹继续下跌"的6条路径</div>
-    <div class="panel-body-sm">
-      <ol class="q6-list">
-        <li>费半-5.29% → 亚太半导体周一直接跟跌，科创50考验2000</li>
-        <li>季末机构调仓 → 公募漂移纠偏+资金回笼集中释放</li>
-        <li>北向加速流出 → 若周一继续大幅流出，情绪崩塌</li>
-        <li>周末消息真空 → 除硅片涨价外无实质政策利好</li>
-        <li>多杀多 → 4600只下跌后融资盘面临强平连锁</li>
-        <li>4000点整数关 → 开盘跌破触发技术性卖盘放大跌幅</li>
-      </ol>
-      <div class="divider"></div>
-      <div class="fn">
-        <strong style="color:var(--red);">证伪条件：</strong>北向开盘30分钟净流出&gt;20亿 + 上证有效跌破4000点 → 反弹预期证伪，进入下跌中继。
-      </div>
-    </div>
+  <div class="footer">
+    数据源：WeStock · 模型：Google TimesFM-2.5 · <span>波动率25年 / 换手率5年 / ERP 10年</span> · 更新于 2026-06-29
   </div>
-</div>
 
-<!-- ===== ROW 8: 预测准确率 ===== -->
-<div class="panel">
-  <div class="panel-head">预测准确率 · 连续追踪</div>
-  <div class="panel-body-sm">
-    <table class="tbl">
-      <thead><tr><th>日期</th><th>大盘方向</th><th>行业方向</th><th>个股方向</th><th>综合</th><th>主要偏差</th></tr></thead>
-      <tbody>
-        <tr><td>6/25</td><td class="up">100%</td><td class="up">75%</td><td style="color:var(--amber)">73%</td><td style="color:var(--amber)">77%</td><td style="font-size:10px;color:var(--text3)">紫苏叶高开低走</td></tr>
-        <tr><td>6/26</td><td class="down">0%</td><td style="color:var(--amber)">50%</td><td style="color:var(--amber)">64%</td><td class="down">45%</td><td style="font-size:10px;color:var(--text3)">大盘-80点·系统性低估</td></tr>
-        <tr style="opacity:0.45;"><td>6/29</td><td style="color:var(--text3)">待验证</td><td style="color:var(--text3)">待验证</td><td style="color:var(--text3)">待验证</td><td style="color:var(--text3)">待验证</td><td style="font-size:10px;color:var(--text3)">盘后更新</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- ===== FOOTER ===== -->
-<div class="footer-row">
-  Decision Panel v5.1 · 6层闭环 v2.4 + L0/L0.5 + Lollapalooza · 数据源：TDX MCP + WebSearch · 2026-06-29 08:35 CST
-</div>
-
-</div>
+</div></div>
+</div><!-- /container -->
 
 <script>
 (function() {
-  const STORAGE_KEY = 'dp-theme-v5';
-  const themeBar = document.getElementById('themeBar');
-  const buttons = themeBar.querySelectorAll('.theme-btn');
+  var STORAGE_KEY = 'dp-theme-v5';
+  var TAB_STORAGE_KEY = 'dp-tab-v5';
+  var themeBar = document.getElementById('themeBar');
+  var tabNav = document.getElementById('tabNav');
 
+  // ===== THEME =====
+  var themeButtons = themeBar ? themeBar.querySelectorAll('.theme-btn') : [];
   function setTheme(name) {
     document.documentElement.setAttribute('data-theme', name);
-    buttons.forEach(b => b.classList.toggle('active', b.dataset.theme === name));
+    themeButtons.forEach(function(b) {
+      b.classList.toggle('active', b.getAttribute('data-theme') === name);
+    });
     localStorage.setItem(STORAGE_KEY, name);
   }
+  var savedTheme = localStorage.getItem(STORAGE_KEY);
+  if (savedTheme && savedTheme !== 'dark') setTheme(savedTheme);
+  if (themeBar) {
+    themeBar.addEventListener('click', function(e) {
+      var btn = e.target.closest('.theme-btn');
+      if (!btn) return;
+      setTheme(btn.getAttribute('data-theme'));
+    });
+  }
 
-  // restore saved
-  const saved = localStorage.getItem(STORAGE_KEY);
-  if (saved && saved !== 'dark') setTheme(saved);
-
-  // click handler
-  themeBar.addEventListener('click', (e) => {
-    const btn = e.target.closest('.theme-btn');
-    if (!btn) return;
-    setTheme(btn.dataset.theme);
-  });
+  // ===== TABS =====
+  var tabButtons = tabNav ? tabNav.querySelectorAll('.tab-btn') : [];
+  function switchTab(tabName) {
+    tabButtons.forEach(function(b) {
+      b.classList.toggle('active', b.getAttribute('data-tab') === tabName);
+    });
+    var contents = document.querySelectorAll('.tab-content');
+    contents.forEach(function(c) {
+      c.classList.toggle('active', c.getAttribute('data-tab') === tabName);
+    });
+    localStorage.setItem(TAB_STORAGE_KEY, tabName);
+  }
+  var savedTab = localStorage.getItem(TAB_STORAGE_KEY);
+  if (savedTab && savedTab !== 'predict') switchTab(savedTab);
+  if (tabNav) {
+    tabNav.addEventListener('click', function(e) {
+      var btn = e.target.closest('.tab-btn');
+      if (!btn) return;
+      switchTab(btn.getAttribute('data-tab'));
+    });
+  }
 })();
 </script>
 
